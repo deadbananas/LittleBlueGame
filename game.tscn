@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://02mndykd5b"]
+[gd_scene load_steps=7 format=3 uid="uid://02mndykd5b"]
 
 [ext_resource type="Texture2D" uid="uid://ddhjm8lj1hp3g" path="res://pixxeladv/Background/Green.png" id="1_5c7i5"]
 [ext_resource type="Texture2D" uid="uid://dkneid5ko4aor" path="res://pixxeladv/Terrain/Terrain (16x16).png" id="2_jo4br"]
 [ext_resource type="PackedScene" uid="uid://cemmkhino63ca" path="res://main_character.tscn" id="3_uufjs"]
+[ext_resource type="PackedScene" uid="uid://dakm1l5311nnp" path="res://lindon.tscn" id="4_ob26r"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h6a28"]
 texture = ExtResource("2_jo4br")
@@ -475,3 +476,6 @@ layer_0/tile_data = PackedInt32Array(851968, 65536, 0, 851969, 65536, 0, 851970,
 
 [node name="MainCharacter" parent="." instance=ExtResource("3_uufjs")]
 position = Vector2(277, 581)
+
+[node name="Lindon" parent="." instance=ExtResource("4_ob26r")]
+position = Vector2(726, 538)

@@ -1,0 +1,101 @@
+[gd_scene load_steps=14 format=3 uid="uid://dakm1l5311nnp"]
+
+[ext_resource type="Texture2D" uid="uid://dan5iqlxce2xf" path="res://CradleAssets/Lindon/lindon-blackflame-bar-neutral.png" id="1_gnq6a"]
+[ext_resource type="Script" path="res://lindon.gd" id="1_h0bx1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kl477"]
+atlas = ExtResource("1_gnq6a")
+region = Rect2(0, 0, 210, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n50j6"]
+atlas = ExtResource("1_gnq6a")
+region = Rect2(210, 0, 210, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ck6bx"]
+atlas = ExtResource("1_gnq6a")
+region = Rect2(420, 0, 210, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uof8h"]
+atlas = ExtResource("1_gnq6a")
+region = Rect2(630, 0, 210, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d12un"]
+atlas = ExtResource("1_gnq6a")
+region = Rect2(840, 0, 210, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dpeco"]
+atlas = ExtResource("1_gnq6a")
+region = Rect2(1050, 0, 210, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_isbxv"]
+atlas = ExtResource("1_gnq6a")
+region = Rect2(1260, 0, 210, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l5e5u"]
+atlas = ExtResource("1_gnq6a")
+region = Rect2(1470, 0, 210, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_88nde"]
+atlas = ExtResource("1_gnq6a")
+region = Rect2(1680, 0, 210, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0yr2v"]
+atlas = ExtResource("1_gnq6a")
+region = Rect2(1890, 0, 210, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ecpo1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kl477")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_n50j6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ck6bx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uof8h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d12un")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dpeco")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_isbxv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l5e5u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_88nde")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0yr2v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kl477")
+}],
+"loop": false,
+"name": &"default",
+"speed": 20.0
+}]
+
+[node name="Lindon" type="CharacterBody2D"]
+script = ExtResource("1_h0bx1")
+
+[node name="LindonAnims" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2.688, 2.688)
+sprite_frames = SubResource("SpriteFrames_ecpo1")
+frame_progress = 0.45839
+
+[node name="Timer" type="Timer" parent="LindonAnims"]
+wait_time = 6.462
+autostart = true
+
+[connection signal="timeout" from="LindonAnims/Timer" to="LindonAnims" method="_on_timer_timeout"]
+[connection signal="timeout" from="LindonAnims/Timer" to="." method="_on_timer_timeout"]
