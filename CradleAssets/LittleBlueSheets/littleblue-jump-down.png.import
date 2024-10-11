@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://hpunaokacbjw"
-path="res://.godot/imported/littleblue-jump-up-Sheet.png-0f9e30bdf37430db8e6c481d33a7c686.ctex"
+uid="uid://bs425tdg5d67p"
+path="res://.godot/imported/littleblue-jump-down.png-62194c8595dc2253b280c2b4f19a08c0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://CradleAssets/LittleBlueSheets/littleblue-jump-up-Sheet.png"
-dest_files=["res://.godot/imported/littleblue-jump-up-Sheet.png-0f9e30bdf37430db8e6c481d33a7c686.ctex"]
+source_file="res://CradleAssets/LittleBlueSheets/littleblue-jump-down.png"
+dest_files=["res://.godot/imported/littleblue-jump-down.png-62194c8595dc2253b280c2b4f19a08c0.ctex"]
 
 [params]
 

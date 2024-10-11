@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dyepqkyi830ok"
-path="res://.godot/imported/little-blue-attack-right.png-4467ced98a3e859810c519861810bcc7.ctex"
+uid="uid://cle8rnebtnvbi"
+path="res://.godot/imported/sprite_sheet.png-67a840ff4ec3706cf8d422ae086b5d1a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://CradleAssets/LittleBlueSheets/little-blue-attack-right.png"
-dest_files=["res://.godot/imported/little-blue-attack-right.png-4467ced98a3e859810c519861810bcc7.ctex"]
+source_file="res://CradleAssets/Lindon/sprite_sheet.png"
+dest_files=["res://.godot/imported/sprite_sheet.png-67a840ff4ec3706cf8d422ae086b5d1a.ctex"]
 
 [params]
 

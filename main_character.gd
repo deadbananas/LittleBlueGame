@@ -8,7 +8,7 @@ const FRICTION = 10 #deceleration rate
 
 
 
-var jump_height = 200.0
+var jump_height = 100.0
 var jump_time_to_peak = 0.5
 var jump_time_to_descent = 0.39
 
@@ -30,6 +30,7 @@ var friction = false
 var jumped = 0
 var attacking = 0
 var mid_attack = 0
+var attack_Q = 0
 @onready var sprite_2d = $Sprite2D
 @onready var weapon = $Weapon
 
@@ -65,7 +66,10 @@ func jumpAnims():
 func attack():
 	if !mid_attack:
 		mid_attack = 1
-		sprite_2d.play("attack_right")
+		sprite_2d.play("attack1")
+	if (attack_Q):
+		sprite_2d.play("attack2")
+		attack_Q = 0
 func _physics_process(delta):
 	playerInput(delta)
 	match state:
@@ -115,20 +119,31 @@ func playerInput(delta):
 	if Input.is_action_just_released("jump") && velocity.y < minJump and !attacking:
 		velocity.y = 0
 	
-	if (Input.is_action_just_pressed("attack")) and is_on_floor() and !attacking:
+	if (Input.is_action_just_pressed("attack")) and is_on_floor():
 		if !attacking:
 			state = ATTACK
 			attacking = 1
+			attack_Q = 0
+		else:
+			attack_Q = 1
 	if attacking:
-		velocity.x = velocity.x * 0.6
-		velocity.y = 0
+		velocity.x = velocity.x * 0.8
+		velocity.y = velocity.y * 0.5
 	move_and_slide()
 	
 
 
 
 func _on_sprite_2d_animation_finished():
-	sprite_2d.flip_h = false
-	attacking = 0
-	mid_attack = 0
+	if (sprite_2d.animation == "attack1"):
+		if (attack_Q):
+			print("hya")
+		else:
+			attacking = 0
+			mid_attack = 0	
+	if (sprite_2d.animation == "attack2"):
+		attack_Q = 0
+		attacking = 0
+		mid_attack = 0	
+
 

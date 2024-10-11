@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxul8usrxyq32"
-path="res://.godot/imported/little-blue-walk-left-Sheet-sheet.png-00f7868ed5ab795839996807588eac91.ctex"
+uid="uid://b1h4djhs3tylb"
+path="res://.godot/imported/test1blackflamne.png-9708aa875ed4d9a2b30d95cd6fc06bb9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://CradleAssets/LittleBlueSheets/little-blue-walk-left-Sheet-sheet.png"
-dest_files=["res://.godot/imported/little-blue-walk-left-Sheet-sheet.png-00f7868ed5ab795839996807588eac91.ctex"]
+source_file="res://CradleAssets/Lindon/test1blackflamne.png"
+dest_files=["res://.godot/imported/test1blackflamne.png-9708aa875ed4d9a2b30d95cd6fc06bb9.ctex"]
 
 [params]
 

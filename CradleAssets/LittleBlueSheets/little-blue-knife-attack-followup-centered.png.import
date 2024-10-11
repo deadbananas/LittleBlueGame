@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bwth43kc18yoj"
-path="res://.godot/imported/little-blue-idle-left-Sheet.png-89f4124aa57d8f59d5698ffca1968593.ctex"
+uid="uid://buqhlad6vqeiy"
+path="res://.godot/imported/little-blue-knife-attack-followup-centered.png-cb8ebc0638aa42476f0443859ebfe216.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://CradleAssets/LittleBlueSheets/little-blue-idle-left-Sheet.png"
-dest_files=["res://.godot/imported/little-blue-idle-left-Sheet.png-89f4124aa57d8f59d5698ffca1968593.ctex"]
+source_file="res://CradleAssets/LittleBlueSheets/little-blue-knife-attack-followup-centered.png"
+dest_files=["res://.godot/imported/little-blue-knife-attack-followup-centered.png-cb8ebc0638aa42476f0443859ebfe216.ctex"]
 
 [params]
 
