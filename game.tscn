@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://02mndykd5b"]
+[gd_scene load_steps=16 format=3 uid="uid://02mndykd5b"]
 
 [ext_resource type="Texture2D" uid="uid://cs00bavxntvbv" path="res://CradleAssets/landscape/sand1-tileset.png" id="2_c4ob7"]
 [ext_resource type="Texture2D" uid="uid://dkneid5ko4aor" path="res://pixxeladv/Terrain/Terrain (16x16).png" id="2_jo4br"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cemmkhino63ca" path="res://main_character.tscn" id="3_uufjs"]
 [ext_resource type="Texture2D" uid="uid://cawe4rogyjp0l" path="res://CradleAssets/landscape/Sand2.png" id="4_bpp66"]
 [ext_resource type="PackedScene" uid="uid://dakm1l5311nnp" path="res://lindon.tscn" id="4_ob26r"]
+[ext_resource type="Texture2D" uid="uid://di8y1wl6xgs0m" path="res://CradleAssets/landscape/Sand3.png" id="5_n181g"]
 
 [sub_resource type="Gradient" id="Gradient_7mdc8"]
 
@@ -715,6 +716,56 @@ texture_region_size = Vector2i(32, 32)
 3:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 3:1/0/physics_layer_0/angular_velocity = 0.0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mkvb6"]
+texture = ExtResource("5_n181g")
+texture_region_size = Vector2i(32, 32)
+0:0/size_in_atlas = Vector2i(4, 2)
+0:0/animation_speed = 5.0
+0:0/animation_frame_0/duration = 1.0
+0:0/animation_frame_1/duration = 1.0
+0:0/animation_frame_2/duration = 1.0
+0:0/animation_frame_3/duration = 1.0
+0:0/animation_frame_4/duration = 1.0
+0:0/animation_frame_5/duration = 1.0
+0:0/animation_frame_6/duration = 1.0
+0:0/animation_frame_7/duration = 1.0
+0:0/animation_frame_8/duration = 1.0
+0:0/animation_frame_9/duration = 1.0
+0:0/animation_frame_10/duration = 1.0
+0:0/animation_frame_11/duration = 1.0
+0:0/animation_frame_12/duration = 1.0
+0:0/animation_frame_13/duration = 1.0
+0:0/animation_frame_14/duration = 1.0
+0:0/animation_frame_15/duration = 1.0
+0:0/animation_frame_16/duration = 1.0
+0:0/animation_frame_17/duration = 1.0
+0:0/animation_frame_18/duration = 1.0
+0:0/animation_frame_19/duration = 1.0
+0:0/animation_frame_20/duration = 1.0
+0:0/animation_frame_21/duration = 1.0
+0:0/animation_frame_22/duration = 1.0
+0:0/animation_frame_23/duration = 1.0
+0:0/animation_frame_24/duration = 1.0
+0:0/animation_frame_25/duration = 1.0
+0:0/animation_frame_26/duration = 1.0
+0:0/animation_frame_27/duration = 1.0
+0:0/animation_frame_28/duration = 1.0
+0:0/animation_frame_29/duration = 1.0
+0:0/animation_frame_30/duration = 1.0
+0:0/animation_frame_31/duration = 1.0
+0:0/animation_frame_32/duration = 1.0
+0:0/animation_frame_33/duration = 1.0
+0:0/animation_frame_34/duration = 1.0
+0:0/animation_frame_35/duration = 1.0
+0:0/animation_frame_36/duration = 1.0
+0:0/animation_frame_37/duration = 1.0
+0:0/animation_frame_38/duration = 1.0
+0:0/animation_frame_39/duration = 1.0
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64.75, -33.25, 64, -33.5, 63.75, -7.75, -63.5, -11)
+
 [sub_resource type="TileSet" id="TileSet_g2snk"]
 tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
@@ -725,6 +776,7 @@ sources/0 = SubResource("TileSetAtlasSource_h6a28")
 sources/1 = SubResource("TileSetAtlasSource_5ewva")
 sources/2 = SubResource("TileSetAtlasSource_bm2dj")
 sources/3 = SubResource("TileSetAtlasSource_5y6g1")
+sources/8 = SubResource("TileSetAtlasSource_mkvb6")
 
 [node name="Game" type="Node"]
 
@@ -747,10 +799,11 @@ texture_filter = 1
 tile_set = SubResource("TileSet_g2snk")
 rendering_quadrant_size = 32
 format = 2
-layer_0/tile_data = PackedInt32Array(1310726, 3, 0, 1376262, 3, 1, 1310727, 65539, 0, 1376263, 65539, 1, 1310728, 131075, 0, 1376264, 131075, 1, 1310729, 196611, 0, 1376265, 196611, 1, 1310730, 3, 0, 1376266, 3, 1, 1310731, 65539, 0, 1376267, 65539, 1, 1310732, 131075, 0, 1376268, 131075, 1, 1310733, 196611, 0, 1376269, 196611, 1, 1310734, 3, 0, 1376270, 3, 1, 1310735, 65539, 0, 1376271, 65539, 1, 1310736, 131075, 0, 1376272, 131075, 1, 1310737, 196611, 0, 1376273, 196611, 1, 1310738, 3, 0, 1376274, 3, 1, 1310739, 65539, 0, 1376275, 65539, 1, 1310740, 131075, 0, 1376276, 131075, 1, 1310741, 196611, 0, 1376277, 196611, 1, 1310742, 3, 0, 1376278, 3, 1, 1310743, 65539, 0, 1376279, 65539, 1, 1310744, 131075, 0, 1376280, 131075, 1, 1310745, 196611, 0, 1376281, 196611, 1, 1310746, 3, 0, 1376282, 3, 1, 1310747, 65539, 0, 1376283, 65539, 1, 1310748, 131075, 0, 1376284, 131075, 1, 1310749, 196611, 0, 1376285, 196611, 1, 1310750, 3, 0, 1376286, 3, 1, 1310751, 65539, 0, 1376287, 65539, 1, 1310752, 131075, 0, 1376288, 131075, 1, 1310753, 196611, 0, 1376289, 196611, 1, 1310754, 3, 0, 1376290, 3, 1, 1310755, 65539, 0, 1376291, 65539, 1, 1310756, 131075, 0, 1376292, 131075, 1, 1310757, 196611, 0, 1376293, 196611, 1, 1310758, 3, 0, 1376294, 3, 1, 1310759, 65539, 0, 1376295, 65539, 1, 1310760, 131075, 0, 1376296, 131075, 1, 1310761, 196611, 0, 1376297, 196611, 1, 1310762, 3, 0, 1376298, 3, 1, 1310763, 65539, 0, 1376299, 65539, 1, 1310764, 131075, 0, 1376300, 131075, 1, 1310765, 196611, 0, 1376301, 196611, 1)
+layer_0/tile_data = PackedInt32Array(1310726, 8, 0, 1310730, 8, 0, 1310734, 8, 0, 1310738, 8, 0, 1310742, 8, 0, 1310722, 8, 0, 1310746, 8, 0, 35, 8, 0, 31, 8, 0, 27, 8, 0, 23, 8, 0, 19, 8, 0, 15, 8, 0, 11, 8, 0, 7, 8, 0, 39, 8, 0, 3, 8, 0, 65535, 8, 0, 65531, 8, 0)
 
-[node name="MainCharacter" parent="." instance=ExtResource("3_uufjs")]
-position = Vector2(277, 581)
+[node name="main_character" parent="." instance=ExtResource("3_uufjs")]
+unique_name_in_owner = true
+position = Vector2(333, -60)
 
 [node name="Lindon" parent="." instance=ExtResource("4_ob26r")]
-position = Vector2(546, 575)
+position = Vector2(619, -15)

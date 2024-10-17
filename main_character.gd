@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 const UP = Vector2(0,-1)
-const MAX_SPEED = 400 #Max speed in pixels per second
+const MAX_SPEED = 150 #Max speed in pixels per second
 const ACCELERATION = 100 #acceleration rate
 const FRICTION = 10 #deceleration rate
 
