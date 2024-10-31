@@ -1,0 +1,213 @@
+[gd_scene load_steps=10 format=3 uid="uid://dakm1l5311nnp"]
+
+[ext_resource type="Script" path="res://lindon.gd" id="1_h0bx1"]
+[ext_resource type="Texture2D" uid="uid://dpfj4lxpeo1r4" path="res://CradleAssets/Lindon/Lindon-Mikiri-1-fist-strike.png" id="2_hqcw7"]
+[ext_resource type="Texture2D" uid="uid://c63ib3mn4lm5p" path="res://CradleAssets/Lindon/burningcloakspritesheet1.png" id="3_h1ymq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dlaqq"]
+radius = 6.0
+
+[sub_resource type="Animation" id="Animation_mihf6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LindonSprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("LindonSprites:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("burningCloak1:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("burningCloak1:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("burningCloak1:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(48.66, -30.785)]
+}
+
+[sub_resource type="Animation" id="Animation_8nhg1"]
+resource_name = "fist-strike-BC"
+length = 3.0
+step = 0.1065
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LindonSprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.00416332, 0.404163, 0.804163, 1.20416, 1.60416, 1.88455, 2.08895, 2.68455),
+"transitions": PackedFloat32Array(2.80959, 2.80959, 2.80959, 2.80959, 2.80959, 2.80959, 2.80959, 2.80959),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("LindonSprites:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.5975, 2.00717, 2.59483, 2.78442, 2.80416),
+"transitions": PackedFloat32Array(2.80959, 2.80959, 2.80959, 2.80959, 2.80959),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-211.49, 0), Vector2(-211.49, 0), Vector2(-211.49, 0), Vector2(0, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.86402, 2.10169, 2.751),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [],
+"method": &"fistStrikeBc"
+}, {
+"args": [],
+"method": &"zero_fist_Strike"
+}, {
+"args": [],
+"method": &"attacking_off"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("burningCloak1:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.852, 0.9585, 1.065, 1.1715, 1.278, 1.3845, 1.491, 1.5975, 1.704, 1.8105, 1.917, 2.0235, 2.13, 2.2365, 2.343, 2.4495),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 0, 1, 2, 3, 4, 5, 6, 7, 4, 5, 6, 7]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("burningCloak1:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.841342, 0.852, 2.4495, 2.47495),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, false, true, true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = false
+tracks/5/path = NodePath("burningCloak1:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.94651),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(48.66, -30.785)]
+}
+
+[sub_resource type="Animation" id="Animation_bbdp5"]
+resource_name = "fist-strike-Burning-Cloak-Component"
+length = 32.0
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_eo1cs"]
+_data = {
+"RESET": SubResource("Animation_mihf6"),
+"fist-strike-BC": SubResource("Animation_8nhg1"),
+"fist-strike-Burning-Cloak-Component": SubResource("Animation_bbdp5")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7a47s"]
+radius = 72.0069
+
+[node name="Lindon" type="CharacterBody2D"]
+script = ExtResource("1_h0bx1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(5, -5.91)
+shape = SubResource("CircleShape2D_dlaqq")
+disabled = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_eo1cs")
+}
+
+[node name="LindonSprites" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_hqcw7")
+offset = Vector2(0, -63.53)
+hframes = 10
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(0, -76.575)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(3, 33.575)
+shape = SubResource("CircleShape2D_7a47s")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="burningCloak1" type="Sprite2D" parent="."]
+show_behind_parent = true
+position = Vector2(48.66, -30.785)
+scale = Vector2(0.09, 0.09)
+texture = ExtResource("3_h1ymq")
+flip_h = true
+hframes = 8
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

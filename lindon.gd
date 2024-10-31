@@ -1,7 +1,9 @@
 extends CharacterBody2D
 
 @onready var lindon_anim = $AnimationPlayer
-@onready var lindon_sprite = $LindonSprites
+@onready var fiststrikebc = $fiststrikebc
+@onready var lindon_sprite = $"fiststrikebc/LindonSprites"
+@onready var burningCloak1 = $"fiststrikebc/burningCloak1"
 var player = null
 var play = 0
 var slow_down = 0.07
@@ -13,26 +15,48 @@ var player_in_range = false
 var fist_strike_move_direction = 0 #0 for left, 1 for right
 var fist_strike_move = false
 var zero_y  := Vector2(1,0)
+var goal := Vector2(0,0)
 var attacking = false
+var startup_accel = 1000000
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	player = get_node("%main_character")
+	burningCloak1.visible = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	
 	if player_in_range and player != null and !attacking:
 		#velocity = position.direction_to(player.position) * speed * delta
-		lindon_sprite.flip_h = (position.x + 70 < player.position.x)
-	if fist_strike_move:
+		#lindon_sprite.flip_h = (position.x + 70 < player.position.x)
+		#burningCloak1.flip_h = (position.x + 70 < player.position.x)
+		if (position.x + 70 < player.position.x):
+			fiststrikebc.scale.x  = -1.0
+		else:
+			fiststrikebc.scale.x  = 1.0
+	
+	if fist_strike_move:  
 		if fist_strike_move_direction:
 			var playPos := Vector2()
 			playPos.x = player.position.x - 30
-			velocity = (playPos - position).normalized() * zero_y * attack_move_speed * delta
+			goal = (playPos - position).normalized() * zero_y * attack_move_speed * delta
+			print(goal.x)
+			goal.x = goal.x * 0.5
+			if abs(velocity.x) < abs(goal.x):
+				velocity.x = (velocity.x - 10) * 1.07
+			else:
+				velocity = (playPos - position).normalized() * zero_y * attack_move_speed * delta
+			
+
 		else:
 			var playPos := Vector2()
 			playPos.x = player.position.x - 80
-			velocity = (playPos - position).normalized() * zero_y * attack_move_speed * delta
+			goal = (playPos - position).normalized() * zero_y * attack_move_speed * delta
+			goal.x = goal.x * 0.5
+			if abs(velocity.x) < abs(goal.x):
+				velocity.x = (velocity.x + 10) * 1.07
+			else:
+				velocity = (playPos - position).normalized() * zero_y * attack_move_speed * delta
 	move_and_slide()
 		
 	
