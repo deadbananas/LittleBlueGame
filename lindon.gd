@@ -8,16 +8,15 @@ var player = null
 var play = 0
 var slow_down = 0.07
 var speed = 10000
-var attack_move_speed = 1000000
+var attack_accel = 1
+var attack_move_speed = 10
 var player_in_range = false
 
 #attack velocities
 var fist_strike_move_direction = 0 #0 for left, 1 for right
 var fist_strike_move = false
-var zero_y  := Vector2(1,0)
-var goal := Vector2(0,0)
+var zero_y := Vector2(attack_move_speed,0)
 var attacking = false
-var startup_accel = 1000000
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	player = get_node("%main_character")
@@ -35,31 +34,21 @@ func _process(delta):
 		else:
 			fiststrikebc.scale.x  = 1.0
 	
-	if fist_strike_move:  
+	if fist_strike_move:
+		attack_accel = attack_accel + (100 * delta)
 		if fist_strike_move_direction:
-			var playPos := Vector2()
-			playPos.x = player.position.x - 30
-			goal = (playPos - position).normalized() * zero_y * attack_move_speed * delta
-			print(goal.x)
-			goal.x = goal.x * 0.5
-			if abs(velocity.x) < abs(goal.x):
-				velocity.x = (velocity.x - 10) * 1.07
-			else:
-				velocity = (playPos - position).normalized() * zero_y * attack_move_speed * delta
+			var goal = Vector2(position.x + 1500 ,0)
+			velocity = velocity.lerp(-1 * goal, attack_accel * delta)
 			
 
 		else:
-			var playPos := Vector2()
-			playPos.x = player.position.x - 80
-			goal = (playPos - position).normalized() * zero_y * attack_move_speed * delta
-			goal.x = goal.x * 0.5
-			if abs(velocity.x) < abs(goal.x):
-				velocity.x = (velocity.x + 10) * 1.07
-			else:
-				velocity = (playPos - position).normalized() * zero_y * attack_move_speed * delta
+			var goal = Vector2(position.x + 1500 ,0)
+			velocity = velocity.lerp(goal,  attack_accel * delta)
+	velocity.y = 0
+	if velocity.x != 0:
+		print(delta)
 	move_and_slide()
 		
-	
 func _on_timer_timeout():
 	lindon_anim.play("fist-strike-BC")
 	
@@ -86,7 +75,7 @@ func zero_fist_Strike():
 	fist_strike_move = false
 	velocity.x = 0
 	velocity.y = 0
-
+	attack_accel = 1
 
 func attacking_off():
 	attacking = false
