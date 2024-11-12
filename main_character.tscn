@@ -1,12 +1,10 @@
-[gd_scene load_steps=62 format=3 uid="uid://cemmkhino63ca"]
+[gd_scene load_steps=56 format=3 uid="uid://cemmkhino63ca"]
 
 [ext_resource type="Script" path="res://main_character.gd" id="1_silm2"]
 [ext_resource type="Texture2D" uid="uid://buqhlad6vqeiy" path="res://CradleAssets/LittleBlueSheets/little-blue-knife-attack-followup-centered.png" id="2_q6h3c"]
 [ext_resource type="Texture2D" uid="uid://cc4f733dxwh10" path="res://CradleAssets/LittleBlueSheets/little-blue-idle.png" id="3_wprim"]
 [ext_resource type="Texture2D" uid="uid://bs425tdg5d67p" path="res://CradleAssets/LittleBlueSheets/littleblue-jump-down.png" id="4_ace2y"]
-[ext_resource type="Texture2D" uid="uid://jhab7gs5sg6o" path="res://CradleAssets/Weapon_Sword_1.png" id="5_o0s1x"]
 [ext_resource type="Texture2D" uid="uid://b8yhh3nvvmn86" path="res://CradleAssets/LittleBlueSheets/little-blue-walk-right.png" id="5_tsdhb"]
-[ext_resource type="Script" path="res://Weapon.gd" id="5_wt3ho"]
 [ext_resource type="Script" path="res://Sprite2D.gd" id="10_jx5oa"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xy8ia"]
@@ -376,96 +374,7 @@ animations = [{
 "speed": 15.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b4167"]
-radius = 11.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gik4g"]
-size = Vector2(18.1702, 18.0909)
-
-[sub_resource type="Animation" id="Animation_3lybp"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("WeaponSword1:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("WeaponSword1:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(26, 6)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("CollisionShape2D:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="Animation" id="Animation_tl1uf"]
-resource_name = "swing"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("WeaponSword1:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [0.0, 1.00356, 1.57079, 0.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("WeaponSword1:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(26, 6), Vector2(42, 12), Vector2(44, 25), Vector2(26, 6)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("CollisionShape2D:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_d37pa"]
-_data = {
-"RESET": SubResource("Animation_3lybp"),
-"swing": SubResource("Animation_tl1uf")
-}
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7orgb"]
 
 [node name="LittleBlue" type="CharacterBody2D"]
 position = Vector2(351, 395)
@@ -474,44 +383,24 @@ script = ExtResource("1_silm2")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(-56, 29)
+position = Vector2(-0.432007, 3)
 scale = Vector2(0.837, 1)
 sprite_frames = SubResource("SpriteFrames_ewe0w")
+animation = &"attack2"
 autoplay = "default"
 script = ExtResource("10_jx5oa")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-56, 28)
-shape = SubResource("CapsuleShape2D_b4167")
-
 [node name="Sprite2D2" type="Sprite2D" parent="."]
 
-[node name="Weapon" type="Area2D" parent="."]
-script = ExtResource("5_wt3ho")
-
-[node name="WeaponSword1" type="Sprite2D" parent="Weapon"]
-visible = false
-texture_filter = 1
-position = Vector2(26, 6)
-scale = Vector2(2.9375, 3.4375)
-texture = ExtResource("5_o0s1x")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Weapon"]
-position = Vector2(28, 43)
-scale = Vector2(2.9375, 3.4375)
-shape = SubResource("RectangleShape2D_gik4g")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Weapon"]
-libraries = {
-"": SubResource("AnimationLibrary_d37pa")
-}
-
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(-25, 27)
 offset = Vector2(0, -44.79)
 zoom = Vector2(5.195, 5.195)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 4)
+shape = SubResource("CapsuleShape2D_7orgb")
 
 [connection signal="animation_finished" from="Sprite2D" to="." method="_on_sprite_2d_animation_finished"]
 [connection signal="frame_changed" from="Sprite2D" to="." method="_on_sprite_2d_frame_changed"]

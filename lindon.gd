@@ -1,81 +1,125 @@
 extends CharacterBody2D
 
-@onready var lindon_anim = $AnimationPlayer
-@onready var fiststrikebc = $fiststrikebc
-@onready var lindon_sprite = $"fiststrikebc/LindonSprites"
-@onready var burningCloak1 = $"fiststrikebc/burningCloak1"
+@onready var anim_sprite = $fiststrikebc
+@onready var anim_burningCloak1 = $fiststrikebc/burningCloak1
+@onready var anim_LindonSprites = $fiststrikebc/LindonSprites
+@onready var anim_fist_bc_strike = $fiststrikebc/fist_bc_strike
+@onready var anim_transition_to_fist = $fiststrikebc/transition_to_fist
+@onready var anim_walk_forward = $fiststrikebc/walk_forward
+@onready var anim_kick_rock = $fiststrikebc/kick_rock
+@onready var anim_basic_combo = $fiststrikebc/basic_combo
+@onready var anim_player = $AnimationPlayer
+
+@onready var game = get_tree().get_root().get_node("Game")
+@onready var rock = load("res://rock.tscn")
+
+@export var combo_dash_speed = 200
 var player = null
-var play = 0
-var slow_down = 0.07
-var speed = 10000
-var attack_accel = 1
-var attack_move_speed = 10
-var player_in_range = false
+var dir_to_player
 
-#attack velocities
-var fist_strike_move_direction = 0 #0 for left, 1 for right
-var fist_strike_move = false
-var zero_y := Vector2(attack_move_speed,0)
-var attacking = false
-# Called when the node enters the scene tree for the first time.
+const gravity = 50
+
+var instance
+
 func _ready():
-	player = get_node("%main_character")
-	burningCloak1.visible = false
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+	player = get_node("../%main_character")
+	anim_burningCloak1.visible = false
+	anim_LindonSprites.visible = false
+	anim_fist_bc_strike.visible = false
+	anim_transition_to_fist.visible = false
+	anim_walk_forward.visible = false
+	anim_kick_rock.visible = false
+	anim_basic_combo.visible = false
 	
-	if player_in_range and player != null and !attacking:
-		#velocity = position.direction_to(player.position) * speed * delta
-		#lindon_sprite.flip_h = (position.x + 70 < player.position.x)
-		#burningCloak1.flip_h = (position.x + 70 < player.position.x)
-		if (position.x + 70 < player.position.x):
-			fiststrikebc.scale.x  = -1.0
-		else:
-			fiststrikebc.scale.x  = 1.0
-	
-	if fist_strike_move:
-		attack_accel = attack_accel + (100 * delta)
-		if fist_strike_move_direction:
-			var goal = Vector2(position.x + 1500 ,0)
-			velocity = velocity.lerp(-1 * goal, attack_accel * delta)
-			
-
-		else:
-			var goal = Vector2(position.x + 1500 ,0)
-			velocity = velocity.lerp(goal,  attack_accel * delta)
-	velocity.y = 0
-	if velocity.x != 0:
-		print(delta)
+func _physics_process(delta):
 	move_and_slide()
-		
-func _on_timer_timeout():
-	lindon_anim.play("fist-strike-BC")
-	
-	#blackflame.play("breath")
 
-func _on_area_2d_body_entered(_body):
-	player_in_range = true 
+func move(dir,speed):
+	velocity.x = dir * speed
+	handle_anims()
+	update_flip(dir)
 	
+func moveAway(dir,speed):
+	velocity.x = dir * speed
+	handle_anims()
+	update_flip(-dir)
 	
-	
-func fistStrikeBc():
-	attacking = true
-	var curPos = position
-	var curX = curPos.x + 70
-	var playerCurPos = player.position	
-	#if !(abs(curX - playerCurPos.x) < 50):
-	fist_strike_move = true
-	if curX - playerCurPos.x > 0:
-		fist_strike_move_direction = 1
+func basic_combo_end_dash(dir, speed):
+	velocity.x = dir * speed
+	update_flip(dir)
+
+func update_flip(dir):
+	dir_to_player = dir
+	if abs(dir) == dir:
+		anim_sprite.scale.x  = -1.0
 	else:
-		fist_strike_move_direction = 0
-			
-func zero_fist_Strike():
-	fist_strike_move = false
-	velocity.x = 0
-	velocity.y = 0
-	attack_accel = 1
+		anim_sprite.scale.x  = 1.0
+		
+func handle_anims():
+	if velocity.x != 0:
+		anim_walk_forward.visible = true
+		anim_LindonSprites.visible = false
+		anim_player.play("move")
+		
+	else:
+		anim_walk_forward.visible = false
+		anim_LindonSprites.visible = true
+		anim_player.play("idle")
 
-func attacking_off():
-	attacking = false
+func basic_combo_anims_enter():
+	anim_walk_forward.visible = false
+	anim_LindonSprites.visible = false
+	anim_basic_combo.visible = true
+	
+func basic_combo_anims_exit():
+	anim_basic_combo.visible = false
+	anim_LindonSprites.visible = true
+	
+func fist_strike_bc_anims_enter():
+	anim_walk_forward.visible = false
+	anim_LindonSprites.visible = false
+
+func kick_rock_anims_enter():
+	anim_walk_forward.visible = false
+	anim_LindonSprites.visible = false
+	anim_kick_rock.visible = true
+	
+func kick_rock_anims_exit():
+	anim_kick_rock.visible = false
+	anim_LindonSprites.visible = true
+	
+func spawn_rock():
+	instance = rock.instantiate()
+	instance.spawn_dir = dir_to_player
+	instance.spawn_pos = global_position
+	instance.spawn_rot = 0.0
+	instance.zdex = z_index - 1
+	instance.launch = false
+	game.add_child.call_deferred(instance)
+	
+func launch_rock():
+	instance.spawn_dir = dir_to_player
+	instance.launch = true
+#class_name Lindon
+#extends CharacterBody2D
+#
+#@onready
+#var animations = $AnimationPlayer
+#@onready
+#var state_machine = $state_machine
+#@onready
+#var move_component = $move_component
+#
+#func _ready() -> void:
+	## Initialize the state machine, passing a reference of the player to the states,
+	## that way they can move and react accordingly
+	#state_machine.init(self, animations, move_component)
+#
+#func _unhandled_input(event: InputEvent) -> void:
+	#state_machine.process_input(event)
+#
+#func _physics_process(delta: float) -> void:
+	#state_machine.process_physics(delta)
+#
+#func _process(delta: float) -> void:
+	#state_machine.process_frame(delta)
