@@ -1,0 +1,38 @@
+extends State
+
+@export
+var idle_state: State
+@export
+var move_state: State
+@export
+var fall_state: State
+@onready
+var timer = $fall_timer
+
+
+var falling = 0
+
+func enter() -> void:
+	super()
+	timer.start()
+	falling = 0
+
+func process_physics(delta: float) -> State:
+	parent.velocity.y += gravity * delta
+	var movement = get_movement_input() * move_speed
+	if movement != 0:
+		animations.flip_h = movement < 0
+	parent.velocity.x = movement
+	parent.move_and_slide()
+	if falling:
+		return fall_state
+	if parent.is_on_floor():
+		if movement != 0:
+			return move_state
+		return idle_state
+	return null
+
+
+func _on_fall_timer_timeout():
+	falling = 1
+	

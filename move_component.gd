@@ -1,16 +1,12 @@
 extends Node
 
-@export
-var parent: CharacterBody2D
-
-var direction := 1.0
-
-# When a wall is touched, move in the opposite direction
+# Return the desired direction of movement for the character
+# in the range [-1, 1], where positive values indicate a desire
+# to move to the right and negative values to the left.
 func get_movement_direction() -> float:
-	direction = 1000
 	
-	return direction
+	return Input.get_axis('left', 'right')
 
-# This poor character never learned how to jump
+# Return a boolean indicating if the character wants to jumps
 func wants_jump() -> bool:
-	return false
+	return Input.is_action_just_pressed('jump')
