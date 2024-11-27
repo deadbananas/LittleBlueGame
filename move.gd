@@ -14,6 +14,8 @@ var parry_state: State
 func process_input(event: InputEvent) -> State:
 	#if Input.is_action_just_pressed('dash'):
 		#return dash_state
+	if (Input.is_action_just_pressed("attack")):
+		return attack_state
 	return null
 
 func process_physics(delta: float) -> State:
@@ -26,8 +28,12 @@ func process_physics(delta: float) -> State:
 	
 	if movement == 0:
 		return idle_state
-	
-	animations.flip_h = movement < 0
+	var flip = 1.0
+	if movement < 0:
+		flip = -1.0
+	else:
+		flip = 1.0
+	sprite.scale.x = flip
 	parent.velocity.x = movement
 	parent.move_and_slide()
 	

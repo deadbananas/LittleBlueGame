@@ -5,18 +5,23 @@ extends Node
 var animation_name: String
 @export
 var move_speed: float = 300
+@export
+var sprite_associated: Sprite2D
 
 var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-var animations: AnimatedSprite2D
+var animations: AnimationPlayer
 var move_component
 var parent: CharacterBody2D
 
+var sprite: Sprite2D
+
 func enter() -> void:
 	animations.play(animation_name)
+	sprite_associated.visible = true
 
 func exit() -> void:
-	pass
+	sprite_associated.visible = false
 
 func process_input(event: InputEvent) -> State:
 	return null

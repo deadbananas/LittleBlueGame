@@ -161,6 +161,8 @@ extends CharacterBody2D
 @onready
 var animations = $anims
 @onready
+var sprite = $LittleBlue_sheets
+@onready
 var state_machine = $state_machine
 @onready
 var move_component = $move_component
@@ -168,7 +170,7 @@ var move_component = $move_component
 func _ready() -> void:
 	# Initialize the state machine, passing a reference of the player to the states,
 	# that way they can move and react accordingly
-	state_machine.init(self, animations, move_component)
+	state_machine.init(self, animations, move_component, sprite)
 
 func _unhandled_input(event: InputEvent) -> void:
 	state_machine.process_input(event)
