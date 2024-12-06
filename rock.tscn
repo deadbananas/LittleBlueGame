@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://p5l05mchakwn"]
+[gd_scene load_steps=9 format=3 uid="uid://p5l05mchakwn"]
 
 [ext_resource type="Texture2D" uid="uid://7poux84rmxv8" path="res://CradleAssets/Lindon/rockAlone.png" id="1_m2soj"]
 [ext_resource type="Script" path="res://rock.gd" id="1_udgb4"]
+[ext_resource type="Script" path="res://Components/hitbox.gd" id="3_704qy"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4cg8p"]
 radius = 6.0
@@ -191,5 +192,15 @@ libraries = {
 [node name="Life" type="Timer" parent="."]
 wait_time = 3.0
 autostart = true
+
+[node name="rock_hitbox" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 0
+script = ExtResource("3_704qy")
+
+[node name="rock_hitbox_shape" type="CollisionShape2D" parent="rock_hitbox"]
+position = Vector2(0, 1)
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_4cg8p")
 
 [connection signal="timeout" from="Life" to="." method="_on_life_timeout"]

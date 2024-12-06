@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dakm1l5311nnp"]
+[gd_scene load_steps=29 format=3 uid="uid://dakm1l5311nnp"]
 
 [ext_resource type="Script" path="res://lindon.gd" id="1_h0bx1"]
 [ext_resource type="Texture2D" uid="uid://dpfj4lxpeo1r4" path="res://CradleAssets/Lindon/Lindon-Mikiri-1-fist-strike.png" id="2_hqcw7"]
@@ -12,7 +12,9 @@
 [ext_resource type="Script" path="res://Fist-Strike.gd" id="7_m126c"]
 [ext_resource type="Script" path="res://move.gd" id="8_an355"]
 [ext_resource type="Texture2D" uid="uid://bw8fi34lma0is" path="res://CradleAssets/Lindon/neutral-attack.png" id="8_as2vf"]
+[ext_resource type="Script" path="res://Components/hitbox.gd" id="8_vy18p"]
 [ext_resource type="BehaviorTree" uid="uid://ndc4u1m3kex3" path="res://ai/trees/LindonBehavior1.tres" id="13_ig7y2"]
+[ext_resource type="Script" path="res://Components/hurtbox.gd" id="14_n6tvd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dlaqq"]
 radius = 6.0
@@ -175,6 +177,150 @@ tracks/12/keys = {
 "update": 1,
 "values": [0]
 }
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("fiststrikebc/kick_rock/rock_hit_hitbox/rock_hitbox_shape:disabled")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("fiststrikebc/kick_rock/rock_hit_hitbox/rock_hitbox_shape:position")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("fiststrikebc/kick_rock/rock_hit_hitbox/rock_hitbox_shape:polygon")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [PackedVector2Array(-4, 64, -4, 42, 15, 41, 11, 66, -1, 68, 3, 64, -8, 69, -14, 63, -11, 54)]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("fiststrikebc/basic_combo/basic_combo_hitbox/basic_combo_shape:disabled")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("fiststrikebc/basic_combo/basic_combo_hitbox/basic_combo_shape:polygon")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [PackedVector2Array(-8, 7, -8, 22, -4, 28, 6, 30, 11, 27, 11, 19, 7, 18, 4, 20, 2, 19, 1, 17, 2, 16, 3, 13, 0, 10, -5, 9)]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("fiststrikebc/basic_combo/basic_combo_hitbox/basic_combo_shape:position")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("fiststrikebc/LindonSprites/blackflame_fist_Strike_hitbox/fist_strike_hitbox:disabled")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("fiststrikebc/LindonSprites/blackflame_fist_Strike_hitbox/fist_strike_hitbox:polygon")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [PackedVector2Array(-20, -42, -22, -44, -23, -47, -23, -50, -21, -51, -18, -53, -16, -53, -14, -52, -12, -51, -11, -49, -12, -47, -12, -45, -10, -43, -11, -42, -12, -40, -13, -38, -16, -37)]
+}
+tracks/21/type = "value"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("fiststrikebc/LindonSprites/blackflame_fist_Strike_hitbox/fist_strike_hitbox:position")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/22/type = "value"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("fiststrikebc/LindonSprites/cloak_hitbox/cloak_hitbox_shape:position")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/23/type = "value"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath("fiststrikebc/LindonSprites/cloak_hitbox/cloak_hitbox_shape:polygon")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [PackedVector2Array(12, -12, 17, -11, 20, -11, 32, -9, 34, -9, 41, -10, 48, -12, 57, -14, 64, -17, 75, -22, 79, -27, 76, -29, 73, -30, 72, -32, 74, -36, 76, -39, 76, -43, 73, -44, 70, -45, 65, -47, 59, -48, 52, -49, 41, -51, 31, -51, 23, -52, 13, -53, 9, -51, 7, -45)]
+}
+tracks/24/type = "value"
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/path = NodePath("fiststrikebc/LindonSprites/cloak_hitbox/cloak_hitbox_shape:disabled")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_ud1j7"]
 resource_name = "basic_attack_first_2"
@@ -190,6 +336,42 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("fiststrikebc/basic_combo/basic_combo_hitbox/basic_combo_shape:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.7, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("fiststrikebc/basic_combo/basic_combo_hitbox/basic_combo_shape:polygon")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.4, 0.5, 0.6, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [PackedVector2Array(-8, 7, -8, 22, -4, 28, 6, 30, 11, 27, 11, 19, 7, 18, 4, 20, 2, 19, 1, 17, 2, 16, 3, 13, 0, 10, -5, 9), PackedVector2Array(22, 6, 23, 12, 24, 16, 26, 17, 34, 18, 35, 15, 37, 3, 39, 1, 39, -2, 37, -5, 34, -7, 29, -6, 24, -5, 23, -1), PackedVector2Array(22, 6, 23, 12, 26, 17, 32, 22, 41, 21, 41, 14, 37, 3, 39, 1, 39, -2, 37, -5, 34, -7, 29, -6, 26, -4, 23, -1), PackedVector2Array(-38, 65, -14, 68, 16, 67, 39, 59, 52, 29, 41, 14, 41, 2, 41, -3, 37, -8, 17, -8, -15, 12, -38, 34, -47, 53, -45, 59), PackedVector2Array(-46, 68, -14, 68, 16, 67, 39, 59, 52, 29, 41, 14, 41, 2, 41, -3, 37, -8, 17, -8, -32, -4, -44, 8, -47, 36, -51, 59), PackedVector2Array(19, 54, 19, 60, 19, 67, 27, 67, 28, 61, 29, 58, 28, 54, 29, 49, 32, 49, 30, 46, 26, 37, 20, 39, 15, 45, 18, 51), PackedVector2Array(-29, 44, -32, 55, -28, 68, 27, 67, 35, 65, 39, 62, 41, 58, 38, 52, 37, 46, 37, 39, 31, 33, 19, 39, -22, 39, -27, 40)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("fiststrikebc/basic_combo/basic_combo_hitbox/basic_combo_shape:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(-13, -4), Vector2(-13, -4), Vector2(-13, -4)]
 }
 
 [sub_resource type="Animation" id="Animation_kbi4c"]
@@ -220,6 +402,42 @@ tracks/1/keys = {
 "args": [],
 "method": &"basic_combo_end_dash"
 }]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("fiststrikebc/basic_combo/basic_combo_hitbox/basic_combo_shape:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.7, 0.8, 1, 1.4, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("fiststrikebc/basic_combo/basic_combo_hitbox/basic_combo_shape:polygon")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.4, 0.5, 0.6, 0.8, 0.9, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [PackedVector2Array(-8, 7, -8, 22, -4, 28, 6, 30, 11, 27, 11, 19, 7, 18, 4, 20, 2, 19, 1, 17, 2, 16, 3, 13, 0, 10, -5, 9), PackedVector2Array(25, 14, 25, 15, 26, 16, 32, 17, 36, 17, 40, -1, 37, -5, 35, -6, 31, -7, 25, -5, 22, 0, 22, 4, 22, 9, 24, 12), PackedVector2Array(25, 14, 25, 15, 26, 16, 32, 17, 36, 17, 40, -1, 37, -5, 35, -6, 31, -7, 25, -5, 22, 0, 22, 4, 22, 9, 24, 12), PackedVector2Array(-42, 61, -33, 66, -20, 67, 33, 66, 36, 17, 41, -1, 40, -5, 39, -7, 35, -9, 14, -8, -17, 11, -40, 36, -47, 49, -47, 58), PackedVector2Array(-47, 66, -43, 67, -20, 67, 33, 66, 37, 20, 36, -9, 20, -9, -21, -6, -38, 0, -47, 17, -48, 39, -45, 50, -51, 55, -51, 60), PackedVector2Array(19, 56, 17, 59, 18, 61, 18, 66, 22, 67, 27, 66, 24, 61, 26, 60, 28, 57, 29, 52, 29, 47, 17, 43, 14, 45, 15, 51), PackedVector2Array(-27, 48, -30, 51, -33, 54, -29, 67, 22, 67, 28, 67, 28, 64, 30, 60, 31, 54, 30, 50, 29, 37, -25, 38, -29, 41, -30, 44), PackedVector2Array(12, 42, 16, 46, 15, 52, 17, 67, 22, 67, 28, 67, 48, 67, 46, 38, 42, 31, 36, 8, 26, 8, 15, 16, 9, 26, 9, 34)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("fiststrikebc/basic_combo/basic_combo_hitbox/basic_combo_shape:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.4, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(-12, -3), Vector2(-12, -3), Vector2(-12, -3)]
 }
 
 [sub_resource type="Animation" id="Animation_8nhg1"]
@@ -334,6 +552,78 @@ tracks/8/keys = {
 "update": 1,
 "values": [false, true, true, false]
 }
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("fiststrikebc/LindonSprites/blackflame_fist_Strike_hitbox/fist_strike_hitbox:disabled")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 1.86484, 2.60511),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("fiststrikebc/LindonSprites/blackflame_fist_Strike_hitbox/fist_strike_hitbox:polygon")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 1.86484, 2.25444, 2.40835, 2.49833),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [PackedVector2Array(-20, -42, -22, -44, -23, -47, -23, -50, -21, -51, -18, -53, -16, -53, -14, -52, -12, -51, -11, -49, -12, -47, -12, -45, -10, -43, -11, -42, -12, -40, -13, -38, -16, -37), PackedVector2Array(-18, -22, -20, -21, -22, -19, -26, -19, -27, -21, -29, -23, -30, -25, -30, -27, -29, -29, -27, -29, -27, -31, -26, -32, -24, -32, -23, -30, -19, -30, -3, -33, 0, -23), PackedVector2Array(-21, -15, -32, -15, -38, -18, -45, -18, -48, -24, -48, -31, -43, -34, -40, -36, -35, -35, -29, -36, -21, -36, -21, -34, -18, -35, -18, -33, -10, -34, -3, -33, 1, -23), PackedVector2Array(-21, -15, -32, -15, -43, -15, -52, -19, -53, -23, -49, -31, -40, -35, -37, -40, -32, -40, -29, -36, -21, -36, -21, -34, -18, -35, -18, -33, -10, -34, -3, -33, 1, -23), PackedVector2Array(-21, -15, -32, -15, -42, -19, -48, -21, -49, -26, -47, -30, -43, -33, -39, -31, -34, -32, -29, -36, -21, -36, -21, -34, -18, -35, -18, -33, -10, -34, -3, -33, 1, -23)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("fiststrikebc/LindonSprites/blackflame_fist_Strike_hitbox/fist_strike_hitbox:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("fiststrikebc/LindonSprites/cloak_hitbox/cloak_hitbox_shape:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("fiststrikebc/LindonSprites/cloak_hitbox/cloak_hitbox_shape:polygon")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 0.852306, 0.963895, 1.06875, 1.1813, 1.39144, 1.62039, 1.77196, 1.87489, 1.9836, 2.10288, 2.2212, 2.35017, 2.4204, 2.49543, 2.76767, 2.8629, 2.87252),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [PackedVector2Array(12, -12, 17, -11, 20, -11, 32, -9, 34, -9, 41, -10, 48, -12, 57, -14, 64, -17, 75, -22, 79, -27, 76, -29, 73, -30, 72, -32, 74, -36, 76, -39, 76, -43, 73, -44, 70, -45, 65, -47, 59, -48, 52, -49, 41, -51, 31, -51, 23, -52, 13, -53, 9, -51, 7, -45), PackedVector2Array(13, -14, 17, -11, 21, -12, 32, -9, 34, -10, 35, -14, 37, -18, 40, -21, 43, -25, 44, -29, 44, -31, 41, -34, 38, -38, 33, -41, 31, -44, 30, -45, 26, -47, 23, -49, 17, -47, 19, -51, 20, -52, 21, -56, 19, -59, 15, -59, 12, -57, 11, -54, 9, -51, 7, -45), PackedVector2Array(13, -14, 17, -11, 21, -12, 31, -2, 36, -4, 43, -10, 50, -16, 48, -22, 49, -28, 47, -31, 44, -34, 43, -37, 39, -40, 36, -43, 33, -46, 30, -47, 26, -47, 23, -49, 17, -47, 19, -51, 20, -52, 23, -58, 21, -63, 15, -61, 12, -57, 11, -54, 9, -51, 7, -45), PackedVector2Array(13, -14, 17, -11, 21, -12, 31, -2, 37, -5, 46, -11, 50, -16, 48, -22, 49, -28, 47, -31, 44, -34, 43, -37, 39, -40, 36, -43, 33, -46, 30, -47, 26, -47, 23, -49, 17, -47, 19, -51, 20, -52, 23, -58, 21, -63, 15, -61, 12, -57, 11, -54, 9, -51, 7, -45), PackedVector2Array(13, -14, 17, -11, 21, -12, 31, -2, 33, -11, 41, -20, 44, -24, 43, -28, 44, -31, 43, -33, 41, -34, 38, -37, 36, -39, 33, -42, 31, -45, 29, -47, 26, -47, 23, -49, 17, -47, 19, -51, 20, -52, 23, -58, 21, -63, 15, -61, 12, -57, 11, -54, 9, -51, 7, -45), PackedVector2Array(13, -14, 17, -11, 21, -12, 31, -2, 43, -8, 51, -18, 50, -29, 46, -29, 47, -34, 44, -35, 43, -37, 40, -38, 38, -41, 35, -44, 32, -46, 29, -47, 26, -47, 23, -49, 17, -47, 19, -51, 20, -52, 23, -58, 21, -63, 15, -61, 12, -57, 11, -54, 9, -51, 7, -45), PackedVector2Array(13, -14, 17, -11, 21, -12, 31, -2, 37, -14, 45, -24, 45, -28, 45, -29, 42, -33, 41, -35, 40, -36, 38, -37, 36, -40, 32, -43, 30, -45, 28, -46, 26, -47, 23, -49, 17, -47, 19, -51, 20, -52, 23, -58, 21, -63, 15, -61, 12, -57, 11, -54, 9, -51, 7, -45), PackedVector2Array(13, -14, 17, -11, 21, -12, 31, -2, 44, -9, 52, -23, 51, -28, 47, -30, 45, -34, 42, -37, 41, -38, 39, -39, 37, -41, 34, -44, 31, -45, 28, -46, 26, -47, 23, -49, 17, -47, 19, -51, 20, -52, 23, -58, 21, -63, 15, -61, 12, -57, 11, -54, 9, -51, 7, -45), PackedVector2Array(14, -27, 23, -26, 31, -25, 41, -21, 59, -12, 73, -11, 81, -15, 90, -22, 95, -34, 98, -42, 99, -51, 77, -54, 64, -56, 40, -43, 31, -43, 28, -45, 26, -47, 23, -49, 17, -47, 19, -51, 20, -52, 20, -55, 19, -59, 15, -59, 12, -57, 11, -54, 9, -51, 7, -45), PackedVector2Array(14, -27, 23, -26, 31, -25, 41, -21, 59, -12, 75, -5, 82, -12, 94, -21, 97, -33, 98, -42, 91, -43, 73, -48, 62, -51, 40, -43, 31, -43, 28, -45, 26, -47, 23, -49, 17, -47, 19, -51, 20, -52, 20, -55, 19, -59, 15, -59, 12, -57, 11, -54, 9, -51, 7, -45), PackedVector2Array(14, -27, 23, -26, 31, -25, 41, -21, 59, -12, 75, -5, 82, -12, 98, -22, 97, -33, 100, -48, 93, -55, 81, -58, 62, -53, 41, -46, 31, -43, 28, -45, 26, -47, 23, -49, 17, -47, 19, -51, 20, -52, 20, -55, 19, -59, 15, -59, 12, -57, 11, -54, 9, -51, 7, -45), PackedVector2Array(14, -27, 23, -26, 31, -25, 41, -21, 59, -12, 75, -5, 82, -12, 80, -22, 79, -37, 76, -45, 75, -52, 69, -53, 62, -53, 41, -46, 31, -43, 28, -45, 26, -47, 23, -49, 17, -47, 19, -51, 20, -52, 20, -55, 19, -59, 15, -59, 12, -57, 11, -54, 9, -51, 7, -45), PackedVector2Array(14, -27, 23, -26, 31, -25, 41, -21, 59, -12, 75, -5, 82, -12, 89, -25, 92, -41, 86, -48, 75, -52, 69, -53, 62, -53, 41, -46, 31, -43, 28, -45, 26, -47, 23, -49, 17, -47, 19, -51, 20, -52, 20, -55, 19, -59, 15, -59, 12, -57, 11, -54, 9, -51, 7, -45), PackedVector2Array(-41, -36, -39, -24, -35, -6, -33, -2, -22, 7, -7, 6, 1, 0, -12, -3, 1, -15, 4, -19, 10, -20, 22, -25, 31, -31, 36, -36, 33, -40, 29, -41, 26, -42, 19, -42, 3, -41, -14, -41, -9, -48, -2, -63, 7, -68, 1, -73, -13, -72, -23, -66, -29, -58, -36, -48), PackedVector2Array(-55, -49, -61, -25, -67, -4, -68, 10, -55, 15, -11, 10, -3, 8, 4, 6, 12, 5, 17, 4, 30, 1, 46, -2, 58, -7, 65, -13, 69, -22, 69, -27, 70, -36, 71, -45, 73, -56, 71, -72, 54, -83, 33, -96, 12, -108, -2, -106, -15, -99, -25, -83, -23, -78, -43, -76), PackedVector2Array(-55, -49, -61, -25, -67, -4, -68, 10, -38, 9, -11, 10, -3, 8, 4, 6, 12, 5, 17, 4, 30, 1, 46, -2, 47, -9, 54, -13, 57, -18, 58, -25, 59, -34, 60, -41, 59, -50, 55, -60, 45, -74, 27, -83, 8, -87, -8, -86, -18, -85, -25, -83, -23, -78, -43, -76), PackedVector2Array(-37, -44, -45, -31, -44, -15, -40, -7, -22, -4, -18, -4, -15, -3, -12, -2, -8, 0, -6, 2, -4, 1, 3, 1, 9, 1, 11, 0, 18, -1, 20, -1, 24, -3, 29, -4, 30, -11, 37, -19, 37, -28, 34, -38, 26, -49, 22, -56, 16, -63, 6, -67, -13, -67, -24, -60), PackedVector2Array(-37, -44, -45, -31, -44, -15, -40, -7, -22, -4, -18, -4, -15, -3, -12, -2, -8, 0, -6, 2, -4, 1, 3, 1, 9, 1, 11, 0, 18, -1, 20, -1, 24, -3, 29, -4, 30, -11, 37, -19, 37, -28, 34, -38, 26, -49, 22, -56, 16, -63, 6, -67, -13, -67, -24, -60)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("fiststrikebc/LindonSprites/cloak_hitbox/cloak_hitbox_shape:disabled")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0, 0.852306, 2.87252, 3.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [true, false, true, true]
+}
 
 [sub_resource type="Animation" id="Animation_bbdp5"]
 resource_name = "fist-strike-Burning-Cloak-Component"
@@ -393,6 +683,42 @@ tracks/1/keys = {
 "method": &"kick_rock_anims_exit"
 }]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("fiststrikebc/kick_rock/rock_hit_hitbox/rock_hitbox_shape:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4, 0.9, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("fiststrikebc/kick_rock/rock_hit_hitbox/rock_hitbox_shape:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("fiststrikebc/kick_rock/rock_hit_hitbox/rock_hitbox_shape:polygon")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.9, 1.2, 1.3, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [PackedVector2Array(-4, 64, -4, 42, 15, 41, 11, 66, -1, 68, 3, 64, -8, 69, -14, 63, -11, 54), PackedVector2Array(-2, 41, 0, 39, 15, 41, 11, 44, 12, 52, 7, 59, 1, 59, 0, 56, 4, 52), PackedVector2Array(-3, 43, -2, 36, 6, 40, 6, 44, 5, 49, 2, 52, -4, 52, -5, 49, -1, 46), PackedVector2Array(-1, 51, 5, 51, 10, 49, 15, 55, 13, 60, 12, 64, 2, 64, 4, 60, 0, 54), PackedVector2Array(8, 20, 11, 19, 13, 21, 13, 25, 13, 29, 11, 32, 6, 31, 4, 26, 5, 23), PackedVector2Array(4, 20, 8, 17, 13, 21, 13, 25, 13, 29, 11, 32, 6, 34, 2, 30, 3, 24), PackedVector2Array(0, 18, 11, 15, 13, 21, 13, 25, 13, 29, 8, 33, -1, 36, -4, 30, -6, 26), PackedVector2Array(-15, 27, -8, 24, 7, 19, 13, 25, 13, 29, 8, 33, -10, 36, -14, 34, -16, 33)]
+}
 
 [sub_resource type="Animation" id="Animation_pahof"]
 resource_name = "move"
@@ -440,6 +766,9 @@ radius = 72.0069
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_wwpdb"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jkb2d"]
+size = Vector2(44, 57)
+
 [node name="Lindon" type="CharacterBody2D"]
 script = ExtResource("1_h0bx1")
 
@@ -478,6 +807,25 @@ texture = ExtResource("2_hqcw7")
 offset = Vector2(0, -63.53)
 hframes = 13
 
+[node name="blackflame_fist_Strike_hitbox" type="Area2D" parent="fiststrikebc/LindonSprites"]
+collision_layer = 64
+collision_mask = 0
+script = ExtResource("8_vy18p")
+duration = 0.8
+
+[node name="fist_strike_hitbox" type="CollisionPolygon2D" parent="fiststrikebc/LindonSprites/blackflame_fist_Strike_hitbox"]
+polygon = PackedVector2Array(-20, -42, -22, -44, -23, -47, -23, -50, -21, -51, -18, -53, -16, -53, -14, -52, -12, -51, -11, -49, -12, -47, -12, -45, -10, -43, -11, -42, -12, -40, -13, -38, -16, -37)
+disabled = true
+
+[node name="cloak_hitbox" type="Area2D" parent="fiststrikebc/LindonSprites"]
+collision_layer = 64
+collision_mask = 0
+script = ExtResource("8_vy18p")
+
+[node name="cloak_hitbox_shape" type="CollisionPolygon2D" parent="fiststrikebc/LindonSprites/cloak_hitbox"]
+polygon = PackedVector2Array(12, -12, 17, -11, 20, -11, 32, -9, 34, -9, 41, -10, 48, -12, 57, -14, 64, -17, 75, -22, 79, -27, 76, -29, 73, -30, 72, -32, 74, -36, 76, -39, 76, -43, 73, -44, 70, -45, 65, -47, 59, -48, 52, -49, 41, -51, 31, -51, 23, -52, 13, -53, 9, -51, 7, -45)
+disabled = true
+
 [node name="fist_bc_strike" type="Sprite2D" parent="fiststrikebc"]
 visible = false
 show_behind_parent = true
@@ -500,10 +848,21 @@ texture = ExtResource("6_wr38w")
 hframes = 4
 
 [node name="kick_rock" type="Sprite2D" parent="fiststrikebc"]
+visible = false
 texture_filter = 1
 position = Vector2(-13, -64)
 texture = ExtResource("7_5lqje")
 hframes = 16
+
+[node name="rock_hit_hitbox" type="Area2D" parent="fiststrikebc/kick_rock"]
+collision_layer = 64
+collision_mask = 0
+script = ExtResource("8_vy18p")
+duration = 0.3
+
+[node name="rock_hitbox_shape" type="CollisionPolygon2D" parent="fiststrikebc/kick_rock/rock_hit_hitbox"]
+polygon = PackedVector2Array(-4, 64, -4, 42, 15, 41, 11, 66, -1, 68, 3, 64, -8, 69, -14, 63, -11, 54)
+disabled = true
 
 [node name="basic_combo" type="Sprite2D" parent="fiststrikebc"]
 visible = false
@@ -511,6 +870,15 @@ texture_filter = 1
 position = Vector2(-15, -64)
 texture = ExtResource("8_as2vf")
 hframes = 16
+
+[node name="basic_combo_hitbox" type="Area2D" parent="fiststrikebc/basic_combo"]
+collision_layer = 64
+collision_mask = 0
+script = ExtResource("8_vy18p")
+
+[node name="basic_combo_shape" type="CollisionPolygon2D" parent="fiststrikebc/basic_combo/basic_combo_hitbox"]
+polygon = PackedVector2Array(-8, 7, -8, 22, -4, 28, 6, 30, 11, 27, 11, 19, 7, 18, 4, 20, 2, 19, 1, 17, 2, 16, 3, 13, 0, 10, -5, 9)
+disabled = true
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
@@ -534,6 +902,18 @@ script = ExtResource("7_2dp83")
 [node name="BTPlayer" type="BTPlayer" parent="."]
 behavior_tree = ExtResource("13_ig7y2")
 blackboard_plan = SubResource("BlackboardPlan_wwpdb")
+
+[node name="hurtbox_main" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 128
+script = ExtResource("14_n6tvd")
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="hurtbox_main"]
+polygon = PackedVector2Array(-5, -1, -12, 0, -12, -4, -8, -5, -8, -7, -14, -13, -14, -17, -3, -30, -3, -37, -10, -38, -6, -46, -3, -46, 1, -51, -1, -53, -1, -58, 2, -63, 4, -64, 11, -64, 14, -62, 15, -53, 5, -56, 9, -25, 19, -19, 23, -6, 21, -1, 13, -1)
+
+[node name="CollisionPolygon2D" type="CollisionShape2D" parent="hurtbox_main"]
+position = Vector2(6, -29.5)
+shape = SubResource("RectangleShape2D_jkb2d")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="Timer" to="state_machine/move" method="_on_timer_timeout"]
