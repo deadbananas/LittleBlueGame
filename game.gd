@@ -3,7 +3,7 @@ extends Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#Engine.max_fps = 30
+	#Engine.max_fps = 60
 	##Engine.time_scale = 0.1
 	pass
 

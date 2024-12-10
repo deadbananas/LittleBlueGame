@@ -23,8 +23,10 @@ func _ready():
 	
 func _on_area_entered(hitbox: HitBox) -> void:
 	if hitbox != null:
+		print(hitbox.damage)
 		if hitable:
 			var knock_dir = Vector2(hitbox.knockbackDirHori, hitbox.knockbackDirVert)
+			
 			var rel_pos =hitbox.global_position.direction_to(self.global_position)
 			knockback(knock_dir, hitbox.knockback, rel_pos)
 			received_hit.emit(hitbox.damage, hitbox.time_scale, hitbox.duration)
