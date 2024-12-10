@@ -6,18 +6,29 @@ var idle_state: State
 var move_state: State
 @export
 var fall_state: State
+@export
+var hit_state: State
 @onready
 var timer = $fall_timer
 
 
 var falling = 0
 
+var hit = false
+
 func enter() -> void:
 	super()
 	timer.start()
 	falling = 0
+	hit = false
 
 func process_physics(delta: float) -> State:
+	
+	if hit:
+		hit = false
+		return hit_state
+		
+		
 	parent.velocity.y += gravity * delta
 	var movement = get_movement_input() * move_speed
 	if movement != 0:
@@ -41,3 +52,5 @@ func process_physics(delta: float) -> State:
 func _on_fall_timer_timeout():
 	falling = 1
 	
+func _on_hurtbox_received_hit(damage, time_scale, duration):
+	hit = true

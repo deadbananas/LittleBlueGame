@@ -1,10 +1,11 @@
-[gd_resource type="BehaviorTree" load_steps=129 format=3 uid="uid://ndc4u1m3kex3"]
+[gd_resource type="BehaviorTree" load_steps=130 format=3 uid="uid://ndc4u1m3kex3"]
 
 [ext_resource type="Script" path="res://ai/tasks/find_target.gd" id="1_it5bj"]
 [ext_resource type="Script" path="res://ai/tasks/moveToTarget.gd" id="2_52qia"]
 [ext_resource type="Script" path="res://ai/tasks/FindInRange.gd" id="3_cobnf"]
 [ext_resource type="Script" path="res://ai/tasks/ComboEndDash.gd" id="4_mow0a"]
 [ext_resource type="Script" path="res://ai/tasks/move_during_anim.gd" id="5_jluy2"]
+[ext_resource type="Script" path="res://ai/tasks/blackflame_punch_drag.gd" id="6_mlxpf"]
 [ext_resource type="Script" path="res://ai/tasks/move_away.gd" id="6_seblu"]
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_cqoki"]
@@ -331,15 +332,16 @@ script = ExtResource("1_it5bj")
 group = &"Little_Blue"
 target_var = &"target"
 
-[sub_resource type="BTAction" id="BTAction_x1f2t"]
-script = ExtResource("4_mow0a")
+[sub_resource type="BTAction" id="BTAction_itfn8"]
+script = ExtResource("6_mlxpf")
 target_var = &"target"
 speed_var = 600
 distance = 60
+follow_distance = 15
 tolerance = 40
 
 [sub_resource type="BTSequence" id="BTSequence_yrfu8"]
-children = [SubResource("BTAction_x1f2t")]
+children = [SubResource("BTAction_itfn8")]
 
 [sub_resource type="BTRepeatUntilSuccess" id="BTRepeatUntilSuccess_5j8l6"]
 children = [SubResource("BTSequence_yrfu8")]
@@ -390,15 +392,16 @@ script = ExtResource("1_it5bj")
 group = &"Little_Blue"
 target_var = &"target"
 
-[sub_resource type="BTAction" id="BTAction_i1c86"]
-script = ExtResource("4_mow0a")
+[sub_resource type="BTAction" id="BTAction_ftmia"]
+script = ExtResource("6_mlxpf")
 target_var = &"target"
-speed_var = 1000
+speed_var = 600
 distance = 60
+follow_distance = 15
 tolerance = 40
 
 [sub_resource type="BTSequence" id="BTSequence_j7aqb"]
-children = [SubResource("BTAction_i1c86")]
+children = [SubResource("BTAction_ftmia")]
 
 [sub_resource type="BTRepeatUntilSuccess" id="BTRepeatUntilSuccess_3po6d"]
 children = [SubResource("BTSequence_j7aqb")]
@@ -473,15 +476,16 @@ script = ExtResource("1_it5bj")
 group = &"Little_Blue"
 target_var = &"target"
 
-[sub_resource type="BTAction" id="BTAction_l7q0q"]
-script = ExtResource("4_mow0a")
+[sub_resource type="BTAction" id="BTAction_2kybv"]
+script = ExtResource("6_mlxpf")
 target_var = &"target"
 speed_var = 600
 distance = 60
+follow_distance = 15
 tolerance = 40
 
 [sub_resource type="BTSequence" id="BTSequence_yrmb5"]
-children = [SubResource("BTAction_l7q0q")]
+children = [SubResource("BTAction_2kybv")]
 
 [sub_resource type="BTRepeatUntilSuccess" id="BTRepeatUntilSuccess_i2kid"]
 children = [SubResource("BTSequence_yrmb5")]

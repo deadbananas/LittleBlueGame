@@ -197,6 +197,8 @@ autostart = true
 collision_layer = 64
 collision_mask = 0
 script = ExtResource("3_704qy")
+knockback = 5.0
+knockbackDirHori = 1.0
 
 [node name="rock_hitbox_shape" type="CollisionShape2D" parent="rock_hitbox"]
 position = Vector2(0, 1)

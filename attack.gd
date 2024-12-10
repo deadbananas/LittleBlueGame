@@ -12,6 +12,8 @@ var fall_state: State
 var attack2_state: State
 @export
 var parry_state: State
+@export
+var hit_state: State
 
 var is_complete := false
 var wants_follow_up := false
@@ -20,8 +22,12 @@ var attack2_wait_time := 0.05
 var attack2_time_remain := 0.0
 
 
+var hit = false
+
+
 func enter() -> void:
 	is_complete = false
+	hit = false
 	wants_follow_up = false
 	attack2_time_remain = attack2_wait_time
 	super()
@@ -35,6 +41,9 @@ func process_input(event: InputEvent) -> State:
 	return null
 
 func process_physics(delta: float) -> State:
+	if hit:
+		hit = false
+		return hit_state
 	if get_jump() and parent.is_on_floor():
 		return jump_state
 
@@ -62,3 +71,9 @@ func process_physics(delta: float) -> State:
 	if !parent.is_on_floor():
 		return fall_state
 	return null
+	
+	
+	
+func _on_hurtbox_received_hit(damage, time_scale, duration):
+	hit = true
+

@@ -11,10 +11,16 @@ var fall_state: State
 var attack_state: State
 @export
 var parry_state: State
+@export
+var hit_state: State
+
+
+var hit = false
 
 func enter() -> void:
 	super()
 	parent.velocity.x = 0
+	hit = false
 	
 func process_input(event: InputEvent) -> State:
 	if get_jump() and parent.is_on_floor():
@@ -28,9 +34,16 @@ func process_input(event: InputEvent) -> State:
 	return null
 
 func process_physics(delta: float) -> State:
+	if hit:
+		hit = false
+		return hit_state
 	parent.velocity.y += gravity * delta
 	parent.move_and_slide()
 	
 	if !parent.is_on_floor():
 		return fall_state
 	return null
+
+
+func _on_hurtbox_received_hit(damage, time_scale, duration):
+	hit = true

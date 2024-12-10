@@ -5,6 +5,8 @@ var starting_state: State
 
 var current_state: State
 
+var health = 10
+
 # Initialize the state machine by giving each child state a reference to the
 # parent object it belongs to and enter the default starting_state.
 func init(parent: CharacterBody2D, animations: AnimationPlayer, move_component, sprite: Sprite2D) -> void:
