@@ -1,8 +1,9 @@
-[gd_scene load_steps=90 format=3 uid="uid://cemmkhino63ca"]
+[gd_scene load_steps=93 format=3 uid="uid://cemmkhino63ca"]
 
 [ext_resource type="Script" path="res://Components/hitbox.gd" id="1_isybl"]
 [ext_resource type="Script" path="res://main_character.gd" id="1_silm2"]
 [ext_resource type="Texture2D" uid="uid://buqhlad6vqeiy" path="res://CradleAssets/LittleBlueSheets/little-blue-knife-attack-followup-centered.png" id="2_q6h3c"]
+[ext_resource type="Shader" path="res://shaders/Hit_flash.gdshader" id="3_syqj4"]
 [ext_resource type="Texture2D" uid="uid://cc4f733dxwh10" path="res://CradleAssets/LittleBlueSheets/little-blue-idle.png" id="3_wprim"]
 [ext_resource type="Texture2D" uid="uid://bs425tdg5d67p" path="res://CradleAssets/LittleBlueSheets/littleblue-jump-down.png" id="4_ace2y"]
 [ext_resource type="Texture2D" uid="uid://btnekqjhdglg6" path="res://CradleAssets/LittleBlueSheets/little-blue-parry-right.png" id="5_k2t0m"]
@@ -26,122 +27,122 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("LittleBlue_sheets/idle:frame")
+tracks/0/path = NodePath("LittleBlue_sheets/attack/hitbox-attack-2/attack_2:polygon")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
+"update": 0,
+"values": [PackedVector2Array(1.5, 7.75, -4.5, -2.25, -4.5, -6.25, -0.5, -6.25, 6.5, 0.75, 7.5, 8.75)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("LittleBlue_sheets/move:frame")
+tracks/1/path = NodePath("LittleBlue_sheets/attack/hitbox-attack-2/attack_2:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
+"update": 0,
+"values": [0.0]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("LittleBlue_sheets/attack:frame")
+tracks/2/path = NodePath("LittleBlue_sheets/attack/hitbox-attack-2/attack_2:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
+"update": 0,
+"values": [Vector2(-13.5, -13.75)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("LittleBlue_sheets/jump_up:frame")
+tracks/3/path = NodePath("LittleBlue_sheets/attack/hitbox-attack-2/attack_2:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
+"update": 0,
+"values": [true]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("LittleBlue_sheets/parry:frame")
+tracks/4/path = NodePath("LittleBlue_sheets/attack/hitbox-attack-1/attack_1:disabled")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
+"update": 0,
+"values": [true]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("LittleBlue_sheets/attack/hitbox-attack-1/attack_1:disabled")
+tracks/5/path = NodePath("LittleBlue_sheets/parry:frame")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+"update": 0,
+"values": [0]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("LittleBlue_sheets/attack/hitbox-attack-2/attack_2:disabled")
+tracks/6/path = NodePath("LittleBlue_sheets/jump_up:frame")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+"update": 0,
+"values": [1]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("LittleBlue_sheets/attack/hitbox-attack-2/attack_2:position")
+tracks/7/path = NodePath("LittleBlue_sheets/attack:frame")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-13.5, -13.75)]
+"values": [0]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("LittleBlue_sheets/attack/hitbox-attack-2/attack_2:rotation")
+tracks/8/path = NodePath("LittleBlue_sheets/move:frame")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
+"values": [0]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("LittleBlue_sheets/attack/hitbox-attack-2/attack_2:polygon")
+tracks/9/path = NodePath("LittleBlue_sheets/idle:frame")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [PackedVector2Array(1.5, 7.75, -4.5, -2.25, -4.5, -6.25, -0.5, -6.25, 6.5, 0.75, 7.5, 8.75)]
+"update": 0,
+"values": [0]
 }
 
 [sub_resource type="Animation" id="Animation_cyf24"]
@@ -150,26 +151,26 @@ length = 0.42
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("LittleBlue_sheets/attack:frame")
+tracks/0/path = NodePath("LittleBlue_sheets/attack/hitbox-attack-1/attack_1:disabled")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4]
+"times": PackedFloat32Array(0, 0.1, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [true, false, true]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("LittleBlue_sheets/attack/hitbox-attack-1/attack_1:disabled")
+tracks/1/path = NodePath("LittleBlue_sheets/attack:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [true, false, true]
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0, 1, 2, 3, 4]
 }
 
 [sub_resource type="Animation" id="Animation_ywa78"]
@@ -178,26 +179,26 @@ length = 0.7
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("LittleBlue_sheets/attack:frame")
+tracks/0/path = NodePath("LittleBlue_sheets/attack/hitbox-attack-2/attack_2:polygon")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [4, 5, 6, 7, 8, 9, 10]
+"times": PackedFloat32Array(0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [PackedVector2Array(1.5, 7.75, -4.5, -2.25, -4.5, -6.25, -0.5, -6.25, 6.5, 0.75, 7.5, 8.75), PackedVector2Array(-9.5, 10.75, -12.5, 2.75, 0.5, -11.25, 11.5, -12.25, 18.5, -7.25, 7.5, 8.75), PackedVector2Array(-10.5, 11.75, -12.5, 2.75, 0.5, -12.25, 43.5, -12.25, 55.5, 11.75, 42.5, 19.75), PackedVector2Array(25.5, 29.75, 18.5, 2.75, 19.5, -3.25, 43.5, -12.25, 55.5, 11.75, 44.5, 29.75)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("LittleBlue_sheets/attack/hitbox-attack-2/attack_2:disabled")
+tracks/1/path = NodePath("LittleBlue_sheets/attack/hitbox-attack-2/attack_2:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [true, false, true]
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -214,26 +215,26 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("LittleBlue_sheets/attack/hitbox-attack-2/attack_2:rotation")
+tracks/3/path = NodePath("LittleBlue_sheets/attack/hitbox-attack-2/attack_2:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.1),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.1, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [0.0]
+"values": [true, false, true]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("LittleBlue_sheets/attack/hitbox-attack-2/attack_2:polygon")
+tracks/4/path = NodePath("LittleBlue_sheets/attack:frame")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0.1, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [PackedVector2Array(1.5, 7.75, -4.5, -2.25, -4.5, -6.25, -0.5, -6.25, 6.5, 0.75, 7.5, 8.75), PackedVector2Array(-9.5, 10.75, -12.5, 2.75, 0.5, -11.25, 11.5, -12.25, 18.5, -7.25, 7.5, 8.75), PackedVector2Array(-10.5, 11.75, -12.5, 2.75, 0.5, -12.25, 43.5, -12.25, 55.5, 11.75, 42.5, 19.75), PackedVector2Array(25.5, 29.75, 18.5, 2.75, 19.5, -3.25, 43.5, -12.25, 55.5, 11.75, 44.5, 29.75)]
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [4, 5, 6, 7, 8, 9, 10]
 }
 
 [sub_resource type="Animation" id="Animation_nnamc"]
@@ -248,7 +249,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [3]
 }
 
@@ -265,7 +266,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.151901, 0.301924, 0.454832),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
+"update": 0,
 "values": [0, 1, 2, 3]
 }
 
@@ -281,7 +282,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [2]
 }
 
@@ -297,7 +298,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [1]
 }
 
@@ -314,7 +315,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.504904, 0.601226, 0.701226, 0.801226, 0.901226, 1.00245, 1.1, 1.20123, 1.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
+"update": 0,
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
 }
 
@@ -331,7 +332,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.0534217, 0.2, 0.3, 0.423592, 0.486692, 0.540114, 0.603214),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
+"update": 0,
 "values": [0, 1, 2, 3, 4, 5, 6, 7]
 }
 
@@ -348,8 +349,18 @@ _data = {
 "parry": SubResource("Animation_hio3q")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qgl01"]
+shader = ExtResource("3_syqj4")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_mod = 0.0
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dey0y"]
 size = Vector2(27, 24)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1h6cl"]
+shader = ExtResource("3_syqj4")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_mod = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xy8ia"]
 atlas = ExtResource("2_q6h3c")
@@ -796,6 +807,7 @@ libraries = {
 }
 
 [node name="LittleBlue_sheets" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_qgl01")
 
 [node name="idle" type="Sprite2D" parent="LittleBlue_sheets"]
 texture_filter = 1
@@ -838,6 +850,7 @@ disabled = true
 [node name="jump_up" type="Sprite2D" parent="LittleBlue_sheets"]
 visible = false
 texture_filter = 1
+material = SubResource("ShaderMaterial_1h6cl")
 texture = ExtResource("4_ace2y")
 hframes = 4
 frame = 1
@@ -997,4 +1010,10 @@ shape = SubResource("CapsuleShape2D_7orgb")
 [connection signal="received_hit" from="hurtbox" to="." method="_on_hurtbox_received_hit"]
 [connection signal="received_hit" from="hurtbox" to="state_machine/idle" method="_on_hurtbox_received_hit"]
 [connection signal="received_hit" from="hurtbox" to="state_machine/move" method="_on_hurtbox_received_hit"]
+[connection signal="received_hit" from="hurtbox" to="state_machine/jump" method="_on_hurtbox_received_hit"]
+[connection signal="received_hit" from="hurtbox" to="state_machine/jump_max" method="_on_hurtbox_received_hit"]
+[connection signal="received_hit" from="hurtbox" to="state_machine/fall" method="_on_hurtbox_received_hit"]
+[connection signal="received_hit" from="hurtbox" to="state_machine/attack1" method="_on_hurtbox_received_hit"]
+[connection signal="received_hit" from="hurtbox" to="state_machine/attack2" method="_on_hurtbox_received_hit"]
+[connection signal="received_hit" from="hurtbox" to="state_machine/parry" method="_on_hurtbox_received_hit"]
 [connection signal="received_knockback" from="hurtbox" to="state_machine/hit" method="_on_hurtbox_received_knockback"]

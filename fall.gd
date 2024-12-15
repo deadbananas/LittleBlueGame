@@ -29,7 +29,7 @@ func process_physics(delta: float) -> State:
 	if movement != 0:
 		var flip = 1.0
 		if movement < 0:
-			flip = -1.0
+			flip = -1.0  
 		else:
 			flip = 1.0
 		sprite.scale.x = flip
