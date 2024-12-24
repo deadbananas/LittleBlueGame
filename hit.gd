@@ -17,6 +17,10 @@ var knockback
 var is_complete := false
 var spriteMat
 
+
+var totalHealth = 60
+var health = 10
+
 func enter() -> void:
 	super()
 	is_complete = false
@@ -26,6 +30,9 @@ func enter() -> void:
 func process_physics(delta: float) -> State:
 	parent.velocity += knockback
 	parent.move_and_slide()
+	
+	if health <= 0:
+		queue_free()
 	
 	#print(parent.velocity)
 	if is_complete:

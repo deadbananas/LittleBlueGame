@@ -1,4 +1,4 @@
-[gd_scene load_steps=93 format=3 uid="uid://cemmkhino63ca"]
+[gd_scene load_steps=94 format=3 uid="uid://cemmkhino63ca"]
 
 [ext_resource type="Script" path="res://Components/hitbox.gd" id="1_isybl"]
 [ext_resource type="Script" path="res://main_character.gd" id="1_silm2"]
@@ -21,6 +21,7 @@
 [ext_resource type="Script" path="res://attack2.gd" id="16_tjiks"]
 [ext_resource type="Script" path="res://hit.gd" id="19_luwfl"]
 [ext_resource type="Script" path="res://Components/hurtbox.gd" id="19_o1iao"]
+[ext_resource type="PackedScene" uid="uid://b63vc6tftnw3e" path="res://UI/healthbar.tscn" id="22_p7yrj"]
 
 [sub_resource type="Animation" id="Animation_uboeb"]
 length = 0.001
@@ -1003,6 +1004,14 @@ hit_immunity = 0.3
 position = Vector2(-2, 1)
 shape = SubResource("CapsuleShape2D_7orgb")
 
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Healthbar" parent="UI" instance=ExtResource("22_p7yrj")]
+offset_left = 6.0
+offset_top = 43.0
+offset_right = 773.0
+offset_bottom = 98.0
+
 [connection signal="animation_finished" from="anims_old" to="." method="_on_sprite_2d_animation_finished"]
 [connection signal="frame_changed" from="anims_old" to="." method="_on_sprite_2d_frame_changed"]
 [connection signal="timeout" from="state_machine/jump_max/fall_timer" to="state_machine/jump_max" method="_on_fall_timer_timeout"]
@@ -1016,4 +1025,5 @@ shape = SubResource("CapsuleShape2D_7orgb")
 [connection signal="received_hit" from="hurtbox" to="state_machine/attack1" method="_on_hurtbox_received_hit"]
 [connection signal="received_hit" from="hurtbox" to="state_machine/attack2" method="_on_hurtbox_received_hit"]
 [connection signal="received_hit" from="hurtbox" to="state_machine/parry" method="_on_hurtbox_received_hit"]
+[connection signal="received_hit" from="hurtbox" to="state_machine/hit" method="_on_hurtbox_received_hit"]
 [connection signal="received_knockback" from="hurtbox" to="state_machine/hit" method="_on_hurtbox_received_knockback"]

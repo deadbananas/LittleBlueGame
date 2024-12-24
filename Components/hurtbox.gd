@@ -28,9 +28,9 @@ func _on_area_entered(hitbox: HitBox) -> void:
 			var knock_dir = Vector2(hitbox.knockbackDirHori, hitbox.knockbackDirVert)
 			
 			var rel_pos =hitbox.global_position.direction_to(self.global_position)
+			frameFreeze(hitbox.time_scale, hitbox.duration)
 			knockback(knock_dir, hitbox.knockback, rel_pos)
 			received_hit.emit(hitbox.damage, hitbox.time_scale, hitbox.duration)
-			frameFreeze(hitbox.time_scale, hitbox.duration)
 			var hitTimer : Timer = Timer.new()
 			add_child(hitTimer)
 			hitTimer.one_shot = true
