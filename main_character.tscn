@@ -1,4 +1,4 @@
-[gd_scene load_steps=94 format=3 uid="uid://cemmkhino63ca"]
+[gd_scene load_steps=96 format=3 uid="uid://cemmkhino63ca"]
 
 [ext_resource type="Script" path="res://Components/hitbox.gd" id="1_isybl"]
 [ext_resource type="Script" path="res://main_character.gd" id="1_silm2"]
@@ -144,6 +144,30 @@ tracks/9/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("LittleBlue_sheets/parry/Parry/Parry_shape:disabled")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("LittleBlue_sheets/parry/block/Block_Shape:disabled")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_cyf24"]
@@ -333,8 +357,32 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.0534217, 0.2, 0.3, 0.423592, 0.486692, 0.540114, 0.603214),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
+"update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LittleBlue_sheets/parry/Parry/Parry_shape:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.204945, 0.208644, 0.422335, 0.423461),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, true, false, false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("LittleBlue_sheets/parry/block/Block_Shape:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4224, 0.423524, 0.64, 0.65),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, true, false, false, true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_p10ys"]
@@ -362,6 +410,12 @@ size = Vector2(27, 24)
 shader = ExtResource("3_syqj4")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_mod = 0.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vrxl6"]
+radius = 13.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4xelc"]
+radius = 13.0384
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xy8ia"]
 atlas = ExtResource("2_q6h3c")
@@ -862,6 +916,24 @@ texture_filter = 1
 texture = ExtResource("5_k2t0m")
 hframes = 8
 
+[node name="Parry" type="Area2D" parent="LittleBlue_sheets/parry"]
+collision_layer = 0
+collision_mask = 64
+
+[node name="Parry_shape" type="CollisionShape2D" parent="LittleBlue_sheets/parry/Parry"]
+position = Vector2(12, -8)
+shape = SubResource("CircleShape2D_vrxl6")
+disabled = true
+
+[node name="block" type="Area2D" parent="LittleBlue_sheets/parry"]
+collision_layer = 0
+collision_mask = 64
+
+[node name="Block_Shape" type="CollisionShape2D" parent="LittleBlue_sheets/parry/block"]
+position = Vector2(12, -8)
+shape = SubResource("CircleShape2D_4xelc")
+disabled = true
+
 [node name="anims_old" type="AnimatedSprite2D" parent="."]
 visible = false
 texture_filter = 1
@@ -1012,6 +1084,9 @@ offset_top = 43.0
 offset_right = 773.0
 offset_bottom = 98.0
 
+[connection signal="area_entered" from="LittleBlue_sheets/parry/Parry" to="." method="_on_parry_area_entered"]
+[connection signal="area_entered" from="LittleBlue_sheets/parry/Parry" to="state_machine/parry" method="_on_parry_area_entered"]
+[connection signal="area_entered" from="LittleBlue_sheets/parry/block" to="state_machine/parry" method="_on_block_area_entered"]
 [connection signal="animation_finished" from="anims_old" to="." method="_on_sprite_2d_animation_finished"]
 [connection signal="frame_changed" from="anims_old" to="." method="_on_sprite_2d_frame_changed"]
 [connection signal="timeout" from="state_machine/jump_max/fall_timer" to="state_machine/jump_max" method="_on_fall_timer_timeout"]

@@ -169,7 +169,7 @@ var move_component = $move_component
 @onready var healthbar: ProgressBar = $UI/Healthbar
 
 
-var health = 25
+var health = 100
 var maxHealth = 10
 
 func _ready() -> void:

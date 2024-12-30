@@ -8,18 +8,24 @@ extends CharacterBody2D
 @onready var anim_walk_forward = $fiststrikebc/walk_forward
 @onready var anim_kick_rock = $fiststrikebc/kick_rock
 @onready var anim_basic_combo = $fiststrikebc/basic_combo
+@onready var anim_parried = $fiststrikebc/Parried_Sprite
+
 @onready var anim_player = $AnimationPlayer
 
+
+@onready var behaviorTree1 = $BTPlayer
 @onready var game = get_tree().get_root().get_node("Game")
 @onready var rock = load("res://rock.tscn")
 
 @export var combo_dash_speed = 200
 var player = null
 var dir_to_player
-
+var spriteMat
 const gravity = 50
 
 var instance
+
+var parried_check = false
 
 func _ready():
 	player = get_node("../%main_character")
@@ -30,6 +36,9 @@ func _ready():
 	anim_walk_forward.visible = false
 	anim_kick_rock.visible = false
 	anim_basic_combo.visible = false
+	anim_parried.visible = false
+	parried_check = false
+	spriteMat = get_node("fiststrikebc/Parried_Sprite")
 	
 func _physics_process(delta):
 	move_and_slide()
@@ -100,6 +109,40 @@ func spawn_rock():
 func launch_rock():
 	instance.spawn_dir = dir_to_player
 	instance.launch = true
+	
+	
+
+	
+func parried():
+	print("parried_lindon")
+	anim_burningCloak1.visible = false
+	anim_LindonSprites.visible = false
+	anim_fist_bc_strike.visible = false
+	anim_transition_to_fist.visible = false
+	anim_walk_forward.visible = false
+	anim_kick_rock.visible = false
+	anim_basic_combo.visible = false
+	anim_parried.visible = true
+	behaviorTree1.set_active(false)
+	flash()
+	
+func flash():
+	spriteMat.material.set_shader_parameter("flash_mod", 0.98)
+	print("hit")
+	var flashTimer : Timer = Timer.new()
+	add_child(flashTimer)
+	flashTimer.one_shot = true
+	flashTimer.autostart = true
+	flashTimer.wait_time = 0.7
+	flashTimer.timeout.connect(timer_timeout)
+	flashTimer.start()
+	
+	
+func timer_timeout():
+	spriteMat.material.set_shader_parameter("flash_mod", 0.0)
+	anim_parried.visible = false
+	behaviorTree1.restart()
+
 #class_name Lindon
 #extends CharacterBody2D
 #
@@ -123,3 +166,19 @@ func launch_rock():
 #
 #func _process(delta: float) -> void:
 	#state_machine.process_frame(delta)
+
+
+func _on_blackflame_fist_strike_hitbox_parried_signal(damage: Variant) -> void:
+	parried()
+
+
+func _on_cloak_hitbox_parried_signal(damage: Variant) -> void:
+	parried()
+
+
+func _on_rock_hit_hitbox_parried_signal(damage: Variant) -> void:
+	parried()
+
+
+func _on_basic_combo_hitbox_parried_signal(damage: Variant) -> void:
+	parried()

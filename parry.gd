@@ -15,12 +15,15 @@ var hit_state: State
 
 var hit = false
 
+var stopped = false
+
 var is_complete := false
 #var wants_follow_up := false
 
 func enter() -> void:
 	is_complete = false
 	hit = false
+	stopped = false
 	#wants_follow_up = false
 	super()
 	await animations.animation_finished
@@ -65,5 +68,31 @@ func process_physics(delta: float) -> State:
 	
 	
 func _on_hurtbox_received_hit(damage, time_scale, duration):
-	hit = true
+	if !stopped:
+		hit = true
+	
+	
+	
 
+
+func _on_parry_area_entered(area: Area2D) -> void:
+	stopped = true
+	print("parry")
+	frameFreeze(0.1, 0.4)
+	if area.has_method("parried"):
+		area.parried()
+	
+
+	
+
+
+
+func _on_block_area_entered(area: Area2D) -> void:
+	stopped = true
+	print("blocked")
+
+
+func frameFreeze(time_scale, duration):
+	Engine.time_scale = time_scale
+	await(get_tree().create_timer(time_scale * duration).timeout)
+	Engine.time_scale = 1.0

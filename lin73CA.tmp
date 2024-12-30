@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://dakm1l5311nnp"]
+[gd_scene load_steps=34 format=3 uid="uid://dakm1l5311nnp"]
 
 [ext_resource type="Script" path="res://lindon.gd" id="1_h0bx1"]
 [ext_resource type="Texture2D" uid="uid://dpfj4lxpeo1r4" path="res://CradleAssets/Lindon/Lindon-Mikiri-1-fist-strike.png" id="2_hqcw7"]
@@ -14,7 +14,6 @@
 [ext_resource type="Script" path="res://move.gd" id="8_an355"]
 [ext_resource type="Texture2D" uid="uid://bw8fi34lma0is" path="res://CradleAssets/Lindon/neutral-attack.png" id="8_as2vf"]
 [ext_resource type="Script" path="res://Components/hitbox.gd" id="8_vy18p"]
-[ext_resource type="Texture2D" uid="uid://bqt6near435e4" path="res://CradleAssets/Lindon/Lindon-neutral-fixed.png" id="11_rwlgi"]
 [ext_resource type="BehaviorTree" uid="uid://ndc4u1m3kex3" path="res://ai/trees/LindonBehavior1.tres" id="13_ig7y2"]
 [ext_resource type="Script" path="res://Components/hurtbox.gd" id="14_n6tvd"]
 
@@ -322,18 +321,6 @@ tracks/24/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
-}
-tracks/25/type = "value"
-tracks/25/imported = false
-tracks/25/enabled = true
-tracks/25/path = NodePath("fiststrikebc/Parried_Sprite:visible")
-tracks/25/interp = 1
-tracks/25/loop_wrap = true
-tracks/25/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_ud1j7"]
@@ -763,21 +750,6 @@ tracks/1/keys = {
 "values": [false, true, true, false]
 }
 
-[sub_resource type="Animation" id="Animation_xxokj"]
-resource_name = "parried"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("fiststrikebc/Parried_Sprite:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0001, 0.971463, 0.9716),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [false, true, true, false]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_eo1cs"]
 _data = {
 "RESET": SubResource("Animation_mihf6"),
@@ -787,8 +759,7 @@ _data = {
 "fist-strike-Burning-Cloak-Component": SubResource("Animation_bbdp5"),
 "idle": SubResource("Animation_c2be3"),
 "kick_rock": SubResource("Animation_tmhs0"),
-"move": SubResource("Animation_pahof"),
-"parried": SubResource("Animation_xxokj")
+"move": SubResource("Animation_pahof")
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7a47s"]
@@ -810,11 +781,6 @@ height = 115.919
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ff0rh"]
 radius = 68.447
 height = 159.658
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_wmtkl"]
-shader = ExtResource("2_t5jp2")
-shader_parameter/flash_color = Color(0.158892, 0.618776, 0.641173, 1)
-shader_parameter/flash_mod = 0.0
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_wwpdb"]
 
@@ -958,13 +924,6 @@ knockbackDirVert = 1.0
 polygon = PackedVector2Array(-8, 7, -8, 22, -4, 28, 6, 30, 11, 27, 11, 19, 7, 18, 4, 20, 2, 19, 1, 17, 2, 16, 3, 13, 0, 10, -5, 9)
 disabled = true
 
-[node name="Parried_Sprite" type="Sprite2D" parent="fiststrikebc"]
-visible = false
-material = SubResource("ShaderMaterial_wmtkl")
-position = Vector2(2, -32)
-scale = Vector2(0.135965, 0.125977)
-texture = ExtResource("11_rwlgi")
-
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
 
@@ -1002,8 +961,4 @@ position = Vector2(6, -29.5)
 shape = SubResource("RectangleShape2D_jkb2d")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="parried_signal" from="fiststrikebc/LindonSprites/blackflame_fist_Strike_hitbox" to="." method="_on_blackflame_fist_strike_hitbox_parried_signal"]
-[connection signal="parried_signal" from="fiststrikebc/LindonSprites/cloak_hitbox" to="." method="_on_cloak_hitbox_parried_signal"]
-[connection signal="parried_signal" from="fiststrikebc/kick_rock/rock_hit_hitbox" to="." method="_on_rock_hit_hitbox_parried_signal"]
-[connection signal="parried_signal" from="fiststrikebc/basic_combo/basic_combo_hitbox" to="." method="_on_basic_combo_hitbox_parried_signal"]
 [connection signal="timeout" from="Timer" to="state_machine/move" method="_on_timer_timeout"]

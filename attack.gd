@@ -76,4 +76,3 @@ func process_physics(delta: float) -> State:
 	
 func _on_hurtbox_received_hit(damage, time_scale, duration):
 	hit = true
-

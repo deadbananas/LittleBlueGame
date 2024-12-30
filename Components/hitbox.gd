@@ -9,7 +9,10 @@ extends Area2D
 @export var knockbackDirHori: float = 0 : set = set_knockbackDirHori, get = get_knockbackDirHori
 @export var knockbackDirVert: float = 0 : set = set_knockbackDirVert, get = get_knockbackDirVert
 
+signal parried_signal(damage)
 
+func parried():
+	parried_signal.emit(damage)
 
 func set_damage(value: int):
 	damage = value
