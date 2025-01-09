@@ -1,5 +1,9 @@
 extends CharacterBody2D
 
+@onready var hsm: LimboHSM = $LimboHSM
+@onready var phase_1_state: LimboState = $LimboHSM/Phase1
+@onready var parried_state: LimboState = $LimboHSM/ParriedState
+
 @onready var anim_sprite = $fiststrikebc
 @onready var anim_burningCloak1 = $fiststrikebc/burningCloak1
 @onready var anim_LindonSprites = $fiststrikebc/LindonSprites
@@ -39,6 +43,15 @@ func _ready():
 	anim_parried.visible = false
 	parried_check = false
 	spriteMat = get_node("fiststrikebc/Parried_Sprite")
+	_init_state_machine()
+	
+func _init_state_machine() -> void:
+	hsm.add_transition(phase_1_state, parried_state, phase_1_state.EVENT_FINISHED)
+	hsm.add_transition(hsm.ANYSTATE, parried_state, &"parried")
+	hsm.add_transition(parried_state, phase_1_state, parried_state.EVENT_FINISHED)
+
+	hsm.initialize(self)
+	hsm.set_active(true)
 	
 func _physics_process(delta):
 	move_and_slide()
@@ -114,6 +127,9 @@ func launch_rock():
 
 	
 func parried():
+	hsm.dispatch("parried")
+	velocity.x = 0
+	velocity.y = 0
 	print("parried_lindon")
 	anim_burningCloak1.visible = false
 	anim_LindonSprites.visible = false
@@ -123,7 +139,6 @@ func parried():
 	anim_kick_rock.visible = false
 	anim_basic_combo.visible = false
 	anim_parried.visible = true
-	behaviorTree1.set_active(false)
 	flash()
 	
 func flash():
@@ -140,8 +155,6 @@ func flash():
 	
 func timer_timeout():
 	spriteMat.material.set_shader_parameter("flash_mod", 0.0)
-	anim_parried.visible = false
-	behaviorTree1.restart()
 
 #class_name Lindon
 #extends CharacterBody2D

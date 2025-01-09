@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://dakm1l5311nnp"]
+[gd_scene load_steps=38 format=3 uid="uid://dakm1l5311nnp"]
 
 [ext_resource type="Script" path="res://lindon.gd" id="1_h0bx1"]
 [ext_resource type="Texture2D" uid="uid://dpfj4lxpeo1r4" path="res://CradleAssets/Lindon/Lindon-Mikiri-1-fist-strike.png" id="2_hqcw7"]
@@ -14,9 +14,10 @@
 [ext_resource type="Script" path="res://move.gd" id="8_an355"]
 [ext_resource type="Texture2D" uid="uid://bw8fi34lma0is" path="res://CradleAssets/Lindon/neutral-attack.png" id="8_as2vf"]
 [ext_resource type="Script" path="res://Components/hitbox.gd" id="8_vy18p"]
-[ext_resource type="Texture2D" uid="uid://bqt6near435e4" path="res://CradleAssets/Lindon/Lindon-neutral-fixed.png" id="11_rwlgi"]
+[ext_resource type="Texture2D" uid="uid://dur7b1mvgrjqn" path="res://CradleAssets/Lindon/parriedLindon.png" id="11_20yel"]
 [ext_resource type="BehaviorTree" uid="uid://ndc4u1m3kex3" path="res://ai/trees/LindonBehavior1.tres" id="13_ig7y2"]
 [ext_resource type="Script" path="res://Components/hurtbox.gd" id="14_n6tvd"]
+[ext_resource type="Script" path="res://parried_state.gd" id="18_62foh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dlaqq"]
 radius = 6.0
@@ -335,6 +336,18 @@ tracks/25/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/26/type = "value"
+tracks/26/imported = false
+tracks/26/enabled = true
+tracks/26/path = NodePath("fiststrikebc/Parried_Sprite:frame")
+tracks/26/interp = 1
+tracks/26/loop_wrap = true
+tracks/26/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
 [sub_resource type="Animation" id="Animation_ud1j7"]
 resource_name = "basic_attack_first_2"
@@ -645,7 +658,6 @@ length = 32.0
 
 [sub_resource type="Animation" id="Animation_c2be3"]
 resource_name = "idle"
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -765,6 +777,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_xxokj"]
 resource_name = "parried"
+length = 3.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -772,10 +785,22 @@ tracks/0/path = NodePath("fiststrikebc/Parried_Sprite:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0001, 0.971463, 0.9716),
+"times": PackedFloat32Array(0, 0.0001, 2.89149, 2.98701),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [false, true, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("fiststrikebc/Parried_Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.339446, 0.702574, 1.04202, 2.29718, 2.54979, 2.8024),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 2, 1, 0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_eo1cs"]
@@ -816,10 +841,10 @@ shader = ExtResource("2_t5jp2")
 shader_parameter/flash_color = Color(0.158892, 0.618776, 0.641173, 1)
 shader_parameter/flash_mod = 0.0
 
-[sub_resource type="BlackboardPlan" id="BlackboardPlan_wwpdb"]
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jkb2d"]
 size = Vector2(44, 57)
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_jqcdi"]
 
 [node name="Lindon" type="CharacterBody2D"]
 script = ExtResource("1_h0bx1")
@@ -960,10 +985,11 @@ disabled = true
 
 [node name="Parried_Sprite" type="Sprite2D" parent="fiststrikebc"]
 visible = false
+texture_filter = 1
 material = SubResource("ShaderMaterial_wmtkl")
-position = Vector2(2, -32)
-scale = Vector2(0.135965, 0.125977)
-texture = ExtResource("11_rwlgi")
+position = Vector2(-13, -64)
+texture = ExtResource("11_20yel")
+hframes = 4
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
@@ -984,10 +1010,6 @@ animation_name = "move"
 [node name="move_component" type="Node" parent="."]
 script = ExtResource("7_2dp83")
 
-[node name="BTPlayer" type="BTPlayer" parent="."]
-behavior_tree = ExtResource("13_ig7y2")
-blackboard_plan = SubResource("BlackboardPlan_wwpdb")
-
 [node name="hurtbox_main" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 128
@@ -1000,6 +1022,17 @@ polygon = PackedVector2Array(-5, -1, -12, 0, -12, -4, -8, -5, -8, -7, -14, -13, 
 visible = false
 position = Vector2(6, -29.5)
 shape = SubResource("RectangleShape2D_jkb2d")
+
+[node name="LimboHSM" type="LimboHSM" parent="."]
+
+[node name="Phase1" type="BTState" parent="LimboHSM"]
+behavior_tree = ExtResource("13_ig7y2")
+blackboard_plan = SubResource("BlackboardPlan_jqcdi")
+
+[node name="ParriedState" type="LimboState" parent="LimboHSM" node_paths=PackedStringArray("animation_player")]
+script = ExtResource("18_62foh")
+animation_player = NodePath("../../AnimationPlayer")
+animation_name = &"parried"
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="parried_signal" from="fiststrikebc/LindonSprites/blackflame_fist_Strike_hitbox" to="." method="_on_blackflame_fist_strike_hitbox_parried_signal"]
