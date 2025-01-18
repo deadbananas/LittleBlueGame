@@ -1,16 +1,24 @@
-[gd_scene load_steps=23 format=3 uid="uid://02mndykd5b"]
+[gd_scene load_steps=31 format=3 uid="uid://02mndykd5b"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_shfnb"]
 [ext_resource type="Texture2D" uid="uid://cs00bavxntvbv" path="res://CradleAssets/landscape/sand1-tileset.png" id="2_c4ob7"]
 [ext_resource type="Texture2D" uid="uid://dkneid5ko4aor" path="res://pixxeladv/Terrain/Terrain (16x16).png" id="2_jo4br"]
+[ext_resource type="Texture2D" uid="uid://blry74och0nvb" path="res://CradleAssets/landscape/parallax/backgroundtest/bgtest2/background.png" id="2_xa6g7"]
 [ext_resource type="Texture2D" uid="uid://clchv8q1uydvd" path="res://CradleAssets/landscape/Sand1.png" id="3_b3ys3"]
+[ext_resource type="Texture2D" uid="uid://dgq2p4jj615yu" path="res://CradleAssets/landscape/parallax/backgroundtest/bgtest2/pipes.png" id="3_f5ust"]
 [ext_resource type="PackedScene" uid="uid://cemmkhino63ca" path="res://main_character.tscn" id="3_uufjs"]
 [ext_resource type="Texture2D" uid="uid://cawe4rogyjp0l" path="res://CradleAssets/landscape/Sand2.png" id="4_bpp66"]
+[ext_resource type="Texture2D" uid="uid://pd04kbbmfuyd" path="res://CradleAssets/landscape/parallax/backgroundtest/bgtest2/pipe-pure.png" id="4_kp0p0"]
 [ext_resource type="PackedScene" uid="uid://dakm1l5311nnp" path="res://lindon.tscn" id="4_ob26r"]
+[ext_resource type="Texture2D" uid="uid://dx5y6qdnkfv5t" path="res://CradleAssets/landscape/parallax/backgroundtest/tidebreakers.png" id="4_pdsw4"]
 [ext_resource type="Texture2D" uid="uid://d8ln2vq1gjra" path="res://CradleAssets/landscape/bottom-Pure.png" id="4_yr4vr"]
 [ext_resource type="Texture2D" uid="uid://di8y1wl6xgs0m" path="res://CradleAssets/landscape/Sand3.png" id="5_n181g"]
+[ext_resource type="Texture2D" uid="uid://djhnf8exdadrq" path="res://CradleAssets/landscape/parallax/backgroundtest/volcano Copy.png" id="5_oo1yd"]
+[ext_resource type="Texture2D" uid="uid://bvedur1bwvkak" path="res://CradleAssets/landscape/parallax/backgroundtest/Volcano-Pure.png" id="6_rmdmt"]
 [ext_resource type="Texture2D" uid="uid://haw65gh7qebt" path="res://CradleAssets/landscape/Sand4.png" id="7_nasp8"]
+[ext_resource type="Texture2D" uid="uid://cphpmf0thaxm1" path="res://CradleAssets/landscape/parallax/backgroundtest/tide-pure.png" id="8_6i37c"]
 [ext_resource type="Texture2D" uid="uid://4b1m4pwnitmh" path="res://CradleAssets/landscape/pure-ground.png" id="9_nvgtg"]
+[ext_resource type="Texture2D" uid="uid://cpydh4dp1hsr2" path="res://CradleAssets/landscape/parallax/backgroundtest/front.png" id="9_o5nqq"]
 
 [sub_resource type="Gradient" id="Gradient_7mdc8"]
 
@@ -447,6 +455,84 @@ sources/15 = SubResource("TileSetAtlasSource_hjff6")
 [node name="Game" type="Node"]
 script = ExtResource("1_shfnb")
 
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(0, -360)
+motion_scale = Vector2(0.2, 1)
+motion_mirroring = Vector2(640, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture = ExtResource("2_xa6g7")
+centered = false
+region_rect = Rect2(0, 0, 2, 1)
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(0, -360)
+motion_scale = Vector2(0.4, 1)
+motion_mirroring = Vector2(640, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+texture = ExtResource("3_f5ust")
+centered = false
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(0, -360)
+motion_scale = Vector2(0.4, 1)
+motion_mirroring = Vector2(640, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
+texture = ExtResource("4_kp0p0")
+centered = false
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(0, -360)
+motion_scale = Vector2(0.6, 1)
+motion_mirroring = Vector2(640, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer4"]
+texture = ExtResource("5_oo1yd")
+centered = false
+
+[node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(0, -360)
+motion_scale = Vector2(0.6, 1)
+motion_mirroring = Vector2(640, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer5"]
+texture = ExtResource("6_rmdmt")
+centered = false
+
+[node name="ParallaxLayer6" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(0, -360)
+motion_scale = Vector2(0.8, 1)
+motion_mirroring = Vector2(640, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer6"]
+texture = ExtResource("4_pdsw4")
+centered = false
+
+[node name="ParallaxLayer7" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(0, -360)
+motion_scale = Vector2(0.8, 1)
+motion_mirroring = Vector2(640, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer7"]
+texture = ExtResource("8_6i37c")
+centered = false
+
+[node name="ParallaxLayer8" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(0, -360)
+motion_mirroring = Vector2(640, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer8"]
+texture = ExtResource("9_o5nqq")
+centered = false
+
+[node name="ParallaxLayer9" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer9"]
+
 [node name="TextureRect" type="TextureRect" parent="."]
 texture_filter = 1
 anchors_preset = -1
@@ -470,7 +556,7 @@ layer_0/tile_data = PackedInt32Array(19, 6, 0, 15, 6, 0, 11, 6, 0, 7, 6, 0, 3, 6
 
 [node name="main_character" parent="." groups=["Little_Blue"] instance=ExtResource("3_uufjs")]
 unique_name_in_owner = true
-position = Vector2(333, -60)
+position = Vector2(184.68, -40)
 
 [node name="Lindon" parent="." groups=["Lindon"] instance=ExtResource("4_ob26r")]
 position = Vector2(619, -15)

@@ -951,8 +951,7 @@ libraries = {
 [node name="Sprite2D2" type="Sprite2D" parent="."]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-offset = Vector2(0, -44.79)
-zoom = Vector2(5.195, 5.195)
+offset = Vector2(0, -75)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2, 1)
@@ -1069,6 +1068,7 @@ sprite_associated = NodePath("../../LittleBlue_sheets/jump_up")
 [node name="hurtbox" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 64
+monitoring = false
 script = ExtResource("19_o1iao")
 hit_immunity = 0.3
 
@@ -1077,6 +1077,8 @@ position = Vector2(-2, 1)
 shape = SubResource("CapsuleShape2D_7orgb")
 
 [node name="UI" type="CanvasLayer" parent="."]
+scale = Vector2(0.25, 0.25)
+transform = Transform2D(0.25, 0, 0, 0.25, 0, 0)
 
 [node name="Healthbar" parent="UI" instance=ExtResource("22_p7yrj")]
 offset_left = 6.0
