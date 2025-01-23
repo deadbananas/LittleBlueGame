@@ -651,6 +651,20 @@ tracks/14/keys = {
 "update": 1,
 "values": [true, false, true]
 }
+tracks/15/type = "method"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath(".")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"emit_mid_pure"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_bbdp5"]
 resource_name = "fist-strike-Burning-Cloak-Component"
@@ -867,6 +881,7 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(3, 33.575)
 shape = SubResource("CircleShape2D_7a47s")
+disabled = true
 
 [node name="fiststrikebc" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_kwapk")

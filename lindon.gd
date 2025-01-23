@@ -14,6 +14,19 @@ extends CharacterBody2D
 @onready var anim_basic_combo = $fiststrikebc/basic_combo
 @onready var anim_parried = $fiststrikebc/Parried_Sprite
 
+@onready var fist_strike_hitbox = $fiststrikebc/LindonSprites/blackflame_fist_Strike_hitbox/fist_strike_hitbox
+
+@onready var cloak_hitbox_shape_in = $fiststrikebc/LindonSprites/cloak_hitbox/cloak_hitbox_shape_in
+
+@onready var cloak_shape_out = $fiststrikebc/LindonSprites/cloak_hitbox/cloak_shape_out
+
+@onready var fist = $fiststrikebc/LindonSprites/cloak_hitbox/fist
+
+@onready var rock_hitbox_shape = $fiststrikebc/kick_rock/rock_hit_hitbox/rock_hitbox_shape
+
+@onready var basic_combo_shape = $fiststrikebc/basic_combo/basic_combo_hitbox/basic_combo_shape
+
+
 @onready var anim_player = $AnimationPlayer
 
 
@@ -30,6 +43,9 @@ const gravity = 50
 var instance
 
 var parried_check = false
+
+
+signal mid_pure()
 
 func _ready():
 	player = get_node("../%main_character")
@@ -127,6 +143,12 @@ func launch_rock():
 
 	
 func parried():
+	fist_strike_hitbox.disabled = true
+	cloak_hitbox_shape_in.disabled = true
+	cloak_shape_out.disabled = true
+	fist.disabled = true
+	rock_hitbox_shape.disabled = true
+	basic_combo_shape.disabled = true
 	hsm.dispatch("parried")
 	velocity.x = 0
 	velocity.y = 0
@@ -156,30 +178,8 @@ func flash():
 func timer_timeout():
 	spriteMat.material.set_shader_parameter("flash_mod", 0.0)
 
-#class_name Lindon
-#extends CharacterBody2D
-#
-#@onready
-#var animations = $AnimationPlayer
-#@onready
-#var state_machine = $state_machine
-#@onready
-#var move_component = $move_component
-#
-#func _ready() -> void:
-	## Initialize the state machine, passing a reference of the player to the states,
-	## that way they can move and react accordingly
-	#state_machine.init(self, animations, move_component)
-#
-#func _unhandled_input(event: InputEvent) -> void:
-	#state_machine.process_input(event)
-#
-#func _physics_process(delta: float) -> void:
-	#state_machine.process_physics(delta)
-#
-#func _process(delta: float) -> void:
-	#state_machine.process_frame(delta)
-
+func emit_mid_pure():
+	mid_pure.emit()
 
 func _on_blackflame_fist_strike_hitbox_parried_signal(damage: Variant) -> void:
 	parried()

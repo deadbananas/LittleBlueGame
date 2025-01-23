@@ -77,7 +77,6 @@ func _on_hurtbox_received_hit(damage, time_scale, duration):
 
 func _on_parry_area_entered(area: Area2D) -> void:
 	stopped = true
-	print("parry")
 	frameFreeze(0.1, 0.4)
 	if area.has_method("parried"):
 		area.parried()

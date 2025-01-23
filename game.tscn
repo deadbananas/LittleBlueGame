@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://02mndykd5b"]
+[gd_scene load_steps=34 format=3 uid="uid://02mndykd5b"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_shfnb"]
 [ext_resource type="Texture2D" uid="uid://cs00bavxntvbv" path="res://CradleAssets/landscape/sand1-tileset.png" id="2_c4ob7"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://clchv8q1uydvd" path="res://CradleAssets/landscape/Sand1.png" id="3_b3ys3"]
 [ext_resource type="Texture2D" uid="uid://dgq2p4jj615yu" path="res://CradleAssets/landscape/parallax/backgroundtest/bgtest2/pipes.png" id="3_f5ust"]
 [ext_resource type="PackedScene" uid="uid://cemmkhino63ca" path="res://main_character.tscn" id="3_uufjs"]
+[ext_resource type="Shader" path="res://shaders/Hit_flash.gdshader" id="4_1ft6p"]
 [ext_resource type="Texture2D" uid="uid://cawe4rogyjp0l" path="res://CradleAssets/landscape/Sand2.png" id="4_bpp66"]
 [ext_resource type="Texture2D" uid="uid://pd04kbbmfuyd" path="res://CradleAssets/landscape/parallax/backgroundtest/bgtest2/pipe-pure.png" id="4_kp0p0"]
 [ext_resource type="PackedScene" uid="uid://dakm1l5311nnp" path="res://lindon.tscn" id="4_ob26r"]
@@ -17,8 +18,14 @@
 [ext_resource type="Texture2D" uid="uid://bvedur1bwvkak" path="res://CradleAssets/landscape/parallax/backgroundtest/Volcano-Pure.png" id="6_rmdmt"]
 [ext_resource type="Texture2D" uid="uid://haw65gh7qebt" path="res://CradleAssets/landscape/Sand4.png" id="7_nasp8"]
 [ext_resource type="Texture2D" uid="uid://cphpmf0thaxm1" path="res://CradleAssets/landscape/parallax/backgroundtest/tide-pure.png" id="8_6i37c"]
+[ext_resource type="Script" path="res://midpure.gd" id="8_d0ypb"]
 [ext_resource type="Texture2D" uid="uid://4b1m4pwnitmh" path="res://CradleAssets/landscape/pure-ground.png" id="9_nvgtg"]
 [ext_resource type="Texture2D" uid="uid://cpydh4dp1hsr2" path="res://CradleAssets/landscape/parallax/backgroundtest/front.png" id="9_o5nqq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_62igd"]
+shader = ExtResource("4_1ft6p")
+shader_parameter/flash_color = Color(1, 0.281166, 0.31437, 1)
+shader_parameter/flash_mod = 0.0
 
 [sub_resource type="Gradient" id="Gradient_7mdc8"]
 
@@ -494,14 +501,16 @@ motion_mirroring = Vector2(640, 0)
 texture = ExtResource("5_oo1yd")
 centered = false
 
-[node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground"]
+[node name="mid_pure" type="ParallaxLayer" parent="ParallaxBackground"]
 position = Vector2(0, -360)
 motion_scale = Vector2(0.6, 1)
 motion_mirroring = Vector2(640, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer5"]
+[node name="midpure" type="Sprite2D" parent="ParallaxBackground/mid_pure"]
+material = SubResource("ShaderMaterial_62igd")
 texture = ExtResource("6_rmdmt")
 centered = false
+script = ExtResource("8_d0ypb")
 
 [node name="ParallaxLayer6" type="ParallaxLayer" parent="ParallaxBackground"]
 position = Vector2(0, -360)
@@ -566,3 +575,5 @@ offset_left = 245.0
 offset_top = -118.0
 offset_right = 387.0
 offset_bottom = -56.0
+
+[connection signal="mid_pure" from="Lindon" to="ParallaxBackground/mid_pure/midpure" method="_on_lindon_mid_pure"]
