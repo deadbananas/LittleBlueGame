@@ -19,9 +19,7 @@ var hit = false
 
 var stopped = false
 
-var monitor = true
 
-var knockback
 
 var is_complete := false
 #var wants_follow_up := false
@@ -30,8 +28,6 @@ func enter() -> void:
 	is_complete = false
 	hit = false
 	stopped = false
-	monitor = true
-	knockback = Vector2(0,0)
 	#wants_follow_up = false
 	super()
 	await animations.animation_finished
@@ -44,13 +40,6 @@ func process_input(event: InputEvent) -> State:
 
 func process_physics(delta: float) -> State:
 	
-	if hit:
-		hit = false
-		return hit_state
-		
-	if get_jump() and parent.is_on_floor():
-		return jump_state
-
 	parent.velocity.y += gravity * delta
 
 	var movement = get_movement_input() * move_speed
@@ -61,6 +50,7 @@ func process_physics(delta: float) -> State:
 	#else:
 		#flip = 1.0
 	#sprite.scale.x = flip
+	parent.velocity.x = movement
 	parent.move_and_slide()
 	
 	if is_complete:
@@ -86,12 +76,9 @@ func _on_hurtbox_received_hit(damage, time_scale, duration):
 func _on_parry_area_entered(area: Area2D) -> void:
 	stopped = true
 	#frameFreeze(0.1, 0.4)
-	if area.has_method("parried") and monitor:
+	if area.has_method("parried"):
 		area.parried()
 		var hitTimer : Timer = Timer.new()
-		var knock_dir = Vector2(area.hitbox.knockbackDirHori, area.hitbox.knockbackDirVert)
-		var rel_pos =area.hitbox.global_position.direction_to(self.global_position)
-		knockbackCalc(knock_dir, (area.hitbox.knockback) * 10, rel_pos)
 		add_child(hitTimer)
 		hitTimer.one_shot = true
 		hitTimer.autostart = true
@@ -99,32 +86,19 @@ func _on_parry_area_entered(area: Area2D) -> void:
 		hitTimer.timeout.connect(hitable_timer_timeout)
 		hitTimer.start()
 		hurtbox.hitable = false
-		hurtbox.parried = true
-		monitor = false
 		print("IM INVINCIBLEE")
 
 	
 func hitable_timer_timeout():
 	hurtbox.hitable = true
-	hurtbox.parried = false
-	knockback = Vector2(0,0)
+
 
 func _on_block_area_entered(area: Area2D) -> void:
 	stopped = true
-	if monitor:
-		print("blocked")
+	print("blocked")
 
 
 func frameFreeze(time_scale, duration):
 	Engine.time_scale = time_scale
 	await(get_tree().create_timer(time_scale * duration).timeout)
 	Engine.time_scale = 1.0
-
-func knockbackCalc(knock_dir_mod: Vector2, knock_force: float, relative_pos: Vector2):
-	if relative_pos.x >= 0:
-		var knockback_applied = knock_dir_mod * knock_force
-		parent.velocity = knockback_applied
-	else:
-		var knockback_applied = knock_dir_mod * knock_force
-		knockback_applied.x = knockback_applied.x * -1
-		parent.velocity = knockback_applied

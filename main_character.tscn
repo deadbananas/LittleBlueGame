@@ -346,7 +346,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_hio3q"]
 resource_name = "parry"
-length = 0.65
+length = 0.28
 step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -355,7 +355,7 @@ tracks/0/path = NodePath("LittleBlue_sheets/parry:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0534217, 0.2, 0.3, 0.423592, 0.486692, 0.540114, 0.603214),
+"times": PackedFloat32Array(0, 0.012404, 0.0207892, 0.0401088, 0.0890427, 0.136313, 0.209625, 0.263105),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6, 7]
@@ -367,7 +367,7 @@ tracks/1/path = NodePath("LittleBlue_sheets/parry/Parry/Parry_shape:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.204945, 0.208644, 0.422335, 0.423461),
+"times": PackedFloat32Array(0, 0.0441431, 0.0478421, 0.257703, 0.258411),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
 "values": [true, true, false, false, true]
@@ -379,7 +379,7 @@ tracks/2/path = NodePath("LittleBlue_sheets/parry/block/Block_Shape:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.4224, 0.423524, 0.64, 0.65),
+"times": PackedFloat32Array(0, 0.258743, 0.259632, 0.274814, 0.275367),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
 "values": [true, true, false, false, true]
@@ -1102,4 +1102,5 @@ offset_bottom = 98.0
 [connection signal="received_hit" from="hurtbox" to="state_machine/attack2" method="_on_hurtbox_received_hit"]
 [connection signal="received_hit" from="hurtbox" to="state_machine/parry" method="_on_hurtbox_received_hit"]
 [connection signal="received_hit" from="hurtbox" to="state_machine/hit" method="_on_hurtbox_received_hit"]
+[connection signal="received_knockback" from="hurtbox" to="state_machine/parry" method="_on_hurtbox_received_knockback"]
 [connection signal="received_knockback" from="hurtbox" to="state_machine/hit" method="_on_hurtbox_received_knockback"]

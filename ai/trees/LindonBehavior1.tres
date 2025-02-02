@@ -19,7 +19,7 @@ target_var = &"target"
 script = ExtResource("2_52qia")
 target_var = &"target"
 speed_var = 200
-tolerance = 40
+tolerance = 60
 
 [sub_resource type="BTAction" id="BTAction_cqtrh"]
 script = ExtResource("3_cobnf")
@@ -28,8 +28,8 @@ target_dif = &"target_dif"
 
 [sub_resource type="BBVariant" id="BBVariant_afb7n"]
 type = 2
-saved_value = 10
-resource_name = "10"
+saved_value = 15
+resource_name = "15"
 
 [sub_resource type="BTCheckVar" id="BTCheckVar_tvgjb"]
 variable = &"target_dif"
@@ -63,7 +63,7 @@ method = &"basic_combo_anims_exit"
 
 [sub_resource type="BTSequence" id="BTSequence_uub4o"]
 children = [SubResource("BTCallMethod_u6dgx"), SubResource("BTPlayAnimation_107go"), SubResource("BTCallMethod_fi8tp")]
-metadata/_weight_ = 5.0
+metadata/_weight_ = 507.4
 
 [sub_resource type="BBNode" id="BBNode_82dkv"]
 saved_value = NodePath(".")
@@ -309,7 +309,7 @@ children = [SubResource("BTSequence_2du52"), SubResource("BTSequence_jbim4"), Su
 [sub_resource type="BTSequence" id="BTSequence_ngckt"]
 custom_name = "Basic_attack_combo"
 children = [SubResource("BTAction_cqtrh"), SubResource("BTSelector_usayb")]
-metadata/_weight_ = 2.0
+metadata/_weight_ = 282.6
 
 [sub_resource type="BBNode" id="BBNode_w5jc8"]
 saved_value = NodePath("AnimationPlayer")

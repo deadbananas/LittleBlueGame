@@ -11,7 +11,8 @@ signal received_knockback(knockback_applied: Vector2)
 signal hitstun_end()
 
 
-var hitable = true
+@export var hitable = true
+@export var parried = false
 
 @export var hit_immunity = 0.7
 
@@ -23,7 +24,6 @@ func _ready():
 	
 func _on_area_entered(hitbox: HitBox) -> void:
 	if hitbox != null:
-		print(hitbox.damage)
 		if hitable:
 			var knock_dir = Vector2(hitbox.knockbackDirHori, hitbox.knockbackDirVert)
 			
@@ -39,7 +39,7 @@ func _on_area_entered(hitbox: HitBox) -> void:
 			hitTimer.timeout.connect(timer_timeout)
 			hitTimer.start()
 			hitable = false
-			
+			print("she got hit")
 			
 
 		

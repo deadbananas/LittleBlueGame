@@ -5,7 +5,7 @@ extends BTAction
 
 @export var speed_var = 600
 
-@export var tolerance = 40
+@export var tolerance = 60
 
 func _tick(_delta: float) -> Status:
 	var target: CharacterBody2D = blackboard.get_var(target_var)

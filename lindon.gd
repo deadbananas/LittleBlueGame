@@ -142,7 +142,7 @@ func launch_rock():
 	
 
 	
-func parried():
+func countered():
 	fist_strike_hitbox.disabled = true
 	cloak_hitbox_shape_in.disabled = true
 	cloak_shape_out.disabled = true
@@ -152,7 +152,7 @@ func parried():
 	hsm.dispatch("parried")
 	velocity.x = 0
 	velocity.y = 0
-	print("parried_lindon")
+	
 	anim_burningCloak1.visible = false
 	anim_LindonSprites.visible = false
 	anim_fist_bc_strike.visible = false
@@ -163,30 +163,45 @@ func parried():
 	anim_parried.visible = true
 	flash()
 	
+	
+func parried():
+	print("parried_lindon")
+	var parryTimer : Timer = Timer.new()
+	add_child(parryTimer)
+	parryTimer.one_shot = true
+	parryTimer.autostart = true
+	parryTimer.wait_time = 0.3
+	parryTimer.timeout.connect(parry_timer_timeout)
+	parryTimer.start()
+	anim_player.speed_scale = 0.2
+	
+	
 func flash():
 	spriteMat.material.set_shader_parameter("flash_mod", 0.98)
-	print("hit")
 	var flashTimer : Timer = Timer.new()
 	add_child(flashTimer)
 	flashTimer.one_shot = true
 	flashTimer.autostart = true
 	flashTimer.wait_time = 0.7
-	flashTimer.timeout.connect(timer_timeout)
+	flashTimer.timeout.connect(flash_timer_timeout)
 	flashTimer.start()
 	
 	
-func timer_timeout():
+func flash_timer_timeout():
 	spriteMat.material.set_shader_parameter("flash_mod", 0.0)
+	
+func parry_timer_timeout():
+	anim_player.speed_scale = 1.0
 
 func emit_mid_pure():
 	mid_pure.emit()
 
 func _on_blackflame_fist_strike_hitbox_parried_signal(damage: Variant) -> void:
-	parried()
+	pass
 
 
 func _on_cloak_hitbox_parried_signal(damage: Variant) -> void:
-	parried()
+	pass
 
 
 func _on_rock_hit_hitbox_parried_signal(damage: Variant) -> void:

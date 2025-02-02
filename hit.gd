@@ -57,7 +57,6 @@ func _on_hurtbox_hitstun_end():
 
 func flash():
 	spriteMat.material.set_shader_parameter("flash_mod", 0.86)
-	print("hit")
 	var flashTimer : Timer = Timer.new()
 	add_child(flashTimer)
 	flashTimer.one_shot = true
