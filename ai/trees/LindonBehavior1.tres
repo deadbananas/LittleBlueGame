@@ -63,7 +63,7 @@ method = &"basic_combo_anims_exit"
 
 [sub_resource type="BTSequence" id="BTSequence_uub4o"]
 children = [SubResource("BTCallMethod_u6dgx"), SubResource("BTPlayAnimation_107go"), SubResource("BTCallMethod_fi8tp")]
-metadata/_weight_ = 507.4
+metadata/_weight_ = 0.0
 
 [sub_resource type="BBNode" id="BBNode_82dkv"]
 saved_value = NodePath(".")
@@ -195,7 +195,7 @@ method = &"basic_combo_anims_exit"
 
 [sub_resource type="BTSequence" id="BTSequence_fwljl"]
 children = [SubResource("BTCallMethod_w7qmn"), SubResource("BTPlayAnimation_vs8nk"), SubResource("BTPauseAnimation_av4fm"), SubResource("BTRepeatUntilSuccess_hioal"), SubResource("BTPlayAnimation_lnanx"), SubResource("BTCallMethod_bdmx2")]
-metadata/_weight_ = 5.0
+metadata/_weight_ = 0.0
 
 [sub_resource type="BBNode" id="BBNode_b4k75"]
 saved_value = NodePath(".")

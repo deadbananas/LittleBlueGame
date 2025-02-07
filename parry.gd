@@ -89,9 +89,9 @@ func _on_parry_area_entered(area: Area2D) -> void:
 	if area.has_method("parried") and monitor:
 		area.parried()
 		var hitTimer : Timer = Timer.new()
-		var knock_dir = Vector2(area.hitbox.knockbackDirHori, area.hitbox.knockbackDirVert)
-		var rel_pos =area.hitbox.global_position.direction_to(self.global_position)
-		knockbackCalc(knock_dir, (area.hitbox.knockback) * 10, rel_pos)
+		var knock_dir = Vector2(area.get_knockbackDirHori(), area.get_knockbackDirVert())
+		var rel_pos =area.global_position.direction_to(hurtbox.global_position)
+		knockbackCalc(knock_dir, (area.get_knockback()) * 30, rel_pos)
 		add_child(hitTimer)
 		hitTimer.one_shot = true
 		hitTimer.autostart = true
