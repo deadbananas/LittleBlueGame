@@ -40,6 +40,8 @@ var dir_to_player
 var spriteMat
 const gravity = 50
 
+
+var move_on = false
 var instance
 
 var parried_check = false
@@ -112,6 +114,7 @@ func basic_combo_anims_enter():
 func basic_combo_anims_exit():
 	anim_basic_combo.visible = false
 	anim_LindonSprites.visible = true
+	move_on = false
 	
 func fist_strike_bc_anims_enter():
 	anim_walk_forward.visible = false
@@ -192,6 +195,14 @@ func flash_timer_timeout():
 	
 func parry_timer_timeout():
 	anim_player.speed_scale = 1.0
+	
+func set_move_on():
+	move_on = true
+	
+func get_move_on():
+	return move_on
+	
+
 
 func emit_mid_pure():
 	mid_pure.emit()
