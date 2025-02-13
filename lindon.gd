@@ -40,7 +40,7 @@ var dir_to_player
 var spriteMat
 const gravity = 50
 
-
+var fist_check_area_entered = false
 var move_on = false
 var instance
 
@@ -119,6 +119,9 @@ func basic_combo_anims_exit():
 func fist_strike_bc_anims_enter():
 	anim_walk_forward.visible = false
 	anim_LindonSprites.visible = false
+	
+func fist_strike_bc_anims_exit():
+	fist_check_area_entered = false
 
 func kick_rock_anims_enter():
 	anim_walk_forward.visible = false
@@ -155,7 +158,7 @@ func countered():
 	hsm.dispatch("parried")
 	velocity.x = 0
 	velocity.y = 0
-	
+	fist_check_area_entered = false
 	anim_burningCloak1.visible = false
 	anim_LindonSprites.visible = false
 	anim_fist_bc_strike.visible = false
@@ -202,7 +205,8 @@ func set_move_on():
 func get_move_on():
 	return move_on
 	
-
+func get_fist_check_area_entered():
+	return fist_check_area_entered
 
 func emit_mid_pure():
 	mid_pure.emit()
@@ -221,3 +225,7 @@ func _on_rock_hit_hitbox_parried_signal(damage: Variant) -> void:
 
 func _on_basic_combo_hitbox_parried_signal(damage: Variant) -> void:
 	parried()
+
+
+func _on_fist_check_area_entered(area):
+	fist_check_area_entered = true

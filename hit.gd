@@ -28,7 +28,7 @@ func enter() -> void:
 	flash()
 
 func process_physics(delta: float) -> State:
-	parent.velocity += knockback
+	parent.velocity = knockback
 	parent.move_and_slide()
 	
 	if health <= 0:

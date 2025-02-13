@@ -16,6 +16,8 @@ signal hitstun_end()
 
 @export var hit_immunity = 0.7
 
+@export var knockback_scalar = 40
+
 #@export var health: Health
 
 # Called when the node enters the scene tree for the first time.
@@ -29,7 +31,7 @@ func _on_area_entered(hitbox: HitBox) -> void:
 			
 			var rel_pos =hitbox.global_position.direction_to(self.global_position)
 			frameFreeze(hitbox.time_scale, hitbox.duration)
-			knockback(knock_dir, hitbox.knockback, rel_pos)
+			knockback(knock_dir, hitbox.knockback * knockback_scalar, rel_pos)
 			received_hit.emit(hitbox.damage, hitbox.time_scale, hitbox.duration)
 			var hitTimer : Timer = Timer.new()
 			add_child(hitTimer)
