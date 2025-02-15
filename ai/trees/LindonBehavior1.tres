@@ -348,7 +348,6 @@ script = ExtResource("6_mlxpf")
 target_var = &"target"
 speed_var = 600
 distance = 60
-follow_distance = 15
 tolerance = 40
 
 [sub_resource type="BTSequence" id="BTSequence_yrfu8"]
@@ -408,7 +407,6 @@ script = ExtResource("6_mlxpf")
 target_var = &"target"
 speed_var = 600
 distance = 60
-follow_distance = 15
 tolerance = 40
 
 [sub_resource type="BTSequence" id="BTSequence_j7aqb"]
@@ -492,7 +490,6 @@ script = ExtResource("6_mlxpf")
 target_var = &"target"
 speed_var = 600
 distance = 60
-follow_distance = 15
 tolerance = 40
 
 [sub_resource type="BTSequence" id="BTSequence_yrmb5"]

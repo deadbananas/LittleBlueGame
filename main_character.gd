@@ -15,6 +15,8 @@ var move_component = $move_component
 var health = 100
 var maxHealth = 10
 
+signal pass_strike()
+
 func _ready() -> void:
 	# Initialize the state machine, passing a reference of the player to the states,
 	
@@ -37,3 +39,7 @@ func _process(delta: float) -> void:
 func _on_hurtbox_received_hit(damage: int, time_scale: float, duration: float) -> void:
 	health -= damage
 	healthbar.health = health
+
+
+func _on_lindon_strike_fist():
+	pass_strike.emit()

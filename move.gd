@@ -14,7 +14,7 @@ var parry_state: State
 var hit_state: State
 
 var hit = false
-
+var struck_big = false
 
 func enter() -> void:
 	super()
@@ -39,9 +39,8 @@ func process_physics(delta: float) -> State:
 		return jump_state
 	
 	parent.velocity.y += gravity * delta
-
+		
 	var movement = get_movement_input() * move_speed
-	
 	if movement == 0:
 		return idle_state
 	var flip = 1.0
@@ -51,6 +50,8 @@ func process_physics(delta: float) -> State:
 		flip = 1.0
 	sprite.scale.x = flip
 	parent.velocity.x = movement
+	if struck_big:
+		parent.velocity.x = 0.0
 	parent.move_and_slide()
 	
 	if !parent.is_on_floor():
@@ -62,3 +63,17 @@ func process_physics(delta: float) -> State:
 
 func _on_hurtbox_received_hit(damage, time_scale, duration):
 	hit = true
+
+
+func _on_little_blue_pass_strike():
+	struck_big = true
+	var struckTimer : Timer = Timer.new()
+	add_child(struckTimer)
+	struckTimer.one_shot = true
+	struckTimer.autostart = true
+	struckTimer.wait_time = 1
+	struckTimer.timeout.connect(timer_timeout)
+	struckTimer.start()
+	
+func timer_timeout():
+	struck_big = false

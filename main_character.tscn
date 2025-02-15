@@ -1085,6 +1085,15 @@ offset_top = 43.0
 offset_right = 773.0
 offset_bottom = 98.0
 
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-2, 1)
+shape = SubResource("CapsuleShape2D_7orgb")
+
+[connection signal="pass_strike" from="." to="state_machine/move" method="_on_little_blue_pass_strike"]
 [connection signal="area_entered" from="LittleBlue_sheets/parry/Parry" to="." method="_on_parry_area_entered"]
 [connection signal="area_entered" from="LittleBlue_sheets/parry/Parry" to="state_machine/parry" method="_on_parry_area_entered"]
 [connection signal="area_entered" from="LittleBlue_sheets/parry/block" to="state_machine/parry" method="_on_block_area_entered"]

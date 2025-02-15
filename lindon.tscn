@@ -384,6 +384,18 @@ tracks/29/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/30/type = "value"
+tracks/30/imported = false
+tracks/30/enabled = true
+tracks/30/path = NodePath("fistCheck:monitoring")
+tracks/30/interp = 1
+tracks/30/loop_wrap = true
+tracks/30/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_ud1j7"]
 resource_name = "basic_attack_first_2"
@@ -787,6 +799,46 @@ tracks/15/keys = {
 "method": &"emit_mid_pure"
 }]
 }
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("fistCheck:monitoring")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0, 1.86287, 2.69314),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/17/type = "method"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath(".")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(3.06757),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"fist_strike_bc_anims_exit"
+}]
+}
+tracks/18/type = "method"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath(".")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(2.27684),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"emit_fist_strike"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_bbdp5"]
 resource_name = "fist-strike-Burning-Cloak-Component"
@@ -987,7 +1039,7 @@ size = Vector2(44, 57)
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_jqcdi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2hjhm"]
-size = Vector2(48, 63)
+size = Vector2(37, 68)
 
 [node name="Lindon" type="CharacterBody2D"]
 script = ExtResource("1_h0bx1")
@@ -1023,7 +1075,6 @@ texture = ExtResource("3_h1ymq")
 hframes = 8
 
 [node name="LindonSprites" type="Sprite2D" parent="fiststrikebc"]
-visible = false
 texture_filter = 1
 texture = ExtResource("2_hqcw7")
 offset = Vector2(0, -63.53)
@@ -1034,7 +1085,7 @@ collision_layer = 64
 collision_mask = 0
 script = ExtResource("8_vy18p")
 duration = 0.8
-knockback = 14.0
+knockback = 0.0
 knockbackDirHori = 1.0
 
 [node name="fist_strike_hitbox" type="CollisionPolygon2D" parent="fiststrikebc/LindonSprites/blackflame_fist_Strike_hitbox"]
@@ -1110,6 +1161,7 @@ polygon = PackedVector2Array(-4, 64, -4, 42, 15, 41, 11, 66, -1, 68, 3, 64, -8, 
 disabled = true
 
 [node name="basic_combo" type="Sprite2D" parent="fiststrikebc"]
+visible = false
 texture_filter = 1
 position = Vector2(-15, -64)
 texture = ExtResource("8_as2vf")
@@ -1186,9 +1238,11 @@ animation_name = &"parried"
 [node name="fistCheck" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 4
+monitoring = false
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="fistCheck"]
-position = Vector2(-17, -32.5)
+position = Vector2(-11.5, -35)
 shape = SubResource("RectangleShape2D_2hjhm")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

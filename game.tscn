@@ -577,3 +577,4 @@ offset_right = 387.0
 offset_bottom = -56.0
 
 [connection signal="mid_pure" from="Lindon" to="ParallaxBackground/mid_pure/midpure" method="_on_lindon_mid_pure"]
+[connection signal="strike_Fist" from="Lindon" to="main_character" method="_on_lindon_strike_fist"]

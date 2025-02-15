@@ -26,6 +26,9 @@ extends CharacterBody2D
 
 @onready var basic_combo_shape = $fiststrikebc/basic_combo/basic_combo_hitbox/basic_combo_shape
 
+@onready var fist_check = $fistCheck
+
+
 
 @onready var anim_player = $AnimationPlayer
 
@@ -48,6 +51,8 @@ var parried_check = false
 
 
 signal mid_pure()
+
+signal strike_Fist()
 
 func _ready():
 	player = get_node("../%main_character")
@@ -92,8 +97,10 @@ func update_flip(dir):
 	dir_to_player = dir
 	if abs(dir) == dir:
 		anim_sprite.scale.x  = -1.0
+		fist_check.scale.x = -1.0
 	else:
 		anim_sprite.scale.x  = 1.0
+		fist_check.scale.x = 1.0
 		
 func handle_anims():
 	if velocity.x != 0:
@@ -210,6 +217,9 @@ func get_fist_check_area_entered():
 
 func emit_mid_pure():
 	mid_pure.emit()
+	
+func emit_fist_strike():
+	strike_Fist.emit()
 
 func _on_blackflame_fist_strike_hitbox_parried_signal(damage: Variant) -> void:
 	pass
@@ -228,4 +238,5 @@ func _on_basic_combo_hitbox_parried_signal(damage: Variant) -> void:
 
 
 func _on_fist_check_area_entered(area):
+	print("WE ENTEREED THIS BITCH")
 	fist_check_area_entered = true
