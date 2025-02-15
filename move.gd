@@ -13,6 +13,10 @@ var parry_state: State
 @export
 var hit_state: State
 
+@onready var hitbox_attack_1 = $"../../LittleBlue_sheets/attack/hitbox-attack-1"
+@onready var hitbox_attack_2 = $"../../LittleBlue_sheets/attack/hitbox-attack-2"
+
+
 var hit = false
 var struck_big = false
 
@@ -49,6 +53,8 @@ func process_physics(delta: float) -> State:
 	else:
 		flip = 1.0
 	sprite.scale.x = flip
+	#hitbox_attack_1.scale.x = flip
+	#hitbox_attack_2.scale.x = flip
 	parent.velocity.x = movement
 	if struck_big:
 		parent.velocity.x = 0.0

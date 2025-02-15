@@ -3,6 +3,8 @@ extends CharacterBody2D
 @onready var hsm: LimboHSM = $LimboHSM
 @onready var phase_1_state: LimboState = $LimboHSM/Phase1
 @onready var parried_state: LimboState = $LimboHSM/ParriedState
+@onready var behaviorTree1 = $BTPlayer
+
 
 @onready var anim_sprite = $fiststrikebc
 @onready var anim_burningCloak1 = $fiststrikebc/burningCloak1
@@ -14,26 +16,23 @@ extends CharacterBody2D
 @onready var anim_basic_combo = $fiststrikebc/basic_combo
 @onready var anim_parried = $fiststrikebc/Parried_Sprite
 
+
 @onready var fist_strike_hitbox = $fiststrikebc/LindonSprites/blackflame_fist_Strike_hitbox/fist_strike_hitbox
-
 @onready var cloak_hitbox_shape_in = $fiststrikebc/LindonSprites/cloak_hitbox/cloak_hitbox_shape_in
-
 @onready var cloak_shape_out = $fiststrikebc/LindonSprites/cloak_hitbox/cloak_shape_out
-
 @onready var fist = $fiststrikebc/LindonSprites/cloak_hitbox/fist
-
 @onready var rock_hitbox_shape = $fiststrikebc/kick_rock/rock_hit_hitbox/rock_hitbox_shape
-
 @onready var basic_combo_shape = $fiststrikebc/basic_combo/basic_combo_hitbox/basic_combo_shape
+
 
 @onready var fist_check = $fistCheck
 
-
+@onready var healthbar = $UI/Healthbar
 
 @onready var anim_player = $AnimationPlayer
 
 
-@onready var behaviorTree1 = $BTPlayer
+
 @onready var game = get_tree().get_root().get_node("Game")
 @onready var rock = load("res://rock.tscn")
 
@@ -54,8 +53,12 @@ signal mid_pure()
 
 signal strike_Fist()
 
+var health = 100
+
 func _ready():
 	player = get_node("../%main_character")
+	health = 100
+	healthbar.init_health(health)
 	anim_burningCloak1.visible = false
 	anim_LindonSprites.visible = false
 	anim_fist_bc_strike.visible = false
@@ -238,5 +241,9 @@ func _on_basic_combo_hitbox_parried_signal(damage: Variant) -> void:
 
 
 func _on_fist_check_area_entered(area):
-	print("WE ENTEREED THIS BITCH")
 	fist_check_area_entered = true
+
+
+func _on_hurtbox_main_received_hit(damage, time_scale, duration):
+	health -= damage
+	healthbar.health = health

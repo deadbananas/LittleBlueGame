@@ -25,10 +25,11 @@ func _ready():
 	connect("area_entered", _on_area_entered)
 	
 func _on_area_entered(hitbox: HitBox) -> void:
+
 	if hitbox != null:
 		if hitable:
 			var knock_dir = Vector2(hitbox.knockbackDirHori, hitbox.knockbackDirVert)
-			
+			print(hitbox.damage)
 			var rel_pos =hitbox.global_position.direction_to(self.global_position)
 			frameFreeze(hitbox.time_scale, hitbox.duration)
 			knockback(knock_dir, hitbox.knockback * knockback_scalar, rel_pos)
@@ -41,7 +42,6 @@ func _on_area_entered(hitbox: HitBox) -> void:
 			hitTimer.timeout.connect(timer_timeout)
 			hitTimer.start()
 			hitable = false
-			print("she got hit")
 			
 
 		
