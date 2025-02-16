@@ -24,7 +24,9 @@ func _process(delta):
 
 
 func _on_lindon_will_change(will):
+	var prev_will = curWill
 	curWill = curWill + will
+	print(prev_will + curWill)
 
 
 func _on_main_character_will_change(will):

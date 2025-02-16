@@ -931,6 +931,7 @@ texture = ExtResource("5_tsdhb")
 hframes = 14
 
 [node name="attack" type="Sprite2D" parent="LittleBlue_sheets"]
+visible = false
 texture_filter = 1
 texture = ExtResource("2_q6h3c")
 hframes = 11

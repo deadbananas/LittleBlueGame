@@ -17,7 +17,7 @@ var knockback
 var is_complete := false
 var spriteMat
 
-var willDiff = 2.0
+var willDiff = 5.0
 signal will_change(willDiff)
 
 var totalHealth = 60

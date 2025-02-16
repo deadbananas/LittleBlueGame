@@ -172,7 +172,8 @@ func launch_rock():
 	
 func will_update():
 	willDiff = prevWill + will
-	prevWill = will
+	prevWill = 0.0
+	will = 0.0
 	will_change.emit(willDiff)
 	
 	
