@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://1sb2tgxtyax5"]
+
+[ext_resource type="Material" uid="uid://d1d5wrb8uyxnf" path="res://shaders/AnimatedBar.tres" id="1_je1rr"]
+[ext_resource type="Script" path="res://UI/willbar.gd" id="2_fs2u7"]
+[ext_resource type="Shader" path="res://shaders/AnimatedBar.gdshader" id="3_0qqm8"]
+[ext_resource type="Gradient" uid="uid://ch872dq0lwsgi" path="res://shaders/blackflameGradient.tres" id="4_cvxfp"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wwdqf"]
+gradient = ExtResource("4_cvxfp")
+fill_from = Vector2(0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i068y"]
+shader = ExtResource("3_0qqm8")
+shader_parameter/progress = 0.65
+shader_parameter/background_color = Color(0.5, 0.5, 0.5, 0)
+shader_parameter/wave_amplitude = 0.02
+shader_parameter/wave_frequency = 3.0
+shader_parameter/wave_speed = 1.5
+shader_parameter/particle_speed = 0.05
+shader_parameter/particle_lifetime = 3.0
+shader_parameter/particle_softness = 0.01
+shader_parameter/particle_spacing = 0.1
+shader_parameter/particle_offset = Vector2(0, 0)
+shader_parameter/particle_start_scale = Vector2(0.02, 0.02)
+shader_parameter/particle_end_scale = Vector2(0.01, 0.01)
+shader_parameter/particle_scale_randomness = 0.5
+shader_parameter/particle_amount = 20
+shader_parameter/image_dimension = Vector2(128, 128)
+shader_parameter/color_gradient = SubResource("GradientTexture2D_wwdqf")
+
+[node name="BlueProgress" type="ColorRect"]
+z_index = 1
+material = ExtResource("1_je1rr")
+clip_contents = true
+offset_right = 546.0
+offset_bottom = 76.0
+rotation = 6.28319
+script = ExtResource("2_fs2u7")
+metadata/_edit_use_anchors_ = true
+
+[node name="LindonProgress" type="ColorRect" parent="."]
+z_index = -1
+material = SubResource("ShaderMaterial_i068y")
+clip_contents = true
+layout_mode = 0
+offset_left = 547.0
+offset_top = 76.0
+offset_right = 1094.0
+offset_bottom = 152.0
+rotation = 3.14159

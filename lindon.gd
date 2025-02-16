@@ -31,6 +31,7 @@ extends CharacterBody2D
 
 @onready var anim_player = $AnimationPlayer
 
+@onready var hurtbox_main = $hurtbox_main
 
 
 @onready var game = get_tree().get_root().get_node("Game")
@@ -48,8 +49,13 @@ var instance
 
 var parried_check = false
 
+var will = 0.0
+var willDiff = 0.0
+var prevWill = 0.0
 
 signal mid_pure()
+
+signal will_change(willDiff)
 
 signal strike_Fist()
 
@@ -68,6 +74,9 @@ func _ready():
 	anim_basic_combo.visible = false
 	anim_parried.visible = false
 	parried_check = false
+	will = 0.0
+	prevWill = 0.0
+	willDiff = 0.0
 	spriteMat = get_node("fiststrikebc/Parried_Sprite")
 	_init_state_machine()
 	
@@ -80,6 +89,8 @@ func _init_state_machine() -> void:
 	hsm.set_active(true)
 	
 func _physics_process(delta):
+	if will != prevWill:
+		will_update()
 	move_and_slide()
 
 func move(dir,speed):
@@ -101,9 +112,11 @@ func update_flip(dir):
 	if abs(dir) == dir:
 		anim_sprite.scale.x  = -1.0
 		fist_check.scale.x = -1.0
+		hurtbox_main.scale.x = -1.0
 	else:
 		anim_sprite.scale.x  = 1.0
 		fist_check.scale.x = 1.0
+		hurtbox_main.scale.x = 1.0
 		
 func handle_anims():
 	if velocity.x != 0:
@@ -156,7 +169,13 @@ func launch_rock():
 	instance.launch = true
 	
 	
-
+	
+func will_update():
+	willDiff = prevWill + will
+	prevWill = will
+	will_change.emit(willDiff)
+	
+	
 	
 func countered():
 	fist_strike_hitbox.disabled = true
@@ -181,7 +200,6 @@ func countered():
 	
 	
 func parried():
-	print("parried_lindon")
 	var parryTimer : Timer = Timer.new()
 	add_child(parryTimer)
 	parryTimer.one_shot = true
@@ -190,7 +208,7 @@ func parried():
 	parryTimer.timeout.connect(parry_timer_timeout)
 	parryTimer.start()
 	anim_player.speed_scale = 0.2
-	
+	will -= 3
 	
 func flash():
 	spriteMat.material.set_shader_parameter("flash_mod", 0.98)
@@ -245,5 +263,7 @@ func _on_fist_check_area_entered(area):
 
 
 func _on_hurtbox_main_received_hit(damage, time_scale, duration):
+	print(duration)
 	health -= damage
 	healthbar.health = health
+	will -= 0.5

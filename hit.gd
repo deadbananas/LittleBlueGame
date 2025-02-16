@@ -17,6 +17,8 @@ var knockback
 var is_complete := false
 var spriteMat
 
+var willDiff = 2.0
+signal will_change(willDiff)
 
 var totalHealth = 60
 var health = 10
@@ -25,6 +27,7 @@ func enter() -> void:
 	super()
 	is_complete = false
 	spriteMat = sprite.get_node("jump_up")
+	will_change.emit(willDiff)
 	flash()
 
 func process_physics(delta: float) -> State:
@@ -45,6 +48,7 @@ func process_physics(delta: float) -> State:
 			
 	return null
 
+	
 
 func _on_hurtbox_received_knockback(knockback_applied):
 	knockback = knockback_applied

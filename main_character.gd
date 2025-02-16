@@ -17,6 +17,10 @@ var maxHealth = 10
 
 signal pass_strike()
 
+var will = 0
+
+signal will_change(will)
+
 func _ready() -> void:
 	# Initialize the state machine, passing a reference of the player to the states,
 	
@@ -43,3 +47,8 @@ func _on_hurtbox_received_hit(damage: int, time_scale: float, duration: float) -
 
 func _on_lindon_strike_fist():
 	pass_strike.emit()
+
+
+func _on_hit_will_change(willDiff):
+	will = willDiff
+	will_change.emit(willDiff)

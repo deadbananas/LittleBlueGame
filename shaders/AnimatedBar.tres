@@ -1,0 +1,30 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://d1d5wrb8uyxnf"]
+
+[ext_resource type="Shader" path="res://shaders/AnimatedBar.gdshader" id="1_v24r6"]
+[ext_resource type="Gradient" uid="uid://05wa03lkydmk" path="res://shaders/pureMadraGradient.tres" id="2_7ifxm"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5bblh"]
+gradient = ExtResource("2_7ifxm")
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_u8yum"]
+gradient = ExtResource("2_7ifxm")
+
+[resource]
+shader = ExtResource("1_v24r6")
+shader_parameter/progress = 0.48
+shader_parameter/background_color = Color(0.41, 0.1476, 0.151973, 0)
+shader_parameter/wave_amplitude = 0.02
+shader_parameter/wave_frequency = 3.0
+shader_parameter/wave_speed = 1.5
+shader_parameter/particle_speed = 0.05
+shader_parameter/particle_lifetime = 3.0
+shader_parameter/particle_softness = 0.01
+shader_parameter/particle_spacing = 0.1
+shader_parameter/particle_offset = Vector2(0, 0)
+shader_parameter/particle_start_scale = Vector2(0.02, 0.02)
+shader_parameter/particle_end_scale = Vector2(0.01, 0.01)
+shader_parameter/particle_scale_randomness = 0.5
+shader_parameter/particle_amount = 20
+shader_parameter/image_dimension = Vector2(50, 25)
+shader_parameter/color_gradient = SubResource("GradientTexture1D_5bblh")
+shader_parameter/particle_alpha_gradient = SubResource("GradientTexture1D_u8yum")
