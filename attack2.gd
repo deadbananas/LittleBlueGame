@@ -14,6 +14,8 @@ var attack_state: State
 var parry_state: State
 @export
 var hit_state: State
+@export
+var dash_state: State
 
 var is_complete := false
 #var wants_follow_up := false
@@ -31,8 +33,10 @@ func enter() -> void:
 	is_complete = true
 
 func process_input(event: InputEvent) -> State:
-	#if (Input.is_action_just_pressed("attack")):
-		#wants_follow_up
+	if (Input.is_action_just_pressed("dash")):
+		return dash_state
+	if (Input.is_action_just_pressed("parry_right")):
+		return parry_state
 	return null
 
 func process_physics(delta: float) -> State:

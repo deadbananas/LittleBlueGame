@@ -1,4 +1,4 @@
-[gd_scene load_steps=101 format=3 uid="uid://cemmkhino63ca"]
+[gd_scene load_steps=108 format=3 uid="uid://cemmkhino63ca"]
 
 [ext_resource type="Script" path="res://Components/hitbox.gd" id="1_isybl"]
 [ext_resource type="Script" path="res://main_character.gd" id="1_silm2"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://de3eaj8a7fkj2" path="res://CradleAssets/LittleBlueSheets/LittleBlueHitLock.png" id="10_3epkh"]
 [ext_resource type="Script" path="res://Sprite2D.gd" id="10_jx5oa"]
 [ext_resource type="Script" path="res://move.gd" id="11_81y20"]
+[ext_resource type="Texture2D" uid="uid://c5yc6por176xq" path="res://CradleAssets/LittleBlueSheets/little-blue-dash.png" id="11_q21h6"]
 [ext_resource type="Script" path="res://jump.gd" id="12_4gwp4"]
 [ext_resource type="Script" path="res://fall.gd" id="13_brc3m"]
 [ext_resource type="Script" path="res://jump_max.gd" id="13_srrh8"]
@@ -24,6 +25,8 @@
 [ext_resource type="Script" path="res://Components/hurtbox.gd" id="19_o1iao"]
 [ext_resource type="Script" path="res://hit_lock.gd" id="22_h373q"]
 [ext_resource type="PackedScene" uid="uid://b63vc6tftnw3e" path="res://UI/healthbar.tscn" id="22_p7yrj"]
+[ext_resource type="Script" path="res://dash.gd" id="24_jtqbj"]
+[ext_resource type="PackedScene" uid="uid://bu688qqb4klcg" path="res://ghost.tscn" id="25_mw4yl"]
 
 [sub_resource type="Animation" id="Animation_uboeb"]
 length = 0.001
@@ -206,6 +209,30 @@ tracks/14/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("LittleBlue_sheets/dash:frame")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("hurtbox:monitoring")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_cyf24"]
@@ -462,11 +489,40 @@ tracks/0/keys = {
 "values": [0]
 }
 
+[sub_resource type="Animation" id="Animation_bu400"]
+resource_name = "dash"
+length = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LittleBlue_sheets/dash:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0509455, 0.110607),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("hurtbox:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.00180338, 0.14923),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_p10ys"]
 _data = {
 "RESET": SubResource("Animation_uboeb"),
 "attack1": SubResource("Animation_cyf24"),
 "attack2": SubResource("Animation_ywa78"),
+"dash": SubResource("Animation_bu400"),
 "fall": SubResource("Animation_nnamc"),
 "hit_lock": SubResource("Animation_g0v0o"),
 "idle": SubResource("Animation_j5p5l"),
@@ -933,6 +989,20 @@ _data = {
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7orgb"]
 
+[sub_resource type="Gradient" id="Gradient_iiv5c"]
+colors = PackedColorArray(0.24027, 0.743151, 0.887005, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_400be"]
+gradient = SubResource("Gradient_iiv5c")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5bk7t"]
+particle_flag_disable_z = true
+direction = Vector3(1, 1, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 130.91
+gravity = Vector3(0, 0, 0)
+color_ramp = SubResource("GradientTexture1D_400be")
+
 [node name="LittleBlue" type="CharacterBody2D"]
 position = Vector2(351, 395)
 collision_layer = 3
@@ -1037,6 +1107,12 @@ visible = false
 texture_filter = 1
 texture = ExtResource("10_3epkh")
 
+[node name="dash" type="Sprite2D" parent="LittleBlue_sheets"]
+visible = false
+texture_filter = 1
+texture = ExtResource("11_q21h6")
+hframes = 3
+
 [node name="anims_old" type="AnimatedSprite2D" parent="."]
 visible = false
 texture_filter = 1
@@ -1069,7 +1145,7 @@ shape = SubResource("CapsuleShape2D_7orgb")
 script = ExtResource("8_14aup")
 starting_state = NodePath("idle")
 
-[node name="idle" type="Node" parent="state_machine" node_paths=PackedStringArray("move_state", "jump_state", "fall_state", "attack_state", "parry_state", "hit_state", "hit_lock_state", "sprite_associated")]
+[node name="idle" type="Node" parent="state_machine" node_paths=PackedStringArray("move_state", "jump_state", "fall_state", "attack_state", "parry_state", "hit_state", "hit_lock_state", "dash_state", "sprite_associated")]
 script = ExtResource("10_0hbx2")
 move_state = NodePath("../move")
 jump_state = NodePath("../jump")
@@ -1078,10 +1154,11 @@ attack_state = NodePath("../attack1")
 parry_state = NodePath("../parry")
 hit_state = NodePath("../hit")
 hit_lock_state = NodePath("../hit_lock")
+dash_state = NodePath("../dash")
 animation_name = "idle"
 sprite_associated = NodePath("../../LittleBlue_sheets/idle")
 
-[node name="move" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "jump_state", "fall_state", "attack_state", "parry_state", "hit_state", "hit_lock_state", "sprite_associated")]
+[node name="move" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "jump_state", "fall_state", "attack_state", "parry_state", "hit_state", "hit_lock_state", "dash_state", "sprite_associated")]
 script = ExtResource("11_81y20")
 idle_state = NodePath("../idle")
 jump_state = NodePath("../jump")
@@ -1090,6 +1167,7 @@ attack_state = NodePath("../attack1")
 parry_state = NodePath("../parry")
 hit_state = NodePath("../hit")
 hit_lock_state = NodePath("../hit_lock")
+dash_state = NodePath("../dash")
 animation_name = "move"
 sprite_associated = NodePath("../../LittleBlue_sheets/move")
 
@@ -1127,7 +1205,7 @@ hit_state = NodePath("../hit")
 animation_name = "fall"
 sprite_associated = NodePath("../../LittleBlue_sheets/jump_up")
 
-[node name="attack1" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "move_state", "jump_state", "fall_state", "attack2_state", "parry_state", "hit_state", "sprite_associated")]
+[node name="attack1" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "move_state", "jump_state", "fall_state", "attack2_state", "parry_state", "hit_state", "dash_state", "sprite_associated")]
 script = ExtResource("14_jqq6y")
 idle_state = NodePath("../idle")
 move_state = NodePath("../move")
@@ -1136,11 +1214,12 @@ fall_state = NodePath("../fall")
 attack2_state = NodePath("../attack2")
 parry_state = NodePath("../parry")
 hit_state = NodePath("../hit")
+dash_state = NodePath("../dash")
 animation_name = "attack1"
 move_speed = 100.0
 sprite_associated = NodePath("../../LittleBlue_sheets/attack")
 
-[node name="attack2" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "move_state", "jump_state", "fall_state", "attack_state", "parry_state", "hit_state", "sprite_associated")]
+[node name="attack2" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "move_state", "jump_state", "fall_state", "attack_state", "parry_state", "hit_state", "dash_state", "sprite_associated")]
 script = ExtResource("16_tjiks")
 idle_state = NodePath("../idle")
 move_state = NodePath("../move")
@@ -1149,6 +1228,7 @@ fall_state = NodePath("../fall")
 attack_state = NodePath("../attack1")
 parry_state = NodePath("../parry")
 hit_state = NodePath("../hit")
+dash_state = NodePath("../dash")
 animation_name = "attack2"
 move_speed = 100.0
 sprite_associated = NodePath("../../LittleBlue_sheets/attack")
@@ -1186,6 +1266,21 @@ hit_state = NodePath("../hit")
 animation_name = "hit_lock"
 sprite_associated = NodePath("../../LittleBlue_sheets/hit_lock")
 
+[node name="dash" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "move_state", "jump_state", "jump_max_state", "attack_state", "parry_state", "hit_state", "hit_lock_state", "sprite_associated")]
+script = ExtResource("24_jtqbj")
+idle_state = NodePath("../idle")
+move_state = NodePath("../move")
+jump_state = NodePath("../jump")
+jump_max_state = NodePath("../jump_max")
+attack_state = NodePath("../attack1")
+parry_state = NodePath("../parry")
+hit_state = NodePath("../hit")
+hit_lock_state = NodePath("../hit_lock")
+ghost_node = ExtResource("25_mw4yl")
+animation_name = "dash"
+move_speed = 700.0
+sprite_associated = NodePath("../../LittleBlue_sheets/dash")
+
 [node name="hurtbox" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 64
@@ -1213,6 +1308,12 @@ collision_mask = 0
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(-2, 1)
 shape = SubResource("CapsuleShape2D_7orgb")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+show_behind_parent = true
+emitting = false
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_5bk7t")
 
 [connection signal="pass_strike" from="." to="." method="_on_pass_strike"]
 [connection signal="pass_strike" from="." to="state_machine/idle" method="_on_little_blue_pass_strike"]

@@ -15,6 +15,8 @@ var parry_state: State
 var hit_state: State
 @export
 var hit_lock_state: State
+@export
+var dash_state: State
 
 var strike_big = false
 var hit = false
@@ -34,6 +36,9 @@ func process_input(event: InputEvent) -> State:
 		return attack_state
 	if (Input.is_action_just_pressed("parry_right")):
 		return parry_state
+	if (Input.is_action_just_pressed("dash")):
+		print("dash")
+		return dash_state
 	return null
 
 func process_physics(delta: float) -> State:

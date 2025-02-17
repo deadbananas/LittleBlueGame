@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bu688qqb4klcg"]
+
+[ext_resource type="Texture2D" uid="uid://c5yc6por176xq" path="res://CradleAssets/LittleBlueSheets/little-blue-dash.png" id="1_2s3et"]
+[ext_resource type="Script" path="res://ghost.gd" id="1_65p8e"]
+
+[node name="Ghost" type="Sprite2D"]
+modulate = Color(0.412152, 0.412152, 0.412152, 1)
+show_behind_parent = true
+texture_filter = 1
+position = Vector2(259, 106)
+texture = ExtResource("1_2s3et")
+hframes = 3
+script = ExtResource("1_65p8e")
