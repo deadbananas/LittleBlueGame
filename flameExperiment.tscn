@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://gpwfmdn1d0kw"]
+
+[ext_resource type="Shader" path="res://shaders/flameExperiment.gdshader" id="1_ohwwo"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_paon0"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_8oapi"]
+noise = SubResource("FastNoiseLite_paon0")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w770c"]
+render_priority = 0
+shader = ExtResource("1_ohwwo")
+shader_parameter/time_speed = 0.5
+shader_parameter/spin = 0.0
+shader_parameter/flame_brightness = 0.6
+shader_parameter/color_intensity = 0.0
+shader_parameter/horizontal_frequency = 1.0
+shader_parameter/vertical_frequency = 1.0
+shader_parameter/size = 1.0
+shader_parameter/core_size = 1.06
+shader_parameter/color1 = Color(0.149413, 0.0150193, 0.00441563, 1)
+shader_parameter/color2 = Color(0.98, 0.38, 0.34, 1)
+shader_parameter/color3 = Color(0.215686, 0, 0, 1)
+shader_parameter/color4 = Color(0.0482558, 0.0733817, 0.0184399, 1)
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_8oapi")
+
+[sub_resource type="SphereMesh" id="SphereMesh_nc6ds"]
+material = SubResource("ShaderMaterial_w770c")
+
+[node name="Node3D" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.062333)
+mesh = SubResource("SphereMesh_nc6ds")
