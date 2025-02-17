@@ -13,14 +13,17 @@ var attack_state: State
 var parry_state: State
 @export
 var hit_state: State
+@export
+var hit_lock_state: State
 
-
+var strike_big = false
 var hit = false
 
 func enter() -> void:
 	super()
 	parent.velocity.x = 0
 	hit = false
+	strike_big = false
 	
 func process_input(event: InputEvent) -> State:
 	if get_jump() and parent.is_on_floor():
@@ -34,6 +37,8 @@ func process_input(event: InputEvent) -> State:
 	return null
 
 func process_physics(delta: float) -> State:
+	if strike_big:
+		return hit_lock_state
 	if hit:
 		hit = false
 		return hit_state
@@ -47,3 +52,7 @@ func process_physics(delta: float) -> State:
 
 func _on_hurtbox_received_hit(damage, time_scale, duration):
 	hit = true
+
+
+func _on_little_blue_pass_strike():
+	strike_big = true

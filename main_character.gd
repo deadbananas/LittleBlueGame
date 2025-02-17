@@ -52,3 +52,7 @@ func _on_lindon_strike_fist():
 func _on_hit_will_change(willDiff):
 	will = willDiff
 	will_change.emit(willDiff)
+
+
+func _on_pass_strike():
+	pass # Replace with function body.

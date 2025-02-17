@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://dakm1l5311nnp"]
+[gd_scene load_steps=40 format=3 uid="uid://dakm1l5311nnp"]
 
 [ext_resource type="Script" path="res://lindon.gd" id="1_h0bx1"]
 [ext_resource type="Texture2D" uid="uid://dpfj4lxpeo1r4" path="res://CradleAssets/Lindon/Lindon-Mikiri-1-fist-strike.png" id="2_hqcw7"]
@@ -841,10 +841,6 @@ tracks/18/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_bbdp5"]
-resource_name = "fist-strike-Burning-Cloak-Component"
-length = 32.0
-
 [sub_resource type="Animation" id="Animation_c2be3"]
 resource_name = "idle"
 tracks/0/type = "value"
@@ -998,7 +994,6 @@ _data = {
 "basic_attack_first_2": SubResource("Animation_ud1j7"),
 "basic_combo_full": SubResource("Animation_kbi4c"),
 "fist-strike-BC": SubResource("Animation_8nhg1"),
-"fist-strike-Burning-Cloak-Component": SubResource("Animation_bbdp5"),
 "idle": SubResource("Animation_c2be3"),
 "kick_rock": SubResource("Animation_tmhs0"),
 "move": SubResource("Animation_pahof"),

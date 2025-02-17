@@ -12,6 +12,8 @@ var attack_state: State
 var parry_state: State
 @export
 var hit_state: State
+@export
+var hit_lock_state: State
 
 @onready var hitbox_attack_1 = $"../../LittleBlue_sheets/attack/hitbox-attack-1"
 @onready var hitbox_attack_2 = $"../../LittleBlue_sheets/attack/hitbox-attack-2"
@@ -22,6 +24,7 @@ var struck_big = false
 
 func enter() -> void:
 	super()
+	struck_big = false
 	hit = false
 	
 	
@@ -35,6 +38,9 @@ func process_input(event: InputEvent) -> State:
 	return null
 
 func process_physics(delta: float) -> State:
+	if struck_big:
+		struck_big = false
+		return hit_lock_state
 	if hit:
 		hit = false
 		return hit_state
@@ -56,8 +62,7 @@ func process_physics(delta: float) -> State:
 	#hitbox_attack_1.scale.x = flip
 	#hitbox_attack_2.scale.x = flip
 	parent.velocity.x = movement
-	if struck_big:
-		parent.velocity.x = 0.0
+
 	parent.move_and_slide()
 	
 	if !parent.is_on_floor():
@@ -73,13 +78,3 @@ func _on_hurtbox_received_hit(damage, time_scale, duration):
 
 func _on_little_blue_pass_strike():
 	struck_big = true
-	var struckTimer : Timer = Timer.new()
-	add_child(struckTimer)
-	struckTimer.one_shot = true
-	struckTimer.autostart = true
-	struckTimer.wait_time = 1
-	struckTimer.timeout.connect(timer_timeout)
-	struckTimer.start()
-	
-func timer_timeout():
-	struck_big = false

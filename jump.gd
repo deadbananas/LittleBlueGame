@@ -14,19 +14,24 @@ var attack_state: State
 var parry_state: State
 @export
 var hit_state: State
+@export
+var hit_lock_state: State
 
 @export
 var jump_force: float = 700.0
 
 var hit = false
+var strike_big = false
 
 func enter() -> void:
 	super()
 	parent.velocity.y = -jump_force
 	hit = false
+	strike_big = false
 
 func process_physics(delta: float) -> State:
-	
+	if strike_big:
+		return hit_lock_state
 	if hit:
 		hit = false
 		return hit_state
@@ -58,3 +63,7 @@ func process_physics(delta: float) -> State:
 
 func _on_hurtbox_received_hit(damage, time_scale, duration):
 	hit = true
+
+
+func _on_little_blue_pass_strike():
+	strike_big = true
