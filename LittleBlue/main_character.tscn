@@ -1,4 +1,4 @@
-[gd_scene load_steps=109 format=3 uid="uid://cemmkhino63ca"]
+[gd_scene load_steps=111 format=3 uid="uid://cemmkhino63ca"]
 
 [ext_resource type="Script" path="res://Components/hitbox.gd" id="1_isybl"]
 [ext_resource type="Script" path="res://LittleBlue/main_character.gd" id="1_silm2"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" path="res://LittleBlue/StateMachine/move.gd" id="11_81y20"]
 [ext_resource type="Texture2D" uid="uid://c5yc6por176xq" path="res://CradleAssets/LittleBlueSheets/little-blue-dash.png" id="11_q21h6"]
 [ext_resource type="Script" path="res://LittleBlue/StateMachine/jump.gd" id="12_4gwp4"]
+[ext_resource type="Texture2D" uid="uid://dxsp4o130utly" path="res://CradleAssets/LittleBlueSheets/little-blue-shrink.png" id="12_s0w4l"]
 [ext_resource type="Script" path="res://LittleBlue/StateMachine/fall.gd" id="13_brc3m"]
 [ext_resource type="Script" path="res://LittleBlue/StateMachine/jump_max.gd" id="13_srrh8"]
 [ext_resource type="Script" path="res://LittleBlue/StateMachine/attack.gd" id="14_jqq6y"]
@@ -234,6 +235,114 @@ tracks/16/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("LittleBlue_sheets/shrink:visible")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("LittleBlue_sheets/shrink:frame")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("LittleBlue_sheets/shrink:scale")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("LittleBlue_sheets/shrink:position")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/21/type = "value"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("LittleBlue_sheets/shrink:rotation")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/22/type = "value"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("LittleBlue_sheets/move:visible")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/23/type = "value"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath("LittleBlue_sheets/move:position")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/24/type = "value"
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/path = NodePath("LittleBlue_sheets/move:rotation")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/25/type = "value"
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/path = NodePath("LittleBlue_sheets/move:scale")
+tracks/25/interp = 1
+tracks/25/loop_wrap = true
+tracks/25/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_cyf24"]
@@ -518,6 +627,131 @@ tracks/2/keys = {
 "values": [true, true, false, false, true]
 }
 
+[sub_resource type="Animation" id="Animation_vo5fi"]
+resource_name = "shrink_counter"
+loop_mode = 1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LittleBlue_sheets/shrink:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0180411, 0.170777),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LittleBlue_sheets/shrink:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.00138778, 0.0999201),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("LittleBlue_sheets/shrink:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.170754),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(1, 1), Vector2(0.5, 0.5)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LittleBlue_sheets/shrink:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("LittleBlue_sheets/shrink:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("LittleBlue_sheets/move:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = false
+tracks/5/keys = {
+"times": PackedFloat32Array(0.170777, 0.19, 0.21, 0.23, 0.25, 0.27, 0.29, 0.309673, 0.33, 0.35, 0.37, 0.39, 0.41),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("LittleBlue_sheets/move:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.170266, 0.171047),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("LittleBlue_sheets/move:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.17082),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(0, 0), Vector2(10.82, 7.565)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("LittleBlue_sheets/move:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0.0]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("LittleBlue_sheets/move:scale")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.17082),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(1, 1), Vector2(0.5, 0.5)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_p10ys"]
 _data = {
 "RESET": SubResource("Animation_uboeb"),
@@ -530,7 +764,8 @@ _data = {
 "jump_max": SubResource("Animation_0a2rq"),
 "jump_up": SubResource("Animation_5hear"),
 "move": SubResource("Animation_fdv3t"),
-"parry": SubResource("Animation_hio3q")
+"parry": SubResource("Animation_hio3q"),
+"shrink_counter": SubResource("Animation_vo5fi")
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qgl01"]
@@ -1006,6 +1241,7 @@ color_ramp = SubResource("GradientTexture1D_400be")
 
 [node name="LittleBlue" type="CharacterBody2D"]
 position = Vector2(351, 395)
+scale = Vector2(0.984953, 0.984953)
 collision_layer = 3
 script = ExtResource("1_silm2")
 
@@ -1021,12 +1257,12 @@ libraries = {
 material = SubResource("ShaderMaterial_qgl01")
 
 [node name="idle" type="Sprite2D" parent="LittleBlue_sheets"]
+visible = false
 texture_filter = 1
 texture = ExtResource("3_wprim")
 hframes = 4
 
 [node name="move" type="Sprite2D" parent="LittleBlue_sheets"]
-visible = false
 texture_filter = 1
 texture = ExtResource("5_tsdhb")
 hframes = 14
@@ -1113,6 +1349,12 @@ visible = false
 texture_filter = 1
 texture = ExtResource("11_q21h6")
 hframes = 3
+
+[node name="shrink" type="Sprite2D" parent="LittleBlue_sheets"]
+visible = false
+texture_filter = 1
+texture = ExtResource("12_s0w4l")
+hframes = 5
 
 [node name="anims_old" type="AnimatedSprite2D" parent="."]
 visible = false
