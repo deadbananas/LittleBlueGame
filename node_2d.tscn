@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://cx1icj50w46lq"]
 
 [ext_resource type="Script" path="res://test_state_machine_limbo.gd" id="1_falrd"]
-[ext_resource type="Script" path="res://limbo_hsm.gd" id="2_knxro"]
-[ext_resource type="Script" path="res://limbo_state.gd" id="3_ebelp"]
+[ext_resource type="Script" path="res://Lindon/limbo_hsm.gd" id="2_knxro"]
+[ext_resource type="Script" path="res://Lindon/limbo_state.gd" id="3_ebelp"]
 [ext_resource type="Script" path="res://move_state.gd" id="4_l6sqs"]
 
 [node name="play" type="Node2D"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=62 format=3 uid="uid://cx8uce2l01fpi"]
 
-[ext_resource type="Script" path="res://main_character.gd" id="1_67wma"]
+[ext_resource type="Script" path="res://LittleBlue/main_character.gd" id="1_67wma"]
 [ext_resource type="Texture2D" uid="uid://buqhlad6vqeiy" path="res://CradleAssets/LittleBlueSheets/little-blue-knife-attack-followup-centered.png" id="2_r01jn"]
 [ext_resource type="Texture2D" uid="uid://cc4f733dxwh10" path="res://CradleAssets/LittleBlueSheets/little-blue-idle.png" id="3_djykt"]
 [ext_resource type="Texture2D" uid="uid://bs425tdg5d67p" path="res://CradleAssets/LittleBlueSheets/littleblue-jump-down.png" id="4_ydl2b"]

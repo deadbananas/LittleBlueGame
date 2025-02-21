@@ -5,37 +5,48 @@ var idle_state: State
 @export
 var move_state: State
 @export
+var double_jump_state: State
+@export
+var fall_state: State
+@export
 var hit_state: State
+@onready
+var timer = $fall_timer
 
+
+var falling = 0
 
 var hit = false
 
 func enter() -> void:
 	super()
+	timer.start()
+	falling = 0
 	hit = false
-	
 
 func process_physics(delta: float) -> State:
+	
 	if hit:
 		hit = false
 		return hit_state
 		
+	if get_jump() and !parent.double_jumped:
+		parent.double_jumped = true
+		return double_jump_state
 		
 	parent.velocity.y += gravity * delta
 	var movement = get_movement_input() * move_speed
-	
-	
-	
 	if movement != 0:
 		var flip = 1.0
 		if movement < 0:
-			flip = -1.0  
+			flip = -1.0
 		else:
 			flip = 1.0
 		sprite.scale.x = flip
 	parent.velocity.x = movement
 	parent.move_and_slide()
-	
+	if falling:
+		return fall_state
 	if parent.is_on_floor():
 		if movement != 0:
 			return move_state
@@ -43,5 +54,8 @@ func process_physics(delta: float) -> State:
 	return null
 
 
+func _on_fall_timer_timeout():
+	falling = 1
+	
 func _on_hurtbox_received_hit(damage, time_scale, duration):
 	hit = true

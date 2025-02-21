@@ -1,4 +1,4 @@
-[gd_resource type="BehaviorTree" load_steps=135 format=3 uid="uid://ndc4u1m3kex3"]
+[gd_resource type="BehaviorTree" load_steps=206 format=3 uid="uid://ndc4u1m3kex3"]
 
 [ext_resource type="Script" path="res://ai/tasks/find_target.gd" id="1_it5bj"]
 [ext_resource type="Script" path="res://ai/tasks/moveToTarget.gd" id="2_52qia"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://ai/tasks/move_during_anim.gd" id="5_jluy2"]
 [ext_resource type="Script" path="res://ai/tasks/blackflame_punch_drag.gd" id="6_mlxpf"]
 [ext_resource type="Script" path="res://ai/tasks/move_away.gd" id="6_seblu"]
+[ext_resource type="Script" path="res://ai/tasks/move_towards.gd" id="9_3udor"]
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_cqoki"]
 
@@ -317,10 +318,155 @@ text = "moving"
 custom_name = "In_Range"
 children = [SubResource("BTSequence_2du52"), SubResource("BTSequence_jbim4"), SubResource("BTConsolePrint_s82qp")]
 
+[sub_resource type="BTAction" id="BTAction_ha4js"]
+script = ExtResource("1_it5bj")
+group = &"Little_Blue"
+target_var = &"target"
+
+[sub_resource type="BTAction" id="BTAction_2brds"]
+script = ExtResource("6_seblu")
+target_var = &"target"
+speed_var = 400
+distance = 70
+
+[sub_resource type="BTRandomWait" id="BTRandomWait_unj86"]
+min_duration = 0.2
+max_duration = 0.7
+
+[sub_resource type="BTAction" id="BTAction_x2mpb"]
+script = ExtResource("9_3udor")
+target_var = &"target"
+speed_var = 400
+distance = 50
+
+[sub_resource type="BTFail" id="BTFail_0v76u"]
+
+[sub_resource type="BTProbability" id="BTProbability_0lx4x"]
+run_chance = 0.25
+children = [SubResource("BTFail_0v76u")]
+
+[sub_resource type="BTSequence" id="BTSequence_3i0a4"]
+children = [SubResource("BTAction_x2mpb"), SubResource("BTProbability_0lx4x")]
+
+[sub_resource type="BTSequence" id="BTSequence_x7nr3"]
+custom_name = "moveClose"
+children = [SubResource("BTAction_2brds"), SubResource("BTRandomWait_unj86"), SubResource("BTSequence_3i0a4")]
+
+[sub_resource type="BTAction" id="BTAction_e05kq"]
+script = ExtResource("6_seblu")
+target_var = &"target"
+speed_var = 400
+distance = 100
+
+[sub_resource type="BTRandomWait" id="BTRandomWait_7w3xb"]
+min_duration = 0.2
+max_duration = 0.7
+
+[sub_resource type="BTAction" id="BTAction_ayox0"]
+script = ExtResource("9_3udor")
+target_var = &"target"
+speed_var = 400
+distance = 70
+
+[sub_resource type="BTFail" id="BTFail_w7hkv"]
+
+[sub_resource type="BTProbability" id="BTProbability_gr3iv"]
+run_chance = 0.25
+children = [SubResource("BTFail_w7hkv")]
+
+[sub_resource type="BTSequence" id="BTSequence_irut5"]
+children = [SubResource("BTAction_ayox0"), SubResource("BTProbability_gr3iv")]
+
+[sub_resource type="BTSequence" id="BTSequence_o5wbo"]
+custom_name = "moveMid"
+children = [SubResource("BTAction_e05kq"), SubResource("BTRandomWait_7w3xb"), SubResource("BTSequence_irut5")]
+
+[sub_resource type="BTAction" id="BTAction_gosao"]
+script = ExtResource("6_seblu")
+target_var = &"target"
+speed_var = 400
+distance = 120
+
+[sub_resource type="BTRandomWait" id="BTRandomWait_6q74v"]
+min_duration = 0.2
+max_duration = 0.7
+
+[sub_resource type="BTAction" id="BTAction_knfgb"]
+script = ExtResource("9_3udor")
+target_var = &"target"
+speed_var = 400
+distance = 90
+
+[sub_resource type="BTFail" id="BTFail_inelo"]
+
+[sub_resource type="BTProbability" id="BTProbability_pg7mv"]
+run_chance = 0.25
+children = [SubResource("BTFail_inelo")]
+
+[sub_resource type="BTSequence" id="BTSequence_7p0p3"]
+children = [SubResource("BTAction_knfgb"), SubResource("BTProbability_pg7mv")]
+
+[sub_resource type="BTSequence" id="BTSequence_7g8a1"]
+custom_name = "moveFar"
+children = [SubResource("BTAction_gosao"), SubResource("BTRandomWait_6q74v"), SubResource("BTSequence_7p0p3")]
+
+[sub_resource type="BTRandomSequence" id="BTRandomSequence_b435b"]
+children = [SubResource("BTSequence_x7nr3"), SubResource("BTSequence_o5wbo"), SubResource("BTSequence_7g8a1")]
+
+[sub_resource type="BTRunLimit" id="BTRunLimit_yfq45"]
+run_limit = 10
+children = [SubResource("BTRandomSequence_b435b")]
+
+[sub_resource type="BTSequence" id="BTSequence_lnpia"]
+children = [SubResource("BTAction_ha4js"), SubResource("BTRunLimit_yfq45")]
+
+[sub_resource type="BTRepeatUntilFailure" id="BTRepeatUntilFailure_hfgnk"]
+children = [SubResource("BTSequence_lnpia")]
+
+[sub_resource type="BTSequence" id="BTSequence_pm8dd"]
+custom_name = "FaffAboutFast"
+children = [SubResource("BTRepeatUntilFailure_hfgnk")]
+metadata/_weight_ = 100.0
+
+[sub_resource type="BTAction" id="BTAction_q0x82"]
+script = ExtResource("1_it5bj")
+group = &"Little_Blue"
+target_var = &"target"
+
+[sub_resource type="BTAction" id="BTAction_ohhjs"]
+script = ExtResource("6_seblu")
+target_var = &"target"
+speed_var = 800
+distance = 300
+
+[sub_resource type="BTAction" id="BTAction_wkf0g"]
+script = ExtResource("2_52qia")
+target_var = &"target"
+speed_var = 150
+tolerance = 100
+
+[sub_resource type="BTRandomWait" id="BTRandomWait_70hhu"]
+min_duration = 0.0
+max_duration = 0.3
+
+[sub_resource type="BTFail" id="BTFail_a3wly"]
+
+[sub_resource type="BTSequence" id="BTSequence_pjeok"]
+custom_name = "SlowApproach"
+children = [SubResource("BTAction_q0x82"), SubResource("BTAction_ohhjs"), SubResource("BTAction_wkf0g"), SubResource("BTRandomWait_70hhu"), SubResource("BTFail_a3wly")]
+
+[sub_resource type="BTRandomSequence" id="BTRandomSequence_wlnhp"]
+custom_name = "FaffSelector"
+children = [SubResource("BTSequence_pm8dd"), SubResource("BTSequence_pjeok")]
+metadata/_weight_ = 0.4
+
 [sub_resource type="BTSequence" id="BTSequence_ngckt"]
 custom_name = "Basic_attack_combo"
-children = [SubResource("BTAction_cqtrh"), SubResource("BTSelector_usayb")]
-metadata/_weight_ = 2.0
+children = [SubResource("BTAction_cqtrh"), SubResource("BTSelector_usayb"), SubResource("BTRandomSequence_wlnhp")]
+metadata/_weight_ = 3.0
+
+[sub_resource type="BTWait" id="BTWait_y6aqy"]
+duration = 0.5
 
 [sub_resource type="BBNode" id="BBNode_w5jc8"]
 saved_value = NodePath("AnimationPlayer")
@@ -438,9 +584,11 @@ metadata/_weight_ = 1.95
 custom_name = "close or far"
 children = [SubResource("BTSequence_heknw"), SubResource("BTSequence_i666y")]
 
+[sub_resource type="BTWait" id="BTWait_bvk55"]
+
 [sub_resource type="BTSequence" id="BTSequence_nadib"]
 custom_name = "fist-strike-bc"
-children = [SubResource("BTProbabilitySelector_mdnha")]
+children = [SubResource("BTWait_y6aqy"), SubResource("BTProbabilitySelector_mdnha"), SubResource("BTWait_bvk55")]
 metadata/_weight_ = 0.75
 
 [sub_resource type="BTAction" id="BTAction_snxjc"]
@@ -525,7 +673,7 @@ children = [SubResource("BTSequence_42oui"), SubResource("BTAlwaysSucceed_ro7er"
 [sub_resource type="BTSequence" id="BTSequence_q41sb"]
 custom_name = "rock-kick"
 children = [SubResource("BTAction_snxjc"), SubResource("BTAction_1xqla"), SubResource("BTPlayAnimation_tej4b"), SubResource("BTProbabilitySelector_6e73w")]
-metadata/_weight_ = 1.35448
+metadata/_weight_ = 1.0
 
 [sub_resource type="BTProbabilitySelector" id="BTProbabilitySelector_g1e78"]
 custom_name = "Action_when_close"
@@ -535,9 +683,151 @@ children = [SubResource("BTSequence_ngckt"), SubResource("BTSequence_nadib"), Su
 custom_name = "Move_To_Target"
 children = [SubResource("BTAction_0awcp"), SubResource("BTAction_wb87s"), SubResource("BTProbabilitySelector_g1e78")]
 
+[sub_resource type="BTAction" id="BTAction_tutw3"]
+script = ExtResource("1_it5bj")
+group = &"Little_Blue"
+target_var = &"target"
+
+[sub_resource type="BTAction" id="BTAction_m7tyc"]
+script = ExtResource("6_seblu")
+target_var = &"target"
+speed_var = 400
+distance = 70
+
+[sub_resource type="BTRandomWait" id="BTRandomWait_teah6"]
+min_duration = 0.2
+max_duration = 0.7
+
+[sub_resource type="BTAction" id="BTAction_sgvfj"]
+script = ExtResource("9_3udor")
+target_var = &"target"
+speed_var = 400
+distance = 50
+
+[sub_resource type="BTFail" id="BTFail_xc1sy"]
+
+[sub_resource type="BTProbability" id="BTProbability_di53r"]
+run_chance = 0.25
+children = [SubResource("BTFail_xc1sy")]
+
+[sub_resource type="BTSequence" id="BTSequence_ehie1"]
+children = [SubResource("BTAction_sgvfj"), SubResource("BTProbability_di53r")]
+
+[sub_resource type="BTSequence" id="BTSequence_21vf0"]
+custom_name = "moveClose"
+children = [SubResource("BTAction_m7tyc"), SubResource("BTRandomWait_teah6"), SubResource("BTSequence_ehie1")]
+
+[sub_resource type="BTAction" id="BTAction_dvo8u"]
+script = ExtResource("6_seblu")
+target_var = &"target"
+speed_var = 400
+distance = 100
+
+[sub_resource type="BTRandomWait" id="BTRandomWait_vrls6"]
+min_duration = 0.2
+max_duration = 0.7
+
+[sub_resource type="BTAction" id="BTAction_2nl8j"]
+script = ExtResource("9_3udor")
+target_var = &"target"
+speed_var = 400
+distance = 70
+
+[sub_resource type="BTFail" id="BTFail_hn3lb"]
+
+[sub_resource type="BTProbability" id="BTProbability_evw6k"]
+run_chance = 0.25
+children = [SubResource("BTFail_hn3lb")]
+
+[sub_resource type="BTSequence" id="BTSequence_153i0"]
+children = [SubResource("BTAction_2nl8j"), SubResource("BTProbability_evw6k")]
+
+[sub_resource type="BTSequence" id="BTSequence_tphnx"]
+custom_name = "moveMid"
+children = [SubResource("BTAction_dvo8u"), SubResource("BTRandomWait_vrls6"), SubResource("BTSequence_153i0")]
+
+[sub_resource type="BTAction" id="BTAction_4a6gi"]
+script = ExtResource("6_seblu")
+target_var = &"target"
+speed_var = 400
+distance = 120
+
+[sub_resource type="BTRandomWait" id="BTRandomWait_eowil"]
+min_duration = 0.2
+max_duration = 0.7
+
+[sub_resource type="BTAction" id="BTAction_ndfas"]
+script = ExtResource("9_3udor")
+target_var = &"target"
+speed_var = 400
+distance = 90
+
+[sub_resource type="BTFail" id="BTFail_wtjvo"]
+
+[sub_resource type="BTProbability" id="BTProbability_30r02"]
+run_chance = 0.25
+children = [SubResource("BTFail_wtjvo")]
+
+[sub_resource type="BTSequence" id="BTSequence_65i45"]
+children = [SubResource("BTAction_ndfas"), SubResource("BTProbability_30r02")]
+
+[sub_resource type="BTSequence" id="BTSequence_mvyg3"]
+custom_name = "moveFar"
+children = [SubResource("BTAction_4a6gi"), SubResource("BTRandomWait_eowil"), SubResource("BTSequence_65i45")]
+
+[sub_resource type="BTRandomSequence" id="BTRandomSequence_m1lhj"]
+children = [SubResource("BTSequence_21vf0"), SubResource("BTSequence_tphnx"), SubResource("BTSequence_mvyg3")]
+
+[sub_resource type="BTRunLimit" id="BTRunLimit_ow8lm"]
+run_limit = 10
+children = [SubResource("BTRandomSequence_m1lhj")]
+
+[sub_resource type="BTSequence" id="BTSequence_3x81a"]
+children = [SubResource("BTAction_tutw3"), SubResource("BTRunLimit_ow8lm")]
+
+[sub_resource type="BTRepeatUntilFailure" id="BTRepeatUntilFailure_wy3po"]
+children = [SubResource("BTSequence_3x81a")]
+
+[sub_resource type="BTSequence" id="BTSequence_wxshv"]
+custom_name = "FaffAboutFast"
+children = [SubResource("BTRepeatUntilFailure_wy3po")]
+metadata/_weight_ = 100.0
+
+[sub_resource type="BTAction" id="BTAction_q8bmb"]
+script = ExtResource("1_it5bj")
+group = &"Little_Blue"
+target_var = &"target"
+
+[sub_resource type="BTAction" id="BTAction_d12cv"]
+script = ExtResource("6_seblu")
+target_var = &"target"
+speed_var = 800
+distance = 300
+
+[sub_resource type="BTAction" id="BTAction_vumf4"]
+script = ExtResource("2_52qia")
+target_var = &"target"
+speed_var = 150
+tolerance = 100
+
+[sub_resource type="BTRandomWait" id="BTRandomWait_webbp"]
+min_duration = 0.0
+max_duration = 0.3
+
+[sub_resource type="BTFail" id="BTFail_evdb0"]
+
+[sub_resource type="BTSequence" id="BTSequence_70p2j"]
+custom_name = "SlowApproach"
+children = [SubResource("BTAction_q8bmb"), SubResource("BTAction_d12cv"), SubResource("BTAction_vumf4"), SubResource("BTRandomWait_webbp"), SubResource("BTFail_evdb0")]
+
+[sub_resource type="BTRandomSequence" id="BTRandomSequence_akp01"]
+custom_name = "FaffSelector"
+children = [SubResource("BTSequence_wxshv"), SubResource("BTSequence_70p2j")]
+metadata/_weight_ = 0.4
+
 [sub_resource type="BTProbabilitySelector" id="BTProbabilitySelector_7rw51"]
 custom_name = "Action"
-children = [SubResource("BTSequence_11vmb")]
+children = [SubResource("BTSequence_11vmb"), SubResource("BTRandomSequence_akp01")]
 
 [resource]
 blackboard_plan = SubResource("BlackboardPlan_cqoki")

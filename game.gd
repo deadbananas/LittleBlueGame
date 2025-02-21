@@ -15,6 +15,7 @@ var upperWillBound = -50
 func _ready():
 	#Engine.max_fps = 60
 	#Engine.time_scale = 0.3
+	
 	curWill = 0.0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

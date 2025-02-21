@@ -7,6 +7,8 @@ var move_state: State
 @export
 var jump_state: State
 @export
+var double_jump_state: State
+@export
 var jump_max_state: State
 @export
 var attack_state: State
@@ -28,6 +30,8 @@ func enter() -> void:
 	parent.velocity.y = -jump_force
 	hit = false
 	strike_big = false
+	
+
 
 func process_physics(delta: float) -> State:
 	if strike_big:
@@ -35,9 +39,13 @@ func process_physics(delta: float) -> State:
 	if hit:
 		hit = false
 		return hit_state
+	if get_jump() and !parent.double_jumped:
+		parent.double_jumped = true
+		return double_jump_state
 		
 	parent.velocity.y += gravity * delta
-	
+	if get_jump() and parent.is_on_floor():
+		return jump_state
 	if parent.velocity.y > 0:
 		return jump_max_state
 	

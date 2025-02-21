@@ -21,6 +21,8 @@ var will = 0
 
 signal will_change(will)
 
+var double_jumped = false
+
 func _ready() -> void:
 	# Initialize the state machine, passing a reference of the player to the states,
 	
@@ -34,11 +36,12 @@ func _unhandled_input(event: InputEvent) -> void:
 func _physics_process(delta: float) -> void:
 	if health <= 0:
 		queue_free()
+	if is_on_floor():
+		double_jumped = false
 	state_machine.process_physics(delta)
 
 func _process(delta: float) -> void:
 	state_machine.process_frame(delta)
-
 
 func _on_hurtbox_received_hit(damage: int, time_scale: float, duration: float) -> void:
 	health -= damage

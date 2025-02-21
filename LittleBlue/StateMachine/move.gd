@@ -29,7 +29,6 @@ func enter() -> void:
 	struck_big = false
 	hit = false
 	
-	
 func process_input(event: InputEvent) -> State:
 	#if Input.is_action_just_pressed('dash'):
 		#return dash_state
