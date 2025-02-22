@@ -11,6 +11,10 @@ var state_machine = $state_machine
 var move_component = $move_component
 @onready var healthbar: ProgressBar = $UI/Healthbar
 
+const Timeline = preload("res://addons/time_control/timeline.gd")
+
+@export var timeline: Timeline
+
 
 var health = 100
 var maxHealth = 10
@@ -41,6 +45,9 @@ func _physics_process(delta: float) -> void:
 	state_machine.process_physics(delta)
 
 func _process(delta: float) -> void:
+	ClockController.get_clock_by_key("PLAYER").local_time_scale = 1.0
+	move_component.parry_pressed()
+	move_component.shrink_pressed()
 	state_machine.process_frame(delta)
 
 func _on_hurtbox_received_hit(damage: int, time_scale: float, duration: float) -> void:

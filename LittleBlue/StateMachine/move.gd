@@ -16,10 +16,15 @@ var hit_state: State
 var hit_lock_state: State
 @export
 var dash_state: State
+@export
+var shrink_start_state: State
 
 @onready var hitbox_attack_1 = $"../../LittleBlue_sheets/attack/hitbox-attack-1"
 @onready var hitbox_attack_2 = $"../../LittleBlue_sheets/attack/hitbox-attack-2"
 
+const Timeline = preload("res://addons/time_control/timeline.gd")
+
+@export var timeline: Timeline
 
 var hit = false
 var struck_big = false
@@ -34,7 +39,7 @@ func process_input(event: InputEvent) -> State:
 		#return dash_state
 	if (Input.is_action_just_pressed("attack")):
 		return attack_state
-	if (Input.is_action_just_pressed("parry_right")):
+	if (Input.is_action_just_released("parry_right")):
 		return parry_state
 	if (Input.is_action_just_pressed("dash")):
 		return dash_state
@@ -50,7 +55,13 @@ func process_physics(delta: float) -> State:
 		
 	if get_jump() and parent.is_on_floor():
 		return jump_state
-	
+	var shrink = get_shrink()
+	if shrink != 0:
+		print(shrink)
+		if shrink == 1.0:
+			return shrink_start_state
+		
+
 	parent.velocity.y += gravity * delta
 		
 	var movement = get_movement_input() * move_speed
@@ -64,7 +75,7 @@ func process_physics(delta: float) -> State:
 	sprite.scale.x = flip
 	#hitbox_attack_1.scale.x = flip
 	#hitbox_attack_2.scale.x = flip
-	parent.velocity.x = movement
+	parent.velocity.x = movement * timeline.time_scale
 
 	parent.move_and_slide()
 	

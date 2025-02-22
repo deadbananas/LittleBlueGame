@@ -61,6 +61,11 @@ signal strike_Fist()
 
 var health = 100
 
+const Timeline = preload("res://addons/time_control/timeline.gd")
+
+@export var timeline: Timeline
+var timeScale = 1
+
 func _ready():
 	player = get_node("../%main_character")
 	health = 100
@@ -89,22 +94,24 @@ func _init_state_machine() -> void:
 	hsm.set_active(true)
 	
 func _physics_process(delta):
+	ClockController.get_clock_by_key("ENEMY").local_time_scale = timeScale
+	anim_player.speed_scale = timeScale
 	if will != prevWill:
 		will_update()
 	move_and_slide()
 
 func move(dir,speed):
-	velocity.x = dir * speed
+	velocity.x = dir * speed * timeline.time_scale
 	handle_anims()
 	update_flip(dir)
 	
 func moveAway(dir,speed):
-	velocity.x = dir * speed
+	velocity.x = dir * speed * timeline.time_scale
 	handle_anims()
 	update_flip(-dir)
 	
 func basic_combo_end_dash(dir, speed):
-	velocity.x = dir * speed
+	velocity.x = dir * speed * timeline.time_scale
 	update_flip(dir)
 
 func update_flip(dir):
@@ -201,14 +208,14 @@ func countered():
 	
 	
 func parried():
+	timeScale = 0.1
 	var parryTimer : Timer = Timer.new()
 	add_child(parryTimer)
 	parryTimer.one_shot = true
 	parryTimer.autostart = true
-	parryTimer.wait_time = 0.3
+	parryTimer.wait_time = 0.7
 	parryTimer.timeout.connect(parry_timer_timeout)
 	parryTimer.start()
-	anim_player.speed_scale = 0.2
 	will -= 3
 	
 func flash():
@@ -226,7 +233,7 @@ func flash_timer_timeout():
 	spriteMat.material.set_shader_parameter("flash_mod", 0.0)
 	
 func parry_timer_timeout():
-	anim_player.speed_scale = 1.0
+	timeScale = 1
 	
 func set_move_on():
 	move_on = true

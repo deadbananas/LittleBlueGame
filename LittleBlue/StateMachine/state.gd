@@ -37,3 +37,6 @@ func get_movement_input() -> float:
 
 func get_jump() -> bool:
 	return move_component.wants_jump()
+	
+func get_shrink() -> float:
+	return move_component.wants_shrink()

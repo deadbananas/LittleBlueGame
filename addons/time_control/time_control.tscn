@@ -17,14 +17,11 @@ configuration = ExtResource("3_s0e8i")
 [node name="PlayerClock" type="Node" parent="."]
 script = ExtResource("2_hpdgb")
 configuration = ExtResource("4_exqxx")
-parent_clock_configuration = ExtResource("3_s0e8i")
 
 [node name="EnemyClock" type="Node" parent="."]
 script = ExtResource("2_hpdgb")
 configuration = ExtResource("5_g7gae")
-parent_clock_configuration = ExtResource("3_s0e8i")
 
 [node name="EnvironmentClock" type="Node" parent="."]
 script = ExtResource("2_hpdgb")
 configuration = ExtResource("6_wcuru")
-parent_clock_configuration = ExtResource("3_s0e8i")

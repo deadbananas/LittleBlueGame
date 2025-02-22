@@ -134,7 +134,7 @@ tile_set = ExtResource("12_2ttrc")
 unique_name_in_owner = true
 position = Vector2(184.68, -40)
 
-[node name="Lindon" parent="." groups=["Lindon"] instance=ExtResource("4_ob26r")]
+[node name="Lindon" parent="." instance=ExtResource("4_ob26r")]
 position = Vector2(619, -15)
 
 [node name="CurrentFPS" type="Label" parent="."]

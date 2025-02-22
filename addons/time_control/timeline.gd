@@ -13,6 +13,7 @@ signal unregister_timeline(timeline: Timeline)
 @export var local_clock: Clock
 @export var global_clock_configuration: ClockConfiguration
 
+
 var clock: Clock
 var time_scale: float
 var last_time_scale: float

@@ -1,4 +1,4 @@
-[gd_scene load_steps=116 format=3 uid="uid://cemmkhino63ca"]
+[gd_scene load_steps=115 format=3 uid="uid://cemmkhino63ca"]
 
 [ext_resource type="Script" path="res://Components/hitbox.gd" id="1_isybl"]
 [ext_resource type="Script" path="res://LittleBlue/main_character.gd" id="1_silm2"]
@@ -31,7 +31,6 @@
 [ext_resource type="PackedScene" uid="uid://bu688qqb4klcg" path="res://ghost.tscn" id="25_mw4yl"]
 [ext_resource type="Script" path="res://LittleBlue/shrink_start.gd" id="28_p2pjj"]
 [ext_resource type="Script" path="res://LittleBlue/shrink_run.gd" id="29_d57ki"]
-[ext_resource type="Script" path="res://LittleBlue/shrink_final.gd" id="30_5o8dl"]
 [ext_resource type="Script" path="res://addons/time_control/timeline.gd" id="30_wjpx1"]
 [ext_resource type="Resource" uid="uid://dovo5yrk24mr" path="res://addons/time_control/resources/player_clock.tres" id="31_c8kpx"]
 
@@ -1091,6 +1090,8 @@ hframes = 4
 [node name="move" type="Sprite2D" parent="LittleBlue_sheets"]
 visible = false
 texture_filter = 1
+position = Vector2(10.82, 7.565)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("5_tsdhb")
 hframes = 14
 
@@ -1229,7 +1230,7 @@ dash_state = NodePath("../dash")
 animation_name = "idle"
 sprite_associated = NodePath("../../LittleBlue_sheets/idle")
 
-[node name="move" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "jump_state", "fall_state", "attack_state", "parry_state", "hit_state", "hit_lock_state", "dash_state", "shrink_start_state", "timeline", "sprite_associated")]
+[node name="move" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "jump_state", "fall_state", "attack_state", "parry_state", "hit_state", "hit_lock_state", "dash_state", "timeline", "sprite_associated")]
 script = ExtResource("11_81y20")
 idle_state = NodePath("../idle")
 jump_state = NodePath("../jump")
@@ -1239,7 +1240,6 @@ parry_state = NodePath("../parry")
 hit_state = NodePath("../hit")
 hit_lock_state = NodePath("../hit_lock")
 dash_state = NodePath("../dash")
-shrink_start_state = NodePath("../shrink_start")
 timeline = NodePath("../../Timeline")
 animation_name = "move"
 sprite_associated = NodePath("../../LittleBlue_sheets/move")
@@ -1375,14 +1375,8 @@ shrink_run_state = NodePath("../shrink_run")
 animation_name = "shrink_counter"
 sprite_associated = NodePath("../../LittleBlue_sheets/shrink")
 
-[node name="shrink_run" type="Node" parent="state_machine" node_paths=PackedStringArray("shrink_final_state", "sprite_associated")]
+[node name="shrink_run" type="Node" parent="state_machine"]
 script = ExtResource("29_d57ki")
-shrink_final_state = NodePath("../shrink_final")
-animation_name = "move"
-sprite_associated = NodePath("../../LittleBlue_sheets/move")
-
-[node name="shrink_final" type="Node" parent="state_machine"]
-script = ExtResource("30_5o8dl")
 
 [node name="hurtbox" type="Area2D" parent="."]
 collision_layer = 0
