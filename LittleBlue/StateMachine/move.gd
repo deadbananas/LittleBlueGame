@@ -39,7 +39,7 @@ func process_input(event: InputEvent) -> State:
 		#return dash_state
 	if (Input.is_action_just_pressed("attack")):
 		return attack_state
-	if (Input.is_action_just_released("parry_right")):
+	if (Input.is_action_just_pressed("parry_right")):
 		return parry_state
 	if (Input.is_action_just_pressed("dash")):
 		return dash_state

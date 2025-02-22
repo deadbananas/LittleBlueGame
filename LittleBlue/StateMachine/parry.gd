@@ -61,6 +61,7 @@ func process_physics(delta: float) -> State:
 	#else:
 		#flip = 1.0
 	#sprite.scale.x = flip
+	parent.velocity.x = movement
 	parent.move_and_slide()
 	
 	if is_complete:

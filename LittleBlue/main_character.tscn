@@ -509,7 +509,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_hio3q"]
 resource_name = "parry"
-length = 0.28
+length = 0.27
 step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -518,7 +518,7 @@ tracks/0/path = NodePath("LittleBlue_sheets/parry:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.012404, 0.0207892, 0.0401088, 0.0890427, 0.136313, 0.209625, 0.263105),
+"times": PackedFloat32Array(0, 0.00544964, 0.0138348, 0.0331544, 0.0820883, 0.129359, 0.202671, 0.256151),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6, 7]
@@ -530,7 +530,7 @@ tracks/1/path = NodePath("LittleBlue_sheets/parry/Parry/Parry_shape:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.0441431, 0.0478421, 0.257703, 0.258411),
+"times": PackedFloat32Array(0, 0.0371887, 0.0408877, 0.250749, 0.251457),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
 "values": [true, true, false, false, true]
@@ -542,7 +542,7 @@ tracks/2/path = NodePath("LittleBlue_sheets/parry/block/Block_Shape:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.258743, 0.259632, 0.274814, 0.275367),
+"times": PackedFloat32Array(0, 0.251789, 0.252678, 0.26786, 0.268413),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
 "values": [true, true, false, false, true]

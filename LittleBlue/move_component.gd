@@ -72,5 +72,4 @@ func wants_shrink() -> float:
 	var shrink_manager = 0.0
 	if shrink != 0 and parry_wait == true:
 		shrink_manager = shrink
-	print(shrink)
 	return shrink_manager
