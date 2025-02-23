@@ -17,7 +17,7 @@ var upperWillBound = -50
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#Engine.max_fps = 60
-	#Engine.time_scale = 0.5
+	#Engine.time_scale = 0.1
 
 	curWill = 0.0
 	
@@ -25,7 +25,7 @@ func _ready():
 func _process(delta):
 	$CurrentFPS.text = "Current FPS: " + str(Engine.get_frames_per_second())
 	pure_layer.position.y = curWill
-
+	#Engine.time_scale = 0.1
 
 
 func _on_lindon_will_change(will):

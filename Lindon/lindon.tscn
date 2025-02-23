@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://dakm1l5311nnp"]
+[gd_scene load_steps=49 format=3 uid="uid://dakm1l5311nnp"]
 
 [ext_resource type="Script" path="res://Lindon/lindon.gd" id="1_h0bx1"]
 [ext_resource type="Texture2D" uid="uid://dpfj4lxpeo1r4" path="res://CradleAssets/Lindon/Lindon-Mikiri-1-fist-strike.png" id="2_hqcw7"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://bw8fi34lma0is" path="res://CradleAssets/Lindon/neutral-attack.png" id="8_as2vf"]
 [ext_resource type="Script" path="res://Components/hitbox.gd" id="8_vy18p"]
 [ext_resource type="Texture2D" uid="uid://dur7b1mvgrjqn" path="res://CradleAssets/Lindon/parriedLindon.png" id="11_20yel"]
+[ext_resource type="Texture2D" uid="uid://brp5ch06v1wra" path="res://CradleAssets/Lindon/Lindon-slammed-down.png" id="12_opg4m"]
 [ext_resource type="BehaviorTree" uid="uid://ndc4u1m3kex3" path="res://ai/trees/LindonBehavior1.tres" id="13_ig7y2"]
 [ext_resource type="Script" path="res://Components/hurtbox.gd" id="14_n6tvd"]
 [ext_resource type="Script" path="res://Lindon/parried_state.gd" id="18_62foh"]
@@ -22,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://dselsy33pmdhx" path="res://UI/healthbarLindon.tscn" id="19_ld1fm"]
 [ext_resource type="Script" path="res://addons/time_control/timeline.gd" id="20_5a1gw"]
 [ext_resource type="Resource" uid="uid://kbvuqggcs6gj" path="res://addons/time_control/resources/enemy_clock.tres" id="21_yt6cn"]
+[ext_resource type="PackedScene" uid="uid://c263528oysqvj" path="res://shockwave.tscn" id="24_8oiv6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dlaqq"]
 radius = 6.0
@@ -415,31 +417,31 @@ tracks/31/keys = {
 tracks/32/type = "value"
 tracks/32/imported = false
 tracks/32/enabled = true
-tracks/32/path = NodePath("fiststrikebc/LindonSprites:visible")
+tracks/32/path = NodePath("fiststrikebc/slammed_down:frame")
 tracks/32/interp = 1
 tracks/32/loop_wrap = true
 tracks/32/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [0]
 }
 tracks/33/type = "value"
 tracks/33/imported = false
 tracks/33/enabled = true
-tracks/33/path = NodePath(".:rotation")
+tracks/33/path = NodePath("fiststrikebc/slammed_down:visible")
 tracks/33/interp = 1
 tracks/33/loop_wrap = true
 tracks/33/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
+"update": 1,
+"values": [false]
 }
 tracks/34/type = "value"
 tracks/34/imported = false
 tracks/34/enabled = true
-tracks/34/path = NodePath("fiststrikebc/LindonSprites:flip_h")
+tracks/34/path = NodePath("fiststrikebc/LindonSprites:visible")
 tracks/34/interp = 1
 tracks/34/loop_wrap = true
 tracks/34/keys = {
@@ -1053,78 +1055,80 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_c0qci"]
 resource_name = "slammed_down"
-length = 10.0
+length = 5.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("fiststrikebc/fist_bc_strike:visible")
+tracks/0/path = NodePath("fiststrikebc/slammed_down:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.5, 0.7, 0.9, 3.86667, 4.06667, 4.26667, 4.46667, 4.7, 4.86667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [false]
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("fiststrikebc/burningCloak1:visible")
+tracks/1/path = NodePath("fiststrikebc/slammed_down:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.001, 5),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [false]
+"values": [false, true, false]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("fiststrikebc/LindonSprites:visible")
+tracks/2/path = NodePath("fiststrikebc/fist_bc_strike:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("fiststrikebc/LindonSprites:frame")
+tracks/3/path = NodePath("fiststrikebc/burningCloak1:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [6]
+"values": [false]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath(".:rotation")
+tracks/4/path = NodePath("fiststrikebc/LindonSprites:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.083054, 0.167747, 7.02076, 9.86738),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [0.0, 0.785398, 1.5708, 1.5708, 0.0]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("fiststrikebc/LindonSprites:flip_h")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.700015),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"distortionSlam"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_eo1cs"]
@@ -1148,11 +1152,6 @@ shader = ExtResource("2_t5jp2")
 shader_parameter/flash_color = Color(0.0887353, 0.514002, 0.540608, 1)
 shader_parameter/flash_mod = 0.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_4h1ff"]
-shader = ExtResource("2_t5jp2")
-shader_parameter/flash_color = Color(0.160784, 0.619608, 0.639216, 1)
-shader_parameter/flash_mod = 0.0
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2gvm8"]
 radius = 32.9963
 height = 65.9926
@@ -1172,6 +1171,11 @@ height = 38.0
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wmtkl"]
 shader = ExtResource("2_t5jp2")
 shader_parameter/flash_color = Color(0.158892, 0.618776, 0.641173, 1)
+shader_parameter/flash_mod = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vhx4l"]
+shader = ExtResource("2_t5jp2")
+shader_parameter/flash_color = Color(0.160784, 0.619608, 0.639216, 1)
 shader_parameter/flash_mod = 0.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jkb2d"]
@@ -1223,8 +1227,8 @@ texture = ExtResource("3_h1ymq")
 hframes = 8
 
 [node name="LindonSprites" type="Sprite2D" parent="fiststrikebc"]
+visible = false
 texture_filter = 1
-material = SubResource("ShaderMaterial_4h1ff")
 texture = ExtResource("2_hqcw7")
 offset = Vector2(0, -63.53)
 hframes = 13
@@ -1341,6 +1345,14 @@ position = Vector2(-13, -64)
 texture = ExtResource("11_20yel")
 hframes = 4
 
+[node name="slammed_down" type="Sprite2D" parent="fiststrikebc"]
+visible = false
+texture_filter = 1
+material = SubResource("ShaderMaterial_vhx4l")
+texture = ExtResource("12_opg4m")
+offset = Vector2(0, -63.53)
+hframes = 10
+
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
 
@@ -1451,6 +1463,8 @@ monitorable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="shrinkStartCheck"]
 position = Vector2(-87, -34)
 shape = SubResource("RectangleShape2D_mcolw")
+
+[node name="CanvasLayer" parent="." instance=ExtResource("24_8oiv6")]
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="parried_signal" from="fiststrikebc/LindonSprites/blackflame_fist_Strike_hitbox" to="." method="_on_blackflame_fist_strike_hitbox_parried_signal"]

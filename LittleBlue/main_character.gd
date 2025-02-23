@@ -16,7 +16,7 @@ var move_component = $move_component
 const Timeline = preload("res://addons/time_control/timeline.gd")
 
 @export var timeline: Timeline
-
+@onready var shockwave = preload("res://shockwave.tscn")
 
 var health = 100
 var maxHealth = 10
@@ -51,6 +51,10 @@ func _physics_process(delta: float) -> void:
 		queue_free()
 	if is_on_floor():
 		double_jumped = false
+	if color_rect == null:
+		var instance = shockwave.instantiate() 
+		add_child(instance)
+		color_rect = $CanvasLayer/ColorRect
 	state_machine.process_physics(delta)
 
 func _process(delta: float) -> void:

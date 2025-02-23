@@ -31,6 +31,7 @@ extends CharacterBody2D
 @onready var shrink_start_check = $shrinkStartCheck
 
 @onready var healthbar = $UI/Healthbar
+@onready var color_rect = $CanvasLayer/ColorRect
 
 @onready var anim_player = $AnimationPlayer
 
@@ -39,6 +40,7 @@ extends CharacterBody2D
 
 @onready var game = get_tree().get_root().get_node("Game")
 @onready var rock = load("res://rock.tscn")
+@onready var shockwave = preload("res://shockwave.tscn")
 
 @export var combo_dash_speed = 200
 var player = null
@@ -89,7 +91,7 @@ func _ready():
 	prevWill = 0.0
 	willDiff = 0.0
 	spriteMat = get_node("fiststrikebc/Parried_Sprite")
-	bf_spriteMat = get_node("fiststrikebc/LindonSprites")
+	bf_spriteMat = get_node("fiststrikebc/slammed_down")
 	_init_state_machine()
 	
 	
@@ -112,6 +114,11 @@ func _init_state_machine() -> void:
 func _physics_process(delta):
 	ClockController.get_clock_by_key("ENEMY").local_time_scale = timeScale
 	anim_player.speed_scale = timeScale
+	if color_rect == null:
+		var instance = shockwave.instantiate()
+		print("debug")
+		add_child(instance)
+		color_rect = $CanvasLayer/ColorRect
 	if will != prevWill:
 		will_update()
 	move_and_slide()
@@ -320,3 +327,8 @@ func _on_main_character_time_slow():
 		timeScale = 0.1
 	else:
 		timeScale = 1
+
+
+func distortionSlam():
+	print('called')
+	color_rect.set_distortion_center(Vector2(position.x, position.y - 80))

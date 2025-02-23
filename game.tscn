@@ -144,6 +144,7 @@ tile_set = ExtResource("12_2ttrc")
 
 [node name="main_character" parent="." groups=["Little_Blue"] instance=ExtResource("3_uufjs")]
 unique_name_in_owner = true
+z_index = 1
 position = Vector2(184.68, -40)
 
 [node name="Lindon" parent="." instance=ExtResource("4_ob26r")]

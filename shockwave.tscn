@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://c263528oysqvj"]
+
+[ext_resource type="Shader" path="res://shaders/shockwave.gdshader" id="1_j3e7w"]
+[ext_resource type="Script" path="res://LittleBlue/shockwave.gd" id="2_newmt"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pgno8"]
+shader = ExtResource("1_j3e7w")
+shader_parameter/strength = 0.1
+shader_parameter/center = Vector2(0.5, 0.5)
+shader_parameter/radius = 0.25
+shader_parameter/aberration = 1.0
+shader_parameter/width = 0.0718
+shader_parameter/feather = 0.119
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+top_level = true
+material = SubResource("ShaderMaterial_pgno8")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(342.72, 181.125)
+script = ExtResource("2_newmt")

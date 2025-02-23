@@ -27,11 +27,10 @@ func set_distortion_center(world_position: Vector2) -> void:
 	visible = true
 	material.set_shader_parameter("center", normalized_position)
 	var tween = get_tree().create_tween()
-	tween.tween_property(material, "shader_parameter/radius", 0.75, 0.5)
+	tween.tween_property(material, "shader_parameter/radius", 1, 0.5)
 	tween.tween_property(material, "shader_parameter/strength", 0.1, 0.5)
 	await  tween.finished
-	visible = false
-	
-
+	tween.tween_property(material, "shader_parameter/radius", 0, 0.5)
+	get_parent().queue_free()
 
 # Example: Update center when mouse is clicked
