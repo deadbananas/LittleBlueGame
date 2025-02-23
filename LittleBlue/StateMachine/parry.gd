@@ -12,6 +12,8 @@ var fall_state: State
 var attack_state: State
 @export
 var hit_state: State
+@export
+var shrink_start_r_state: State
 
 var hit = false
 
@@ -48,6 +50,12 @@ func process_physics(delta: float) -> State:
 		hit = false
 		return hit_state
 		
+	var shrink = get_shrink()
+	if shrink != 0:
+		print(shrink)
+		if shrink == 1.0:
+			return shrink_start_r_state
+				
 	if get_jump() and parent.is_on_floor():
 		return jump_state
 

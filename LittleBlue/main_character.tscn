@@ -1229,7 +1229,7 @@ dash_state = NodePath("../dash")
 animation_name = "idle"
 sprite_associated = NodePath("../../LittleBlue_sheets/idle")
 
-[node name="move" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "jump_state", "fall_state", "attack_state", "parry_state", "hit_state", "hit_lock_state", "dash_state", "shrink_start_state", "timeline", "sprite_associated")]
+[node name="move" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "jump_state", "fall_state", "attack_state", "parry_state", "hit_state", "hit_lock_state", "dash_state", "shrink_start_r_state", "timeline", "sprite_associated")]
 script = ExtResource("11_81y20")
 idle_state = NodePath("../idle")
 jump_state = NodePath("../jump")
@@ -1239,7 +1239,7 @@ parry_state = NodePath("../parry")
 hit_state = NodePath("../hit")
 hit_lock_state = NodePath("../hit_lock")
 dash_state = NodePath("../dash")
-shrink_start_state = NodePath("../shrink_start")
+shrink_start_r_state = NodePath("../shrink_start_r")
 timeline = NodePath("../../Timeline")
 animation_name = "move"
 sprite_associated = NodePath("../../LittleBlue_sheets/move")
@@ -1321,7 +1321,7 @@ animation_name = "attack2"
 move_speed = 100.0
 sprite_associated = NodePath("../../LittleBlue_sheets/attack")
 
-[node name="parry" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "move_state", "jump_state", "fall_state", "attack_state", "hit_state", "sprite_associated")]
+[node name="parry" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "move_state", "jump_state", "fall_state", "attack_state", "hit_state", "shrink_start_r_state", "sprite_associated")]
 script = ExtResource("15_jtgtp")
 idle_state = NodePath("../idle")
 move_state = NodePath("../move")
@@ -1329,6 +1329,7 @@ jump_state = NodePath("../jump")
 fall_state = NodePath("../fall")
 attack_state = NodePath("../attack1")
 hit_state = NodePath("../hit")
+shrink_start_r_state = NodePath("../shrink_start_r")
 animation_name = "parry"
 move_speed = 25.0
 sprite_associated = NodePath("../../LittleBlue_sheets/parry")
@@ -1369,20 +1370,21 @@ animation_name = "dash"
 move_speed = 700.0
 sprite_associated = NodePath("../../LittleBlue_sheets/dash")
 
-[node name="shrink_start" type="Node" parent="state_machine" node_paths=PackedStringArray("shrink_run_state", "sprite_associated")]
+[node name="shrink_start_r" type="Node" parent="state_machine" node_paths=PackedStringArray("shrink_run_state", "sprite_associated")]
 script = ExtResource("28_p2pjj")
-shrink_run_state = NodePath("../shrink_run")
+shrink_run_state = NodePath("../shrink_run_r")
 animation_name = "shrink_counter"
 sprite_associated = NodePath("../../LittleBlue_sheets/shrink")
 
-[node name="shrink_run" type="Node" parent="state_machine" node_paths=PackedStringArray("shrink_final_state", "sprite_associated")]
+[node name="shrink_run_r" type="Node" parent="state_machine" node_paths=PackedStringArray("sprite_associated")]
 script = ExtResource("29_d57ki")
-shrink_final_state = NodePath("../shrink_final")
 animation_name = "move"
 sprite_associated = NodePath("../../LittleBlue_sheets/move")
 
-[node name="shrink_final" type="Node" parent="state_machine"]
+[node name="shrink_final_r" type="Node" parent="state_machine"]
 script = ExtResource("30_5o8dl")
+
+[node name="Node" type="Node" parent="state_machine"]
 
 [node name="hurtbox" type="Area2D" parent="."]
 collision_layer = 0
@@ -1405,7 +1407,7 @@ offset_right = 773.0
 offset_bottom = 98.0
 
 [node name="Area2D" type="Area2D" parent="."]
-collision_layer = 4
+collision_layer = 516
 collision_mask = 0
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
@@ -1426,6 +1428,7 @@ global_clock_configuration = ExtResource("31_c8kpx")
 [connection signal="pass_strike" from="." to="state_machine/idle" method="_on_little_blue_pass_strike"]
 [connection signal="pass_strike" from="." to="state_machine/move" method="_on_little_blue_pass_strike"]
 [connection signal="pass_strike" from="." to="state_machine/jump" method="_on_little_blue_pass_strike"]
+[connection signal="shrink_pass" from="." to="state_machine/shrink_run_r" method="_on_little_blue_shrink_pass"]
 [connection signal="area_entered" from="LittleBlue_sheets/parry/Parry" to="." method="_on_parry_area_entered"]
 [connection signal="area_entered" from="LittleBlue_sheets/parry/Parry" to="state_machine/parry" method="_on_parry_area_entered"]
 [connection signal="area_entered" from="LittleBlue_sheets/parry/block" to="state_machine/parry" method="_on_block_area_entered"]

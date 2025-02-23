@@ -145,5 +145,6 @@ offset_bottom = -56.0
 
 [connection signal="will_change" from="main_character" to="." method="_on_main_character_will_change"]
 [connection signal="mid_pure" from="Lindon" to="ParallaxBackground/mid_pure/midpure" method="_on_lindon_mid_pure"]
+[connection signal="shrink_Pass" from="Lindon" to="main_character" method="_on_lindon_shrink_pass"]
 [connection signal="strike_Fist" from="Lindon" to="main_character" method="_on_lindon_strike_fist"]
 [connection signal="will_change" from="Lindon" to="." method="_on_lindon_will_change"]

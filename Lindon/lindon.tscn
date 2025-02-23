@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://dakm1l5311nnp"]
+[gd_scene load_steps=43 format=3 uid="uid://dakm1l5311nnp"]
 
 [ext_resource type="Script" path="res://Lindon/lindon.gd" id="1_h0bx1"]
 [ext_resource type="Texture2D" uid="uid://dpfj4lxpeo1r4" path="res://CradleAssets/Lindon/Lindon-Mikiri-1-fist-strike.png" id="2_hqcw7"]
@@ -1039,6 +1039,9 @@ size = Vector2(44, 57)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2hjhm"]
 size = Vector2(37, 101)
 
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_bmoue"]
+b = Vector2(0, 55)
+
 [node name="Lindon" type="CharacterBody2D" node_paths=PackedStringArray("timeline") groups=["Lindon"]]
 script = ExtResource("1_h0bx1")
 timeline = NodePath("Timeline")
@@ -1280,6 +1283,14 @@ text = "Heir of Blackflame"
 script = ExtResource("20_5a1gw")
 global_clock_configuration = ExtResource("21_yt6cn")
 
+[node name="shrinkCheck" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 512
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="shrinkCheck"]
+position = Vector2(24, -54)
+shape = SubResource("SegmentShape2D_bmoue")
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="parried_signal" from="fiststrikebc/LindonSprites/blackflame_fist_Strike_hitbox" to="." method="_on_blackflame_fist_strike_hitbox_parried_signal"]
 [connection signal="parried_signal" from="fiststrikebc/LindonSprites/cloak_hitbox" to="." method="_on_cloak_hitbox_parried_signal"]
@@ -1288,3 +1299,4 @@ global_clock_configuration = ExtResource("21_yt6cn")
 [connection signal="timeout" from="Timer" to="state_machine/move" method="_on_timer_timeout"]
 [connection signal="received_hit" from="hurtbox_main" to="." method="_on_hurtbox_main_received_hit"]
 [connection signal="area_entered" from="fistCheck" to="." method="_on_fist_check_area_entered"]
+[connection signal="area_entered" from="shrinkCheck" to="." method="_on_shrink_check_area_entered"]

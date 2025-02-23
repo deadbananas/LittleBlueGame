@@ -89,6 +89,10 @@ shrink_left={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_10="Shrink"
+
 [limbo_ai]
 
 behavior_tree/favorite_tasks=PackedStringArray("BTSelector", "BTSequence", "BTComment", "BTInvert")

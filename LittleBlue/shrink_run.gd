@@ -2,13 +2,14 @@ extends State
 
 
 @export
-var shrink_final_state: State
+var shrink_trans_state: State
 
 
 
 var is_complete = false
 var hit = false
 var strike_big = false
+var reached = false
 
 func enter() -> void:
 	super()
@@ -20,7 +21,16 @@ func process_physics(delta: float) -> State:
 	animations.speed_scale = 5
 	parent.scale = Vector2(0.5, 0.5)
 	if is_complete:
-		return shrink_final_state
-	
+		return shrink_trans_state
+	parent.velocity.x = 400
 	parent.move_and_slide()
 	return null
+
+func exit():
+	super()
+	animations.speed_scale = 1
+	parent.scale = Vector2(1, 1)
+
+func _on_little_blue_shrink_pass():
+	print("we doin it")
+	is_complete = true

@@ -59,6 +59,8 @@ signal will_change(willDiff)
 
 signal strike_Fist()
 
+signal shrink_Pass()
+
 var health = 100
 
 const Timeline = preload("res://addons/time_control/timeline.gd")
@@ -275,3 +277,7 @@ func _on_hurtbox_main_received_hit(damage, time_scale, duration):
 	health -= damage
 	healthbar.health = health
 	will -= 0.5
+
+
+func _on_shrink_check_area_entered(area):
+	shrink_Pass.emit()

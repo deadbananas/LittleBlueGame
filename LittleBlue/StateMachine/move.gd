@@ -17,7 +17,7 @@ var hit_lock_state: State
 @export
 var dash_state: State
 @export
-var shrink_start_state: State
+var shrink_start_r_state: State
 
 @onready var hitbox_attack_1 = $"../../LittleBlue_sheets/attack/hitbox-attack-1"
 @onready var hitbox_attack_2 = $"../../LittleBlue_sheets/attack/hitbox-attack-2"
@@ -57,9 +57,8 @@ func process_physics(delta: float) -> State:
 		return jump_state
 	var shrink = get_shrink()
 	if shrink != 0:
-		print(shrink)
 		if shrink == 1.0:
-			return shrink_start_state
+			return shrink_start_r_state
 		
 
 	parent.velocity.y += gravity * delta

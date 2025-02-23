@@ -25,6 +25,8 @@ var will = 0
 
 signal will_change(will)
 
+signal shrink_pass()
+
 var double_jumped = false
 
 func _ready() -> void:
@@ -62,3 +64,7 @@ func _on_lindon_strike_fist():
 func _on_hit_will_change(willDiff):
 	will = willDiff
 	will_change.emit(willDiff)
+
+
+func _on_lindon_shrink_pass():
+	shrink_pass.emit()
