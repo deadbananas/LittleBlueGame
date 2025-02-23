@@ -26,8 +26,8 @@ func set_distortion_center(world_position: Vector2) -> void:
 	# make sure material is ShaderMaterial
 	material.set_shader_parameter("center", normalized_position)
 	var tween = get_tree().create_tween()
-	tween.tween_property(material, "shader_parameter/radius", 0.75, 1.0)
-	tween.tween_property(material, "shader_parameter/strength", 0.4, 1.0)
+	tween.tween_property(material, "shader_parameter/radius", 0.75, 0.5)
+	tween.tween_property(material, "shader_parameter/strength", 0.1, 0.5)
 	visible = true
 
 
