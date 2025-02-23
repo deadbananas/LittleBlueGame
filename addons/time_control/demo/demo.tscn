@@ -26,8 +26,6 @@ default_font_size = 8
 
 [node name="TimeControlDemo" type="Node2D" node_paths=PackedStringArray("player_00_button", "player_05_button", "player_10_button", "player_20_button", "enemy_00_button", "enemy_05_button", "enemy_10_button", "enemy_20_button", "reset_button")]
 script = ExtResource("1_f8e7l")
-player_clock_configuration = ExtResource("4_r45sy")
-enemy_clock_configuration = ExtResource("8_bes37")
 player_00_button = NodePath("CanvasLayer/HBoxContainer/VBoxContainer/Player_00")
 player_05_button = NodePath("CanvasLayer/HBoxContainer/VBoxContainer/Player_05")
 player_10_button = NodePath("CanvasLayer/HBoxContainer/VBoxContainer/Player_10")
@@ -37,6 +35,8 @@ enemy_05_button = NodePath("CanvasLayer/HBoxContainer/VBoxContainer2/Enemy_05")
 enemy_10_button = NodePath("CanvasLayer/HBoxContainer/VBoxContainer2/Enemy_10")
 enemy_20_button = NodePath("CanvasLayer/HBoxContainer/VBoxContainer2/Enemy_20")
 reset_button = NodePath("CanvasLayer/HBoxContainer/VBoxContainer3/Reset")
+player_clock_configuration = ExtResource("4_r45sy")
+enemy_clock_configuration = ExtResource("8_bes37")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 drag_horizontal_enabled = true

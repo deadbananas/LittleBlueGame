@@ -589,7 +589,7 @@ children = [SubResource("BTSequence_heknw"), SubResource("BTSequence_i666y")]
 [sub_resource type="BTSequence" id="BTSequence_nadib"]
 custom_name = "fist-strike-bc"
 children = [SubResource("BTWait_y6aqy"), SubResource("BTProbabilitySelector_mdnha"), SubResource("BTWait_bvk55")]
-metadata/_weight_ = 0.75
+metadata/_weight_ = 10.0
 
 [sub_resource type="BTAction" id="BTAction_snxjc"]
 script = ExtResource("1_it5bj")

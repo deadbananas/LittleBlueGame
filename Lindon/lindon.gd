@@ -3,6 +3,7 @@ extends CharacterBody2D
 @onready var hsm: LimboHSM = $LimboHSM
 @onready var phase_1_state: LimboState = $LimboHSM/Phase1
 @onready var parried_state: LimboState = $LimboHSM/ParriedState
+@onready var shrunk_countered_state: LimboState = $LimboHSM/ShrunkCounterState
 @onready var behaviorTree1 = $BTPlayer
 
 
@@ -26,6 +27,8 @@ extends CharacterBody2D
 
 
 @onready var fist_check = $fistCheck
+@onready var shrink_check = $shrinkCheck
+@onready var shrink_start_check = $shrinkStartCheck
 
 @onready var healthbar = $UI/Healthbar
 
@@ -41,6 +44,7 @@ extends CharacterBody2D
 var player = null
 var dir_to_player
 var spriteMat
+var bf_spriteMat
 const gravity = 50
 
 var fist_check_area_entered = false
@@ -66,7 +70,7 @@ var health = 100
 const Timeline = preload("res://addons/time_control/timeline.gd")
 
 @export var timeline: Timeline
-var timeScale = 1
+var timeScale = 1.0
 
 func _ready():
 	player = get_node("../%main_character")
@@ -85,15 +89,25 @@ func _ready():
 	prevWill = 0.0
 	willDiff = 0.0
 	spriteMat = get_node("fiststrikebc/Parried_Sprite")
+	bf_spriteMat = get_node("fiststrikebc/LindonSprites")
 	_init_state_machine()
+	
+	
+	
+	
 	
 func _init_state_machine() -> void:
 	hsm.add_transition(phase_1_state, parried_state, phase_1_state.EVENT_FINISHED)
 	hsm.add_transition(hsm.ANYSTATE, parried_state, &"parried")
 	hsm.add_transition(parried_state, phase_1_state, parried_state.EVENT_FINISHED)
+	hsm.add_transition(hsm.ANYSTATE, shrunk_countered_state, &"shrunk")
+	hsm.add_transition(shrunk_countered_state, phase_1_state, shrunk_countered_state.EVENT_FINISHED)
 
 	hsm.initialize(self)
 	hsm.set_active(true)
+	
+	
+	
 	
 func _physics_process(delta):
 	ClockController.get_clock_by_key("ENEMY").local_time_scale = timeScale
@@ -122,10 +136,14 @@ func update_flip(dir):
 		anim_sprite.scale.x  = -1.0
 		fist_check.scale.x = -1.0
 		hurtbox_main.scale.x = -1.0
+		shrink_start_check.scale.x = -1.0
+		shrink_check.scale.x = -1.0
 	else:
 		anim_sprite.scale.x  = 1.0
 		fist_check.scale.x = 1.0
 		hurtbox_main.scale.x = 1.0
+		shrink_start_check.scale.x = 1.0
+		shrink_check.scale.x = 1.0
 		
 func handle_anims():
 	if velocity.x != 0:
@@ -210,18 +228,19 @@ func countered():
 	
 	
 func parried():
-	timeScale = 0.1
+	timeScale = 0.5
 	var parryTimer : Timer = Timer.new()
 	add_child(parryTimer)
 	parryTimer.one_shot = true
 	parryTimer.autostart = true
-	parryTimer.wait_time = 0.7
+	parryTimer.wait_time = 0.2
 	parryTimer.timeout.connect(parry_timer_timeout)
 	parryTimer.start()
 	will -= 3
 	
 func flash():
 	spriteMat.material.set_shader_parameter("flash_mod", 0.98)
+	bf_spriteMat.material.set_shader_parameter("flash_mod", 0.98)
 	var flashTimer : Timer = Timer.new()
 	add_child(flashTimer)
 	flashTimer.one_shot = true
@@ -233,7 +252,7 @@ func flash():
 	
 func flash_timer_timeout():
 	spriteMat.material.set_shader_parameter("flash_mod", 0.0)
-	
+	bf_spriteMat.material.set_shader_parameter("flash_mod", 0.0)
 func parry_timer_timeout():
 	timeScale = 1
 	
@@ -280,4 +299,24 @@ func _on_hurtbox_main_received_hit(damage, time_scale, duration):
 
 
 func _on_shrink_check_area_entered(area):
-	shrink_Pass.emit()
+	if timeScale == 0.1:
+		shrink_Pass.emit()
+		var shrunkenTimer : Timer = Timer.new()
+		add_child(shrunkenTimer)
+		shrunkenTimer.one_shot = true
+		shrunkenTimer.autostart = true
+		shrunkenTimer.wait_time = 1.4
+		shrunkenTimer.timeout.connect(shrunkenTimer_timer_timeout)
+		shrunkenTimer.start()
+		
+
+func shrunkenTimer_timer_timeout():
+	hsm.dispatch("shrunk")
+	flash()
+	timeScale = 1.0
+
+func _on_main_character_time_slow():
+	if timeScale == 1:
+		timeScale = 0.1
+	else:
+		timeScale = 1

@@ -31,5 +31,4 @@ func _update(_delta: float) -> void:
 	basic_combo_shape.disabled = true
 	if not animation_player.is_playing() \
 			or animation_player.assigned_animation != animation_name:
-		print("finish")
 		dispatch(EVENT_FINISHED)

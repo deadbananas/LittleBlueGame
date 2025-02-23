@@ -92,6 +92,7 @@ shrink_left={
 [layer_names]
 
 2d_physics/layer_10="Shrink"
+2d_physics/layer_11="ShrinkStartCheck"
 
 [limbo_ai]
 

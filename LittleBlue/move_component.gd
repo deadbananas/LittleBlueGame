@@ -1,10 +1,14 @@
 extends Node
 
 @onready var little_blue = $".."
+@onready var area_2d = $"../Area2D"
 
 var parry_wait = false
 var shrink = 0.0
 var lindon 
+var area11 : Area2D
+var inArea = false
+
 #get direction to Lindon
 func get_lindon():
 	var nodes = get_tree().get_nodes_in_group("Lindon")
@@ -70,6 +74,16 @@ func wants_jump() -> bool:
 # Return a float where -1 = pure right, -0.5 = pure left, 0.5 = bf left 1 = bf right
 func wants_shrink() -> float:
 	var shrink_manager = 0.0
-	if shrink != 0 and parry_wait == true:
+	if shrink != 0 and parry_wait and inArea:
 		shrink_manager = shrink
 	return shrink_manager
+
+
+func _on_area_2d_area_entered(area):
+	area11 = area
+	inArea = true
+	
+
+func _on_area_2d_area_exited(area):
+	if area == area11:
+		inArea = false
