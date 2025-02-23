@@ -1,4 +1,4 @@
-[gd_scene load_steps=116 format=3 uid="uid://cemmkhino63ca"]
+[gd_scene load_steps=117 format=3 uid="uid://cemmkhino63ca"]
 
 [ext_resource type="Script" path="res://Components/hitbox.gd" id="1_isybl"]
 [ext_resource type="Script" path="res://LittleBlue/main_character.gd" id="1_silm2"]
@@ -577,6 +577,51 @@ tracks/1/keys = {
 "values": [0, 1]
 }
 
+[sub_resource type="Animation" id="Animation_vkt7m"]
+resource_name = "shrink_finale"
+length = 1.4
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LittleBlue_sheets/shrink:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.320196, 0.66302, 0.957652, 1.14273, 1.22546, 1.34784),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [2, 3, 4, 5, 6, 7, 8]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("state_machine/shrink_final_r")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.320178),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"reset_move"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.14275),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"emit_big_blast"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_p10ys"]
 _data = {
 "RESET": SubResource("Animation_uboeb"),
@@ -590,7 +635,8 @@ _data = {
 "jump_up": SubResource("Animation_5hear"),
 "move": SubResource("Animation_fdv3t"),
 "parry": SubResource("Animation_hio3q"),
-"shrink_counter": SubResource("Animation_vo5fi")
+"shrink_counter": SubResource("Animation_vo5fi"),
+"shrink_finale": SubResource("Animation_vkt7m")
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qgl01"]
@@ -1180,9 +1226,8 @@ hframes = 3
 [node name="shrink" type="Sprite2D" parent="LittleBlue_sheets"]
 visible = false
 texture_filter = 1
-scale = Vector2(0.5, 0.5)
 texture = ExtResource("12_s0w4l")
-hframes = 5
+hframes = 9
 
 [node name="anims_old" type="AnimatedSprite2D" parent="."]
 visible = false
@@ -1376,15 +1421,17 @@ shrink_run_state = NodePath("../shrink_run_r")
 animation_name = "shrink_counter"
 sprite_associated = NodePath("../../LittleBlue_sheets/shrink")
 
-[node name="shrink_run_r" type="Node" parent="state_machine" node_paths=PackedStringArray("sprite_associated")]
+[node name="shrink_run_r" type="Node" parent="state_machine" node_paths=PackedStringArray("shrink_finale_state", "sprite_associated")]
 script = ExtResource("29_d57ki")
+shrink_finale_state = NodePath("../shrink_final_r")
 animation_name = "move"
 sprite_associated = NodePath("../../LittleBlue_sheets/move")
 
-[node name="shrink_final_r" type="Node" parent="state_machine"]
+[node name="shrink_final_r" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "sprite_associated")]
 script = ExtResource("30_5o8dl")
-
-[node name="Node" type="Node" parent="state_machine"]
+idle_state = NodePath("../idle")
+animation_name = "shrink_finale"
+sprite_associated = NodePath("../../LittleBlue_sheets/shrink")
 
 [node name="hurtbox" type="Area2D" parent="."]
 collision_layer = 0

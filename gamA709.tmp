@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://02mndykd5b"]
+[gd_scene load_steps=20 format=4 uid="uid://02mndykd5b"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_shfnb"]
 [ext_resource type="Texture2D" uid="uid://blry74och0nvb" path="res://CradleAssets/landscape/parallax/backgroundtest/bgtest2/background.png" id="2_xa6g7"]
@@ -28,219 +28,15 @@ gradient = SubResource("Gradient_7mdc8")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gfcrm"]
 shader = ExtResource("15_1mrxb")
-shader_parameter/center = Vector2(67.74, 1230.06)
-shader_parameter/force = 0.0
-shader_parameter/size = 0.0
-shader_parameter/blast = 0.0
-shader_parameter/direction = Vector2(0, 0)
-shader_parameter/aperture = 0.0
-shader_parameter/red_offset = 0.0
-shader_parameter/green_offset = 0.0
-shader_parameter/blue_offset = 0.0
-
-[sub_resource type="Animation" id="Animation_r5oh5"]
-resource_name = "blast"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Shockwaves/blastWave:material:shader_parameter/force")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.00302807),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 50.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Shockwaves/blastWave:material:shader_parameter/size")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.00302807, 0.914352),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.0, 100.0, 500.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Shockwaves/blastWave:material:shader_parameter/blast")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.00302807, 0.915142),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.0, 1500.0, 900.0]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Shockwaves/blastWave:material:shader_parameter/direction")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.00365165),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, 1)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Shockwaves/blastWave:material:shader_parameter/aperture")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.00296882, 0.910268),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.0, 0.7, 2.0]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Shockwaves/blastWave:material:shader_parameter/red_offset")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.00191405),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 1.01]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Shockwaves/blastWave:material:shader_parameter/green_offset")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.00263223),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 1.03]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("Shockwaves/blastWave:material:shader_parameter/blue_offset")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0, 0.00179953),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 0.98]
-}
-
-[sub_resource type="Animation" id="Animation_vuxjt"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Shockwaves/blastWave:material:shader_parameter/force")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.997067),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 1000.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Shockwaves/blastWave:material:shader_parameter/size")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.997067),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 1000.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Shockwaves/blastWave:material:shader_parameter/blast")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.997067),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 1000.0]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Shockwaves/blastWave:material:shader_parameter/direction")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.00236722),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, -1)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Shockwaves/blastWave:material:shader_parameter/aperture")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.0611193, 0.99564),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.0, 2.0, 3.14152]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Shockwaves/blastWave:material:shader_parameter/red_offset")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.99564),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 2.0]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Shockwaves/blastWave:material:shader_parameter/green_offset")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.99564),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 2.0]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("Shockwaves/blastWave:material:shader_parameter/blue_offset")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_xrsxd"]
-_data = {
-"RESET": SubResource("Animation_vuxjt"),
-"blast": SubResource("Animation_r5oh5")
-}
+shader_parameter/center = Vector2(623.935, 566.385)
+shader_parameter/force = 100.0
+shader_parameter/size = 100000.0
+shader_parameter/blast = 100.0
+shader_parameter/direction = Vector2(2, 0)
+shader_parameter/aperture = 1.311
+shader_parameter/red_offset = 0.434
+shader_parameter/green_offset = 1.29
+shader_parameter/blue_offset = 0.18
 
 [node name="Game" type="Node"]
 script = ExtResource("1_shfnb")
@@ -372,14 +168,7 @@ grow_horizontal = 2
 grow_vertical = 2
 tooltip_text = "
 "
-metadata/_edit_use_anchors_ = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_xrsxd")
-}
-
-[connection signal="big_blast" from="main_character" to="." method="_on_main_character_big_blast"]
 [connection signal="will_change" from="main_character" to="." method="_on_main_character_will_change"]
 [connection signal="mid_pure" from="Lindon" to="ParallaxBackground/mid_pure/midpure" method="_on_lindon_mid_pure"]
 [connection signal="shrink_Pass" from="Lindon" to="main_character" method="_on_lindon_shrink_pass"]

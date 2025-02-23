@@ -27,6 +27,8 @@ signal will_change(will)
 
 signal shrink_pass()
 
+signal big_blast()
+
 var double_jumped = false
 
 func _ready() -> void:
@@ -68,3 +70,7 @@ func _on_hit_will_change(willDiff):
 
 func _on_lindon_shrink_pass():
 	shrink_pass.emit()
+	
+	
+func emit_big_blast():
+	big_blast.emit()
