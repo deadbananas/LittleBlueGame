@@ -24,7 +24,7 @@ var upperWillBound = -50
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#Engine.max_fps = 60
-	Engine.time_scale = 0.3
+	#Engine.time_scale = 0.3
 	spriteMat = get_node("Shockwaves/blastWave")
 	curWill = 0.0
 	viewport_size = get_viewport().size
@@ -42,12 +42,12 @@ func _process(delta):
 		spriteMat.material.set_shader_parameter("center", center)
 	elif blasting:
 		if i == 0:
-			center = center + Vector2(3100, -4000)
+			center = center + Vector2(3100, -617)
 			center = center / scalar
 			center.y = viewport_size.y - center.y
 		center.y = center.y + i
 		print(center)
-		i = i - 0.5
+		i = i - 0.01
 		spriteMat.material.set_shader_parameter("center", center)
 
 

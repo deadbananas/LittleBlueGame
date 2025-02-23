@@ -1,4 +1,4 @@
-[gd_scene load_steps=117 format=3 uid="uid://cemmkhino63ca"]
+[gd_scene load_steps=120 format=3 uid="uid://cemmkhino63ca"]
 
 [ext_resource type="Script" path="res://Components/hitbox.gd" id="1_isybl"]
 [ext_resource type="Script" path="res://LittleBlue/main_character.gd" id="1_silm2"]
@@ -34,6 +34,8 @@
 [ext_resource type="Script" path="res://LittleBlue/shrink_final.gd" id="30_5o8dl"]
 [ext_resource type="Script" path="res://addons/time_control/timeline.gd" id="30_wjpx1"]
 [ext_resource type="Resource" uid="uid://dovo5yrk24mr" path="res://addons/time_control/resources/player_clock.tres" id="31_c8kpx"]
+[ext_resource type="Shader" path="res://shaders/shockwave.gdshader" id="35_s7jlx"]
+[ext_resource type="Script" path="res://LittleBlue/shockwave.gd" id="36_siggo"]
 
 [sub_resource type="Animation" id="Animation_uboeb"]
 length = 0.001
@@ -614,7 +616,7 @@ tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(1.14275),
+"times": PackedFloat32Array(1.08062),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -1110,6 +1112,15 @@ initial_velocity_max = 130.91
 gravity = Vector3(0, 0, 0)
 color_ramp = SubResource("GradientTexture1D_400be")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_smsp4"]
+shader = ExtResource("35_s7jlx")
+shader_parameter/strength = 0.0
+shader_parameter/center = Vector2(0.5, 0.5)
+shader_parameter/radius = 0.0
+shader_parameter/aberration = 0.425
+shader_parameter/width = 0.04
+shader_parameter/feather = 0.135
+
 [node name="LittleBlue" type="CharacterBody2D" node_paths=PackedStringArray("timeline")]
 position = Vector2(351, 395)
 scale = Vector2(0.984953, 0.984953)
@@ -1470,6 +1481,20 @@ process_material = SubResource("ParticleProcessMaterial_5bk7t")
 [node name="Timeline" type="Node" parent="."]
 script = ExtResource("30_wjpx1")
 global_clock_configuration = ExtResource("31_c8kpx")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+visible = false
+top_level = true
+material = SubResource("ShaderMaterial_smsp4")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(342.72, 181.125)
+script = ExtResource("36_siggo")
 
 [connection signal="pass_strike" from="." to="." method="_on_pass_strike"]
 [connection signal="pass_strike" from="." to="state_machine/idle" method="_on_little_blue_pass_strike"]
