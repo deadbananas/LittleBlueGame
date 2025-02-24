@@ -82,7 +82,6 @@ func _on_lindon_shrink_pass():
 	
 	
 func emit_big_blast():
-
 	color_rect.set_distortion_center(Vector2(position.x, position.y - 80))
 
 func hide_shader_rect():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://dakm1l5311nnp"]
+[gd_scene load_steps=51 format=3 uid="uid://dakm1l5311nnp"]
 
 [ext_resource type="Script" path="res://Lindon/lindon.gd" id="1_h0bx1"]
 [ext_resource type="Texture2D" uid="uid://dpfj4lxpeo1r4" path="res://CradleAssets/Lindon/Lindon-Mikiri-1-fist-strike.png" id="2_hqcw7"]
@@ -23,7 +23,8 @@
 [ext_resource type="PackedScene" uid="uid://dselsy33pmdhx" path="res://UI/healthbarLindon.tscn" id="19_ld1fm"]
 [ext_resource type="Script" path="res://addons/time_control/timeline.gd" id="20_5a1gw"]
 [ext_resource type="Resource" uid="uid://kbvuqggcs6gj" path="res://addons/time_control/resources/enemy_clock.tres" id="21_yt6cn"]
-[ext_resource type="PackedScene" uid="uid://c263528oysqvj" path="res://shockwave.tscn" id="24_8oiv6"]
+[ext_resource type="Shader" path="res://shaders/shockwave.gdshader" id="24_r8ixk"]
+[ext_resource type="Script" path="res://LittleBlue/shockwave.gd" id="25_58aef"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dlaqq"]
 radius = 6.0
@@ -1192,6 +1193,15 @@ b = Vector2(0, 55)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mcolw"]
 size = Vector2(124, 68)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1kqrm"]
+shader = ExtResource("24_r8ixk")
+shader_parameter/strength = 0.1
+shader_parameter/center = Vector2(0.5, 0.5)
+shader_parameter/radius = 0.25
+shader_parameter/aberration = 1.0
+shader_parameter/width = 0.0718
+shader_parameter/feather = 0.119
+
 [node name="Lindon" type="CharacterBody2D" node_paths=PackedStringArray("timeline") groups=["Lindon"]]
 script = ExtResource("1_h0bx1")
 timeline = NodePath("Timeline")
@@ -1464,7 +1474,19 @@ monitorable = false
 position = Vector2(-87, -34)
 shape = SubResource("RectangleShape2D_mcolw")
 
-[node name="CanvasLayer" parent="." instance=ExtResource("24_8oiv6")]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+visible = false
+top_level = true
+material = SubResource("ShaderMaterial_1kqrm")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(342.72, 181.125)
+script = ExtResource("25_58aef")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="parried_signal" from="fiststrikebc/LindonSprites/blackflame_fist_Strike_hitbox" to="." method="_on_blackflame_fist_strike_hitbox_parried_signal"]

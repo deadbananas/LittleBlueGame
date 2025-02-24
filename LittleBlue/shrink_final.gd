@@ -31,3 +31,4 @@ func exit() -> void:
 	super()
 	parent.position = parent.position + Vector2(50, 0)
 	camera_2d.zoom = Vector2(1,1)
+	camera_2d.offset = Vector2(0, -75)

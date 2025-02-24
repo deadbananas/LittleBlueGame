@@ -116,7 +116,6 @@ func _physics_process(delta):
 	anim_player.speed_scale = timeScale
 	if color_rect == null:
 		var instance = shockwave.instantiate()
-		print("debug")
 		add_child(instance)
 		color_rect = $CanvasLayer/ColorRect
 	if will != prevWill:
@@ -330,5 +329,4 @@ func _on_main_character_time_slow():
 
 
 func distortionSlam():
-	print('called')
 	color_rect.set_distortion_center(Vector2(position.x, position.y - 80))

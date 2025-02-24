@@ -5,6 +5,8 @@ extends ColorRect  # or whatever node type you're using
 @onready var camera_2d := get_viewport().get_camera_2d()
 
 func set_distortion_center(world_position: Vector2) -> void:
+	material.set_shader_parameter("radius", 0.25)
+	print(material.get_shader_parameter("radius"))
 	if camera_2d == null: camera_2d = Camera2D.new()
 	
 	# Get the current viewport size
@@ -23,7 +25,7 @@ func set_distortion_center(world_position: Vector2) -> void:
 	# Convert to normalized coordinates (0-1 range)
 	var normalized_position = screen_position / viewport_size
 	
-	# make sure material is ShaderMaterial
+	
 	visible = true
 	material.set_shader_parameter("center", normalized_position)
 	var tween = get_tree().create_tween()
@@ -31,6 +33,6 @@ func set_distortion_center(world_position: Vector2) -> void:
 	tween.tween_property(material, "shader_parameter/strength", 0.1, 0.5)
 	await  tween.finished
 	tween.tween_property(material, "shader_parameter/radius", 0, 0.5)
+	material.set_shader_parameter("radius", 0.25)
+	material.set_shader_parameter("strength", 0)
 	get_parent().queue_free()
-
-# Example: Update center when mouse is clicked
