@@ -1,4 +1,4 @@
-[gd_resource type="BehaviorTree" load_steps=206 format=3 uid="uid://ndc4u1m3kex3"]
+[gd_resource type="BehaviorTree" load_steps=209 format=3 uid="uid://ndc4u1m3kex3"]
 
 [ext_resource type="Script" path="res://ai/tasks/find_target.gd" id="1_it5bj"]
 [ext_resource type="Script" path="res://ai/tasks/moveToTarget.gd" id="2_52qia"]
@@ -489,18 +489,21 @@ script = ExtResource("1_it5bj")
 group = &"Little_Blue"
 target_var = &"target"
 
-[sub_resource type="BTAction" id="BTAction_itfn8"]
+[sub_resource type="BTAction" id="BTAction_8dvfs"]
 script = ExtResource("6_mlxpf")
 target_var = &"target"
 speed_var = 600
 distance = 60
 tolerance = 40
 
-[sub_resource type="BTSequence" id="BTSequence_yrfu8"]
-children = [SubResource("BTAction_itfn8")]
+[sub_resource type="BTSequence" id="BTSequence_suchw"]
+children = [SubResource("BTAction_8dvfs")]
 
-[sub_resource type="BTRepeatUntilSuccess" id="BTRepeatUntilSuccess_5j8l6"]
-children = [SubResource("BTSequence_yrfu8")]
+[sub_resource type="BTRepeatUntilSuccess" id="BTRepeatUntilSuccess_lht62"]
+children = [SubResource("BTSequence_suchw")]
+
+[sub_resource type="BTDynamicSequence" id="BTDynamicSequence_evdnk"]
+children = [SubResource("BTRepeatUntilSuccess_lht62")]
 
 [sub_resource type="BBNode" id="BBNode_6y5wf"]
 saved_value = NodePath("AnimationPlayer")
@@ -513,7 +516,7 @@ animation_name = &"fist-strike-BC"
 
 [sub_resource type="BTSequence" id="BTSequence_heknw"]
 custom_name = "close"
-children = [SubResource("BTPlayAnimation_cy3cj"), SubResource("BTPauseAnimation_ah1i0"), SubResource("BTAction_koxw6"), SubResource("BTRepeatUntilSuccess_5j8l6"), SubResource("BTPlayAnimation_1x0cp")]
+children = [SubResource("BTPlayAnimation_cy3cj"), SubResource("BTPauseAnimation_ah1i0"), SubResource("BTAction_koxw6"), SubResource("BTDynamicSequence_evdnk"), SubResource("BTPlayAnimation_1x0cp")]
 metadata/_weight_ = 4.34032
 
 [sub_resource type="BTAction" id="BTAction_1w3w5"]
@@ -561,6 +564,9 @@ children = [SubResource("BTAction_ftmia")]
 [sub_resource type="BTRepeatUntilSuccess" id="BTRepeatUntilSuccess_3po6d"]
 children = [SubResource("BTSequence_j7aqb")]
 
+[sub_resource type="BTDynamicSequence" id="BTDynamicSequence_0or0w"]
+children = [SubResource("BTRepeatUntilSuccess_3po6d")]
+
 [sub_resource type="BBNode" id="BBNode_dpehb"]
 saved_value = NodePath("AnimationPlayer")
 resource_name = "AnimationPlayer"
@@ -572,7 +578,7 @@ animation_name = &"fist-strike-BC"
 
 [sub_resource type="BTSequence" id="BTSequence_8mq2l"]
 custom_name = "close"
-children = [SubResource("BTPlayAnimation_vgvyw"), SubResource("BTPauseAnimation_1sej4"), SubResource("BTAction_7b0io"), SubResource("BTRepeatUntilSuccess_3po6d"), SubResource("BTPlayAnimation_rgv3s")]
+children = [SubResource("BTPlayAnimation_vgvyw"), SubResource("BTPauseAnimation_1sej4"), SubResource("BTAction_7b0io"), SubResource("BTDynamicSequence_0or0w"), SubResource("BTPlayAnimation_rgv3s")]
 metadata/_weight_ = 0.0
 
 [sub_resource type="BTSequence" id="BTSequence_i666y"]
@@ -584,11 +590,15 @@ metadata/_weight_ = 1.95
 custom_name = "close or far"
 children = [SubResource("BTSequence_heknw"), SubResource("BTSequence_i666y")]
 
+[sub_resource type="BTTimeLimit" id="BTTimeLimit_fgpms"]
+time_limit = 50.0
+children = [SubResource("BTProbabilitySelector_mdnha")]
+
 [sub_resource type="BTWait" id="BTWait_bvk55"]
 
 [sub_resource type="BTSequence" id="BTSequence_nadib"]
 custom_name = "fist-strike-bc"
-children = [SubResource("BTWait_y6aqy"), SubResource("BTProbabilitySelector_mdnha"), SubResource("BTWait_bvk55")]
+children = [SubResource("BTWait_y6aqy"), SubResource("BTTimeLimit_fgpms"), SubResource("BTWait_bvk55")]
 metadata/_weight_ = 10.0
 
 [sub_resource type="BTAction" id="BTAction_snxjc"]

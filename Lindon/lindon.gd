@@ -4,7 +4,7 @@ extends CharacterBody2D
 @onready var phase_1_state: LimboState = $LimboHSM/Phase1
 @onready var parried_state: LimboState = $LimboHSM/ParriedState
 @onready var shrunk_countered_state: LimboState = $LimboHSM/ShrunkCounterState
-@onready var behaviorTree1 = $BTPlayer
+@onready var phase_1 = $LimboHSM/Phase1
 
 
 @onready var anim_sprite = $fiststrikebc
@@ -173,6 +173,7 @@ func basic_combo_anims_exit():
 	move_on = false
 	
 func fist_strike_bc_anims_enter():
+	fist_check_area_entered = false
 	anim_walk_forward.visible = false
 	anim_LindonSprites.visible = false
 	
@@ -272,6 +273,7 @@ func get_fist_check_area_entered():
 	return fist_check_area_entered
 
 func emit_mid_pure():
+	fist_check_area_entered = false
 	mid_pure.emit()
 	
 func emit_fist_strike():
@@ -330,3 +332,4 @@ func _on_main_character_time_slow():
 
 func distortionSlam():
 	color_rect.set_distortion_center(Vector2(position.x, position.y - 80))
+	fist_check_area_entered = false

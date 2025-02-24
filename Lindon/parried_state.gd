@@ -17,7 +17,7 @@ extends LimboState
 @onready var basic_combo_shape = $"../../fiststrikebc/basic_combo/basic_combo_hitbox/basic_combo_shape"
 
 
-
+@onready var phase_1 = $"../Phase1"
 
 func _enter() -> void:
 	animation_player.play(animation_name)
@@ -31,5 +31,5 @@ func _update(_delta: float) -> void:
 	basic_combo_shape.disabled = true
 	if not animation_player.is_playing() \
 			or animation_player.assigned_animation != animation_name:
-		print("finish")
 		dispatch(EVENT_FINISHED)
+		

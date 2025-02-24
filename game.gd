@@ -25,7 +25,7 @@ func _ready():
 func _process(delta):
 	$CurrentFPS.text = "Current FPS: " + str(Engine.get_frames_per_second())
 	pure_layer.position.y = curWill
-	#Engine.time_scale = 0.1
+	#Engine.time_scale = 0.3
 
 
 func _on_lindon_will_change(will):
