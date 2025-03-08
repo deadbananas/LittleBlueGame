@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://dakm1l5311nnp"]
+[gd_scene load_steps=58 format=3 uid="uid://dakm1l5311nnp"]
 
 [ext_resource type="Script" path="res://Lindon/lindon.gd" id="1_h0bx1"]
 [ext_resource type="Texture2D" uid="uid://dpfj4lxpeo1r4" path="res://CradleAssets/Lindon/Lindon-Mikiri-1-fist-strike.png" id="2_hqcw7"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://dur7b1mvgrjqn" path="res://CradleAssets/Lindon/parriedLindon.png" id="11_20yel"]
 [ext_resource type="Texture2D" uid="uid://brp5ch06v1wra" path="res://CradleAssets/Lindon/Lindon-slammed-down.png" id="12_opg4m"]
 [ext_resource type="BehaviorTree" uid="uid://ndc4u1m3kex3" path="res://ai/trees/LindonBehavior1.tres" id="13_ig7y2"]
+[ext_resource type="Shader" path="res://Lindon/dragonsBreath.gdshader" id="14_dab8m"]
 [ext_resource type="Script" path="res://Components/hurtbox.gd" id="14_n6tvd"]
 [ext_resource type="Script" path="res://Lindon/parried_state.gd" id="18_62foh"]
 [ext_resource type="Script" path="res://Lindon/shrunk_counter_state.gd" id="19_7ccod"]
@@ -1179,6 +1180,31 @@ shader = ExtResource("2_t5jp2")
 shader_parameter/flash_color = Color(0.160784, 0.619608, 0.639216, 1)
 shader_parameter/flash_mod = 0.0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pmkq7"]
+shader = ExtResource("14_dab8m")
+shader_parameter/beams = 13
+shader_parameter/energy = 3.0
+shader_parameter/roughness = 2
+shader_parameter/frequency = 13
+shader_parameter/speed = 0.5
+shader_parameter/thickness = 0.056
+shader_parameter/outline_thickness = 0.016
+shader_parameter/beam_difference = 0.203
+shader_parameter/glow = 0.0
+shader_parameter/outline_glow = 0.093
+shader_parameter/color = Color(0, 0, 0, 1)
+shader_parameter/outline_color = Color(76.7569, 0.866667, 0, 1)
+shader_parameter/progress = 1.0
+shader_parameter/y_offset = 0.0
+shader_parameter/fixed_edge_size = 0.0
+shader_parameter/noise_scale = Vector2(1, 1)
+
+[sub_resource type="Gradient" id="Gradient_0nnqp"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_p4d3u"]
+gradient = SubResource("Gradient_0nnqp")
+use_hdr = true
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jkb2d"]
 size = Vector2(44, 57)
 
@@ -1201,6 +1227,16 @@ shader_parameter/radius = 0.25
 shader_parameter/aberration = 1.0
 shader_parameter/width = 0.0718
 shader_parameter/feather = 0.119
+
+[sub_resource type="Environment" id="Environment_che1t"]
+background_mode = 3
+glow_enabled = true
+glow_strength = 0.07
+glow_blend_mode = 1
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_6nffb"]
+
+[sub_resource type="Compositor" id="Compositor_uyw3w"]
 
 [node name="Lindon" type="CharacterBody2D" node_paths=PackedStringArray("timeline") groups=["Lindon"]]
 script = ExtResource("1_h0bx1")
@@ -1272,7 +1308,7 @@ shape = SubResource("CapsuleShape2D_2gvm8")
 disabled = true
 
 [node name="cloak_shape_out" type="CollisionShape2D" parent="fiststrikebc/LindonSprites/cloak_hitbox"]
-position = Vector2(57, -32)
+position = Vector2(59, -34)
 rotation = 1.57857
 shape = SubResource("CapsuleShape2D_scvvv")
 disabled = true
@@ -1362,6 +1398,14 @@ material = SubResource("ShaderMaterial_vhx4l")
 texture = ExtResource("12_opg4m")
 offset = Vector2(0, -63.53)
 hframes = 10
+
+[node name="bfShaderHolder" type="Sprite2D" parent="fiststrikebc"]
+show_behind_parent = true
+z_index = 5
+material = SubResource("ShaderMaterial_pmkq7")
+position = Vector2(-132, -42)
+scale = Vector2(1, 92.5)
+texture = SubResource("GradientTexture1D_p4d3u")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
@@ -1487,6 +1531,11 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(342.72, 181.125)
 script = ExtResource("25_58aef")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_che1t")
+camera_attributes = SubResource("CameraAttributesPractical_6nffb")
+compositor = SubResource("Compositor_uyw3w")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="parried_signal" from="fiststrikebc/LindonSprites/blackflame_fist_Strike_hitbox" to="." method="_on_blackflame_fist_strike_hitbox_parried_signal"]
