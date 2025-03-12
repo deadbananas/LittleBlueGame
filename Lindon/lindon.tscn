@@ -1194,7 +1194,7 @@ shader_parameter/glow = 0.0
 shader_parameter/outline_glow = 0.093
 shader_parameter/color = Color(0, 0, 0, 1)
 shader_parameter/outline_color = Color(76.7569, 0.866667, 0, 1)
-shader_parameter/progress = 1.0
+shader_parameter/progress = 0.0
 shader_parameter/y_offset = 0.0
 shader_parameter/fixed_edge_size = 0.0
 shader_parameter/noise_scale = Vector2(1, 1)
@@ -1400,12 +1400,12 @@ offset = Vector2(0, -63.53)
 hframes = 10
 
 [node name="bfShaderHolder" type="Sprite2D" parent="fiststrikebc"]
-show_behind_parent = true
 z_index = 5
 material = SubResource("ShaderMaterial_pmkq7")
-position = Vector2(-132, -42)
-scale = Vector2(1, 92.5)
+position = Vector2(-3, -79)
+scale = Vector2(-0.1, 92.5)
 texture = SubResource("GradientTexture1D_p4d3u")
+centered = false
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0

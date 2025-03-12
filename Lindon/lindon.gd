@@ -5,6 +5,7 @@ extends CharacterBody2D
 @onready var parried_state: LimboState = $LimboHSM/ParriedState
 @onready var shrunk_countered_state: LimboState = $LimboHSM/ShrunkCounterState
 @onready var phase_1 = $LimboHSM/Phase1
+@onready var bf_shader_holder = $fiststrikebc/bfShaderHolder
 
 
 @onready var anim_sprite = $fiststrikebc
@@ -113,6 +114,8 @@ func _init_state_machine() -> void:
 	
 func _physics_process(delta):
 	ClockController.get_clock_by_key("ENEMY").local_time_scale = timeScale
+	if Input.is_action_just_pressed("attack"):
+			dragonsBreathScale(10)
 	anim_player.speed_scale = timeScale
 	if color_rect == null:
 		var instance = shockwave.instantiate()
@@ -333,3 +336,27 @@ func _on_main_character_time_slow():
 func distortionSlam():
 	color_rect.set_distortion_center(Vector2(position.x, position.y - 80))
 	fist_check_area_entered = false
+	
+	
+	
+func dragonsBreathScale(scaleX):
+	bf_shader_holder.scale.x = -scaleX
+	bf_shader_holder.material.set_shader_parameter("noise_scale", Vector2(scaleX * 1.5, 1))
+	bf_shader_holder.material.set_shader_parameter("shader_parameter/progress", 0)
+	bf_shader_holder.visible = true
+	var tween = get_tree().create_tween()
+	#tween.parallel().tween_property(bf_shader_holder, "scale", Vector2(-scaleX, 92.5), 1)
+	#tween.parallel().tween_property(bf_shader_holder.material, "shader_parameter/noise_scale", Vector2(scaleX * 1.5, 1), 1)
+	tween.chain().tween_property(bf_shader_holder.material, "shader_parameter/progress", 0.25, 0.01)
+	tween.chain().tween_property(bf_shader_holder.material, "shader_parameter/progress", 0, 0.2)
+	#bf_shader_holder.self_modulate.a = 1
+	tween.chain().tween_property(bf_shader_holder.material, "shader_parameter/progress", 0, 1)
+	tween.chain().tween_property(bf_shader_holder.material, "shader_parameter/progress", 1, 0.25)
+	tween.chain().tween_property(bf_shader_holder.material, "shader_parameter/progress", 1, 2)
+	tween.chain().tween_property(bf_shader_holder.material, "shader_parameter/progress", 0, 1)
+	tween.chain().tween_property(bf_shader_holder.material, "shader_parameter/progress", 0, 5)
+	await  tween.finished
+	bf_shader_holder.visible = false
+
+
+	

@@ -463,7 +463,7 @@ metadata/_weight_ = 0.4
 [sub_resource type="BTSequence" id="BTSequence_ngckt"]
 custom_name = "Basic_attack_combo"
 children = [SubResource("BTAction_cqtrh"), SubResource("BTSelector_usayb"), SubResource("BTRandomSequence_wlnhp")]
-metadata/_weight_ = 3.0
+metadata/_weight_ = 0.0
 
 [sub_resource type="BTWait" id="BTWait_y6aqy"]
 duration = 0.5
@@ -599,7 +599,7 @@ children = [SubResource("BTProbabilitySelector_mdnha")]
 [sub_resource type="BTSequence" id="BTSequence_nadib"]
 custom_name = "fist-strike-bc"
 children = [SubResource("BTWait_y6aqy"), SubResource("BTTimeLimit_fgpms"), SubResource("BTWait_bvk55")]
-metadata/_weight_ = 10.0
+metadata/_weight_ = 0.0
 
 [sub_resource type="BTAction" id="BTAction_snxjc"]
 script = ExtResource("1_it5bj")
@@ -683,7 +683,7 @@ children = [SubResource("BTSequence_42oui"), SubResource("BTAlwaysSucceed_ro7er"
 [sub_resource type="BTSequence" id="BTSequence_q41sb"]
 custom_name = "rock-kick"
 children = [SubResource("BTAction_snxjc"), SubResource("BTAction_1xqla"), SubResource("BTPlayAnimation_tej4b"), SubResource("BTProbabilitySelector_6e73w")]
-metadata/_weight_ = 1.0
+metadata/_weight_ = 10.0
 
 [sub_resource type="BTProbabilitySelector" id="BTProbabilitySelector_g1e78"]
 custom_name = "Action_when_close"
