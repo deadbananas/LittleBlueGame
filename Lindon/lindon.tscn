@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://dakm1l5311nnp"]
+[gd_scene load_steps=62 format=3 uid="uid://dakm1l5311nnp"]
 
 [ext_resource type="Script" path="res://Lindon/lindon.gd" id="1_h0bx1"]
 [ext_resource type="Texture2D" uid="uid://dpfj4lxpeo1r4" path="res://CradleAssets/Lindon/Lindon-Mikiri-1-fist-strike.png" id="2_hqcw7"]
@@ -1463,6 +1463,9 @@ shader_parameter/noise_scale = Vector2(1, 1.62)
 gradient = SubResource("Gradient_0nnqp")
 use_hdr = true
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ftqj"]
+size = Vector2(1303.75, 19.5)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jkb2d"]
 size = Vector2(44, 57)
 
@@ -1678,11 +1681,24 @@ hframes = 9
 vframes = 9
 
 [node name="dragonsBreath" type="Sprite2D" parent="fiststrikebc"]
-visible = false
 texture_filter = 1
 position = Vector2(-12, -63.5)
 texture = ExtResource("14_t7i16")
 hframes = 19
+
+[node name="dragonsBreathHitbox" type="Area2D" parent="fiststrikebc/dragonsBreath"]
+collision_layer = 64
+collision_mask = 0
+script = ExtResource("8_vy18p")
+damage = 5
+duration = 1.0
+knockback = 0.0
+
+[node name="dragonsBreathShape" type="CollisionShape2D" parent="fiststrikebc/dragonsBreath/dragonsBreathHitbox"]
+position = Vector2(-647.875, 30.75)
+shape = SubResource("RectangleShape2D_2ftqj")
+disabled = true
+debug_color = Color(0.909523, 0.000110316, 0.733093, 0.42)
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0

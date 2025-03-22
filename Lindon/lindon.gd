@@ -20,13 +20,14 @@ extends CharacterBody2D
 @onready var anim_dragons_breath = $fiststrikebc/dragonsBreath
 @onready var anim_breath_start_up = $fiststrikebc/breathStartUp
 
-
+#Hitboxes
 @onready var fist_strike_hitbox = $fiststrikebc/LindonSprites/blackflame_fist_Strike_hitbox/fist_strike_hitbox
 @onready var cloak_hitbox_shape_in = $fiststrikebc/LindonSprites/cloak_hitbox/cloak_hitbox_shape_in
 @onready var cloak_shape_out = $fiststrikebc/LindonSprites/cloak_hitbox/cloak_shape_out
 @onready var fist = $fiststrikebc/LindonSprites/cloak_hitbox/fist
 @onready var rock_hitbox_shape = $fiststrikebc/kick_rock/rock_hit_hitbox/rock_hitbox_shape
 @onready var basic_combo_shape = $fiststrikebc/basic_combo/basic_combo_hitbox/basic_combo_shape
+@onready var dragons_breath_shape = $fiststrikebc/dragonsBreath/dragonsBreathHitbox/dragonsBreathShape
 
 
 @onready var fist_check = $fistCheck
@@ -367,10 +368,10 @@ func dragonsBreathScale(scaleX):
 	#bf_shader_holder.self_modulate.a = 1
 	#tween.chain().tween_property(bf_shader_holder.material, "shader_parameter/progress", 0, 0.61)
 	tween.chain().tween_property(bf_shader_holder.material, "shader_parameter/progress", 1, 0.2)
+	tween.parallel().tween_property(dragons_breath_shape, "disabled", false, 0.1)
 	tween.chain().tween_property(bf_shader_holder.material, "shader_parameter/progress", 1, 0.25)
 	tween.chain().tween_property(bf_shader_holder.material, "shader_parameter/progress", 0, 0.175)
-	
+	tween.parallel().tween_property(dragons_breath_shape, "disabled", true, 0.15)
 
 func dragonsBreathHider():
 	bf_shader_holder.visible = false
-	
