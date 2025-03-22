@@ -1,4 +1,4 @@
-[gd_resource type="BehaviorTree" load_steps=209 format=3 uid="uid://ndc4u1m3kex3"]
+[gd_resource type="BehaviorTree" load_steps=214 format=3 uid="uid://ndc4u1m3kex3"]
 
 [ext_resource type="Script" path="res://ai/tasks/find_target.gd" id="1_it5bj"]
 [ext_resource type="Script" path="res://ai/tasks/moveToTarget.gd" id="2_52qia"]
@@ -683,11 +683,35 @@ children = [SubResource("BTSequence_42oui"), SubResource("BTAlwaysSucceed_ro7er"
 [sub_resource type="BTSequence" id="BTSequence_q41sb"]
 custom_name = "rock-kick"
 children = [SubResource("BTAction_snxjc"), SubResource("BTAction_1xqla"), SubResource("BTPlayAnimation_tej4b"), SubResource("BTProbabilitySelector_6e73w")]
-metadata/_weight_ = 10.0
+metadata/_weight_ = 0.0
+
+[sub_resource type="BTAction" id="BTAction_mla4u"]
+script = ExtResource("1_it5bj")
+group = &"Little_Blue"
+target_var = &"target"
+
+[sub_resource type="BTAction" id="BTAction_fwy13"]
+script = ExtResource("6_seblu")
+target_var = &"target"
+speed_var = 800
+distance = 200
+
+[sub_resource type="BBNode" id="BBNode_o4vb0"]
+saved_value = NodePath("AnimationPlayer")
+resource_name = "AnimationPlayer"
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_6ajqo"]
+await_completion = 100.0
+animation_player = SubResource("BBNode_o4vb0")
+animation_name = &"dragonsBreath"
+
+[sub_resource type="BTSequence" id="BTSequence_u0pl0"]
+custom_name = "dragons-breath"
+children = [SubResource("BTAction_mla4u"), SubResource("BTAction_fwy13"), SubResource("BTPlayAnimation_6ajqo")]
 
 [sub_resource type="BTProbabilitySelector" id="BTProbabilitySelector_g1e78"]
 custom_name = "Action_when_close"
-children = [SubResource("BTSequence_ngckt"), SubResource("BTSequence_nadib"), SubResource("BTSequence_q41sb")]
+children = [SubResource("BTSequence_ngckt"), SubResource("BTSequence_nadib"), SubResource("BTSequence_q41sb"), SubResource("BTSequence_u0pl0")]
 
 [sub_resource type="BTSequence" id="BTSequence_11vmb"]
 custom_name = "Move_To_Target"

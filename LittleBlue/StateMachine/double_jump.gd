@@ -16,7 +16,7 @@ var hit_state: State
 var hit_lock_state: State
 
 @export
-var jump_force: float = 450.0
+var jump_force: float = 600.0
 
 var hit = false
 var strike_big = false

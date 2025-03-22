@@ -21,33 +21,42 @@ var hit_lock_state: State
 
 
 @export
-var jump_force: float = 450.0
+var jump_force: float = 600.0
 
 var hit = false
 var strike_big = false
+var doubleable = false
 
 func enter() -> void:
 	super()
 	parent.velocity.y = -jump_force
 	hit = false
 	strike_big = false
-	
+	var jumpTimer : Timer = Timer.new()
+	doubleable = false
+	add_child(jumpTimer)
+	jumpTimer.one_shot = true
+	jumpTimer.autostart = true
+	jumpTimer.wait_time = 0.7
+	jumpTimer.timeout.connect(timer_timeout)
+	jumpTimer.start()
 
 
 func process_physics(delta: float) -> State:
+	print(parent.velocity.y)
 	if strike_big:
 		return hit_lock_state
 	if hit:
 		hit = false
 		return hit_state
-	if get_jump() and !parent.double_jumped:
+	if get_jump() and !parent.double_jumped and doubleable:
 		parent.double_jumped = true
+		print("douible")
 		return double_jump_state
 		
 	parent.velocity.y += gravity * delta
-	if get_jump() and parent.is_on_floor():
-		return jump_state
 	if parent.velocity.y > 0:
+		print("max")
 		return jump_max_state
 	
 	var movement = get_movement_input() * move_speed
@@ -76,3 +85,7 @@ func _on_hurtbox_received_hit(damage, time_scale, duration):
 
 func _on_little_blue_pass_strike():
 	strike_big = true
+	
+	
+func timer_timeout():
+	doubleable = true

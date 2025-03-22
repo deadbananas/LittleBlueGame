@@ -7,7 +7,7 @@ extends CharacterBody2D
 @onready var phase_1 = $LimboHSM/Phase1
 @onready var bf_shader_holder = $fiststrikebc/bfShaderHolder
 
-
+#sprites
 @onready var anim_sprite = $fiststrikebc
 @onready var anim_burningCloak1 = $fiststrikebc/burningCloak1
 @onready var anim_LindonSprites = $fiststrikebc/LindonSprites
@@ -17,6 +17,8 @@ extends CharacterBody2D
 @onready var anim_kick_rock = $fiststrikebc/kick_rock
 @onready var anim_basic_combo = $fiststrikebc/basic_combo
 @onready var anim_parried = $fiststrikebc/Parried_Sprite
+@onready var anim_dragons_breath = $fiststrikebc/dragonsBreath
+@onready var anim_breath_start_up = $fiststrikebc/breathStartUp
 
 
 @onready var fist_strike_hitbox = $fiststrikebc/LindonSprites/blackflame_fist_Strike_hitbox/fist_strike_hitbox
@@ -114,8 +116,6 @@ func _init_state_machine() -> void:
 	
 func _physics_process(delta):
 	ClockController.get_clock_by_key("ENEMY").local_time_scale = timeScale
-	if Input.is_action_just_pressed("attack"):
-			dragonsBreathScale(10)
 	anim_player.speed_scale = timeScale
 	if color_rect == null:
 		var instance = shockwave.instantiate()
@@ -147,12 +147,14 @@ func update_flip(dir):
 		hurtbox_main.scale.x = -1.0
 		shrink_start_check.scale.x = -1.0
 		shrink_check.scale.x = -1.0
+		anim_breath_start_up.scale.x = -0.15
 	else:
 		anim_sprite.scale.x  = 1.0
 		fist_check.scale.x = 1.0
 		hurtbox_main.scale.x = 1.0
 		shrink_start_check.scale.x = 1.0
 		shrink_check.scale.x = 1.0
+		anim_breath_start_up.scale.x = 0.15
 		
 func handle_anims():
 	if velocity.x != 0:
@@ -191,6 +193,16 @@ func kick_rock_anims_enter():
 func kick_rock_anims_exit():
 	anim_kick_rock.visible = false
 	anim_LindonSprites.visible = true
+	
+func dragons_breath_anims_enter():
+	anim_walk_forward.visible = false
+	anim_LindonSprites.visible = false
+	anim_dragons_breath.visible = true
+	
+func dragons_breath_anims_exit():
+	anim_dragons_breath.visible = false
+	anim_LindonSprites.visible = true
+	
 	
 func spawn_rock():
 	instance = rock.instantiate()
@@ -338,6 +350,9 @@ func distortionSlam():
 	fist_check_area_entered = false
 	
 	
+func dragonsBreathCall():
+	dragonsBreathScale(10)	
+	
 	
 func dragonsBreathScale(scaleX):
 	bf_shader_holder.scale.x = -scaleX
@@ -347,16 +362,15 @@ func dragonsBreathScale(scaleX):
 	var tween = get_tree().create_tween()
 	#tween.parallel().tween_property(bf_shader_holder, "scale", Vector2(-scaleX, 92.5), 1)
 	#tween.parallel().tween_property(bf_shader_holder.material, "shader_parameter/noise_scale", Vector2(scaleX * 1.5, 1), 1)
-	tween.chain().tween_property(bf_shader_holder.material, "shader_parameter/progress", 0.25, 0.01)
-	tween.chain().tween_property(bf_shader_holder.material, "shader_parameter/progress", 0, 0.2)
+	#tween.chain().tween_property(bf_shader_holder.material, "shader_parameter/progress", 0.25, 0.01)
+	#tween.chain().tween_property(bf_shader_holder.material, "shader_parameter/progress", 0, 0.2)
 	#bf_shader_holder.self_modulate.a = 1
-	tween.chain().tween_property(bf_shader_holder.material, "shader_parameter/progress", 0, 1)
+	tween.chain().tween_property(bf_shader_holder.material, "shader_parameter/progress", 0, 0.61)
 	tween.chain().tween_property(bf_shader_holder.material, "shader_parameter/progress", 1, 0.25)
-	tween.chain().tween_property(bf_shader_holder.material, "shader_parameter/progress", 1, 2)
-	tween.chain().tween_property(bf_shader_holder.material, "shader_parameter/progress", 0, 1)
-	tween.chain().tween_property(bf_shader_holder.material, "shader_parameter/progress", 0, 5)
-	await  tween.finished
+	tween.chain().tween_property(bf_shader_holder.material, "shader_parameter/progress", 1, 0.25)
+	tween.chain().tween_property(bf_shader_holder.material, "shader_parameter/progress", 0, 0.5)
+	
+
+func dragonsBreathHider():
 	bf_shader_holder.visible = false
-
-
 	

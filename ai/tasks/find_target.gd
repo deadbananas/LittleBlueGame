@@ -1,6 +1,6 @@
 extends BTAction
 
-@export var group: StringName
+@export var group: StringName = "Little_Blue"
 
 @export var target_var: StringName = &"target" 
 
