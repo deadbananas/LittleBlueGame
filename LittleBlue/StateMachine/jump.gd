@@ -18,6 +18,8 @@ var parry_state: State
 var hit_state: State
 @export
 var hit_lock_state: State
+@export
+var dash_state: State
 
 
 @export
@@ -40,10 +42,14 @@ func enter() -> void:
 	jumpTimer.wait_time = 0.7
 	jumpTimer.timeout.connect(timer_timeout)
 	jumpTimer.start()
+	
+func process_input(event: InputEvent) -> State:
+	if (Input.is_action_just_pressed("dash")):
+		return dash_state
+	return null
 
 
 func process_physics(delta: float) -> State:
-	print(parent.velocity.y)
 	if strike_big:
 		return hit_lock_state
 	if hit:
@@ -51,12 +57,10 @@ func process_physics(delta: float) -> State:
 		return hit_state
 	if get_jump() and !parent.double_jumped and doubleable:
 		parent.double_jumped = true
-		print("douible")
 		return double_jump_state
 		
 	parent.velocity.y += gravity * delta
 	if parent.velocity.y > 0:
-		print("max")
 		return jump_max_state
 	
 	var movement = get_movement_input() * move_speed

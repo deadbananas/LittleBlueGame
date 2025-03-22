@@ -365,10 +365,10 @@ func dragonsBreathScale(scaleX):
 	#tween.chain().tween_property(bf_shader_holder.material, "shader_parameter/progress", 0.25, 0.01)
 	#tween.chain().tween_property(bf_shader_holder.material, "shader_parameter/progress", 0, 0.2)
 	#bf_shader_holder.self_modulate.a = 1
-	tween.chain().tween_property(bf_shader_holder.material, "shader_parameter/progress", 0, 0.61)
+	#tween.chain().tween_property(bf_shader_holder.material, "shader_parameter/progress", 0, 0.61)
+	tween.chain().tween_property(bf_shader_holder.material, "shader_parameter/progress", 1, 0.2)
 	tween.chain().tween_property(bf_shader_holder.material, "shader_parameter/progress", 1, 0.25)
-	tween.chain().tween_property(bf_shader_holder.material, "shader_parameter/progress", 1, 0.25)
-	tween.chain().tween_property(bf_shader_holder.material, "shader_parameter/progress", 0, 0.5)
+	tween.chain().tween_property(bf_shader_holder.material, "shader_parameter/progress", 0, 0.175)
 	
 
 func dragonsBreathHider():

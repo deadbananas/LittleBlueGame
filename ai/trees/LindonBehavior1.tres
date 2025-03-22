@@ -708,6 +708,7 @@ animation_name = &"dragonsBreath"
 [sub_resource type="BTSequence" id="BTSequence_u0pl0"]
 custom_name = "dragons-breath"
 children = [SubResource("BTAction_mla4u"), SubResource("BTAction_fwy13"), SubResource("BTPlayAnimation_6ajqo")]
+metadata/_weight_ = 0.75
 
 [sub_resource type="BTProbabilitySelector" id="BTProbabilitySelector_g1e78"]
 custom_name = "Action_when_close"
@@ -857,7 +858,7 @@ children = [SubResource("BTAction_q8bmb"), SubResource("BTAction_d12cv"), SubRes
 [sub_resource type="BTRandomSequence" id="BTRandomSequence_akp01"]
 custom_name = "FaffSelector"
 children = [SubResource("BTSequence_wxshv"), SubResource("BTSequence_70p2j")]
-metadata/_weight_ = 0.4
+metadata/_weight_ = 0.0
 
 [sub_resource type="BTProbabilitySelector" id="BTProbabilitySelector_7rw51"]
 custom_name = "Action"

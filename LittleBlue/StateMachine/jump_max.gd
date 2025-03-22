@@ -10,8 +10,11 @@ var double_jump_state: State
 var fall_state: State
 @export
 var hit_state: State
+@export
+var dash_state: State
 @onready
 var timer = $fall_timer
+
 
 
 var falling = 0
@@ -23,6 +26,13 @@ func enter() -> void:
 	timer.start()
 	falling = 0
 	hit = false
+
+
+func process_input(event: InputEvent) -> State:
+	if (Input.is_action_just_pressed("dash")):
+		return dash_state
+	return null
+
 
 func process_physics(delta: float) -> State:
 	

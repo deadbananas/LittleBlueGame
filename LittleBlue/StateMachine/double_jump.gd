@@ -14,6 +14,8 @@ var parry_state: State
 var hit_state: State
 @export
 var hit_lock_state: State
+@export
+var dash_state: State
 
 @export
 var jump_force: float = 600.0
@@ -27,6 +29,10 @@ func enter() -> void:
 	hit = false
 	strike_big = false
 	
+func process_input(event: InputEvent) -> State:
+	if (Input.is_action_just_pressed("dash")):
+		return dash_state
+	return null
 
 
 func process_physics(delta: float) -> State:

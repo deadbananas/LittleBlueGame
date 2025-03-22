@@ -8,6 +8,8 @@ var move_state: State
 var double_jump_state: State
 @export
 var hit_state: State
+@export
+var dash_state: State
 
 
 var hit = false
@@ -15,7 +17,13 @@ var hit = false
 func enter() -> void:
 	super()
 	hit = false
-	
+
+
+func process_input(event: InputEvent) -> State:
+	if (Input.is_action_just_pressed("dash")):
+		return dash_state
+	return null
+
 
 func process_physics(delta: float) -> State:
 	if hit:
