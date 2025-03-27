@@ -1,4 +1,4 @@
-[gd_scene load_steps=121 format=3 uid="uid://cemmkhino63ca"]
+[gd_scene load_steps=125 format=3 uid="uid://cemmkhino63ca"]
 
 [ext_resource type="Script" path="res://Components/hitbox.gd" id="1_isybl"]
 [ext_resource type="Script" path="res://LittleBlue/main_character.gd" id="1_silm2"]
@@ -35,6 +35,9 @@
 [ext_resource type="Script" path="res://LittleBlue/shrink_final.gd" id="30_5o8dl"]
 [ext_resource type="Script" path="res://addons/time_control/timeline.gd" id="30_wjpx1"]
 [ext_resource type="Resource" uid="uid://dovo5yrk24mr" path="res://addons/time_control/resources/player_clock.tres" id="31_c8kpx"]
+[ext_resource type="Script" path="res://LittleBlue/small_enter.gd" id="32_jpqmn"]
+[ext_resource type="Script" path="res://LittleBlue/small.gd" id="32_ocmwp"]
+[ext_resource type="Script" path="res://LittleBlue/small_leave.gd" id="34_ea1ha"]
 [ext_resource type="Shader" path="res://shaders/shockwave.gdshader" id="35_s7jlx"]
 [ext_resource type="Script" path="res://LittleBlue/shockwave.gd" id="36_siggo"]
 
@@ -268,6 +271,54 @@ tracks/18/keys = {
 "update": 1,
 "values": [0]
 }
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("LittleBlue_sheets/shrink:position")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("LittleBlue_sheets/shrink:rotation")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/21/type = "value"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("LittleBlue_sheets/shrink:scale")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/22/type = "value"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("LittleBlue_sheets/shrink:skew")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_cyf24"]
 resource_name = "attack1"
@@ -446,7 +497,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_j5p5l"]
 resource_name = "idle"
-length = 0.55
+length = 0.8
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -455,9 +506,9 @@ tracks/0/path = NodePath("LittleBlue_sheets/idle:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.151901, 0.301924, 0.454832),
+"times": PackedFloat32Array(0, 0.196333, 0.422402, 0.635122),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
+"update": 1,
 "values": [0, 1, 2, 3]
 }
 
@@ -625,6 +676,71 @@ tracks/2/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_5qgp1"]
+resource_name = "small_leave"
+length = 0.11
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LittleBlue_sheets/shrink:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.10016),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LittleBlue_sheets/shrink:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.10016),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("LittleBlue_sheets/shrink:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.10016),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [-2.0944, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LittleBlue_sheets/shrink:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.10016),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("LittleBlue_sheets/shrink:skew")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.10016),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [-0.244346, 0.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_p10ys"]
 _data = {
 "RESET": SubResource("Animation_uboeb"),
@@ -639,7 +755,8 @@ _data = {
 "move": SubResource("Animation_fdv3t"),
 "parry": SubResource("Animation_hio3q"),
 "shrink_counter": SubResource("Animation_vo5fi"),
-"shrink_finale": SubResource("Animation_vkt7m")
+"shrink_finale": SubResource("Animation_vkt7m"),
+"small_leave": SubResource("Animation_5qgp1")
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qgl01"]
@@ -1141,6 +1258,7 @@ libraries = {
 material = SubResource("ShaderMaterial_qgl01")
 
 [node name="idle" type="Sprite2D" parent="LittleBlue_sheets"]
+visible = false
 texture_filter = 1
 texture = ExtResource("3_wprim")
 hframes = 4
@@ -1273,7 +1391,7 @@ shape = SubResource("CapsuleShape2D_7orgb")
 script = ExtResource("8_14aup")
 starting_state = NodePath("idle")
 
-[node name="idle" type="Node" parent="state_machine" node_paths=PackedStringArray("move_state", "jump_state", "fall_state", "attack_state", "parry_state", "hit_state", "hit_lock_state", "dash_state", "sprite_associated")]
+[node name="idle" type="Node" parent="state_machine" node_paths=PackedStringArray("move_state", "jump_state", "fall_state", "attack_state", "parry_state", "hit_state", "hit_lock_state", "dash_state", "small_enter_state", "sprite_associated")]
 script = ExtResource("10_0hbx2")
 move_state = NodePath("../move")
 jump_state = NodePath("../jump")
@@ -1283,10 +1401,11 @@ parry_state = NodePath("../parry")
 hit_state = NodePath("../hit")
 hit_lock_state = NodePath("../hit_lock")
 dash_state = NodePath("../dash")
+small_enter_state = NodePath("../small_enter")
 animation_name = "idle"
 sprite_associated = NodePath("../../LittleBlue_sheets/idle")
 
-[node name="move" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "jump_state", "fall_state", "attack_state", "parry_state", "hit_state", "hit_lock_state", "dash_state", "shrink_start_r_state", "timeline", "sprite_associated")]
+[node name="move" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "jump_state", "fall_state", "attack_state", "parry_state", "hit_state", "hit_lock_state", "dash_state", "shrink_start_r_state", "small_enter_state", "timeline", "sprite_associated")]
 script = ExtResource("11_81y20")
 idle_state = NodePath("../idle")
 jump_state = NodePath("../jump")
@@ -1297,6 +1416,7 @@ hit_state = NodePath("../hit")
 hit_lock_state = NodePath("../hit_lock")
 dash_state = NodePath("../dash")
 shrink_start_r_state = NodePath("../shrink_start_r")
+small_enter_state = NodePath("../small_enter")
 timeline = NodePath("../../Timeline")
 animation_name = "move"
 sprite_associated = NodePath("../../LittleBlue_sheets/move")
@@ -1450,6 +1570,32 @@ move_state = NodePath("../move")
 animation_name = "shrink_finale"
 sprite_associated = NodePath("../../LittleBlue_sheets/shrink")
 
+[node name="small_enter" type="Node" parent="state_machine" node_paths=PackedStringArray("small_state", "fall_state", "hit_state", "hit_lock_state", "sprite_associated")]
+script = ExtResource("32_jpqmn")
+small_state = NodePath("../small")
+fall_state = NodePath("../fall")
+hit_state = NodePath("../hit")
+hit_lock_state = NodePath("../hit_lock")
+animation_name = "shrink_counter"
+sprite_associated = NodePath("../../LittleBlue_sheets/shrink")
+
+[node name="small" type="Node" parent="state_machine" node_paths=PackedStringArray("jump_state", "fall_state", "hit_state", "hit_lock_state", "small_leave_state", "sprite_associated")]
+script = ExtResource("32_ocmwp")
+jump_state = NodePath("../jump")
+fall_state = NodePath("../fall")
+hit_state = NodePath("../hit")
+hit_lock_state = NodePath("../hit_lock")
+small_leave_state = NodePath("../small_leave")
+animation_name = "move"
+sprite_associated = NodePath("../../LittleBlue_sheets/move")
+
+[node name="small_leave" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "move_state", "sprite_associated")]
+script = ExtResource("34_ea1ha")
+idle_state = NodePath("../idle")
+move_state = NodePath("../move")
+animation_name = "small_leave"
+sprite_associated = NodePath("../../LittleBlue_sheets/shrink")
+
 [node name="hurtbox" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 64
@@ -1506,6 +1652,8 @@ script = ExtResource("36_siggo")
 [connection signal="pass_strike" from="." to="state_machine/idle" method="_on_little_blue_pass_strike"]
 [connection signal="pass_strike" from="." to="state_machine/move" method="_on_little_blue_pass_strike"]
 [connection signal="pass_strike" from="." to="state_machine/jump" method="_on_little_blue_pass_strike"]
+[connection signal="pass_strike" from="." to="state_machine/small" method="_on_little_blue_pass_strike"]
+[connection signal="pass_strike" from="." to="state_machine/small_enter" method="_on_little_blue_pass_strike"]
 [connection signal="shrink_pass" from="." to="state_machine/shrink_run_r" method="_on_little_blue_shrink_pass"]
 [connection signal="area_entered" from="LittleBlue_sheets/parry/Parry" to="." method="_on_parry_area_entered"]
 [connection signal="area_entered" from="LittleBlue_sheets/parry/Parry" to="state_machine/parry" method="_on_parry_area_entered"]
@@ -1527,6 +1675,8 @@ script = ExtResource("36_siggo")
 [connection signal="received_hit" from="hurtbox" to="state_machine/parry" method="_on_hurtbox_received_hit"]
 [connection signal="received_hit" from="hurtbox" to="state_machine/hit" method="_on_hurtbox_received_hit"]
 [connection signal="received_hit" from="hurtbox" to="state_machine/hit_lock" method="_on_hurtbox_received_hit"]
+[connection signal="received_hit" from="hurtbox" to="state_machine/small" method="_on_hurtbox_received_hit"]
+[connection signal="received_hit" from="hurtbox" to="state_machine/small_enter" method="_on_hurtbox_received_hit"]
 [connection signal="received_knockback" from="hurtbox" to="state_machine/parry" method="_on_hurtbox_received_knockback"]
 [connection signal="received_knockback" from="hurtbox" to="state_machine/hit" method="_on_hurtbox_received_knockback"]
 [connection signal="area_entered" from="Area2D" to="move_component" method="_on_area_2d_area_entered"]

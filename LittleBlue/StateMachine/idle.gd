@@ -17,6 +17,8 @@ var hit_state: State
 var hit_lock_state: State
 @export
 var dash_state: State
+@export
+var small_enter_state: State
 
 var strike_big = false
 var hit = false
@@ -39,6 +41,8 @@ func process_input(event: InputEvent) -> State:
 	if (Input.is_action_just_pressed("dash")):
 		print("dash")
 		return dash_state
+	if get_small():
+		return small_enter_state
 	return null
 
 func process_physics(delta: float) -> State:

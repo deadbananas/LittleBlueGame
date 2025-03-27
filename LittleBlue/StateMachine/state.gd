@@ -40,3 +40,6 @@ func get_jump() -> bool:
 	
 func get_shrink() -> float:
 	return move_component.wants_shrink()
+	
+func get_small() -> bool:
+	return move_component.wants_small()

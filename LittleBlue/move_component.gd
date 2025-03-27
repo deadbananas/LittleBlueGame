@@ -9,6 +9,7 @@ var lindon
 var area11 : Area2D
 var inArea = false
 
+
 #get direction to Lindon
 func get_lindon():
 	var nodes = get_tree().get_nodes_in_group("Lindon")
@@ -77,6 +78,12 @@ func wants_shrink() -> float:
 	if shrink != 0 and parry_wait and inArea:
 		shrink_manager = shrink
 	return shrink_manager
+	
+	
+func wants_small():
+	print(Input.is_action_pressed("small"))
+	return Input.is_action_pressed("small")
+	
 
 
 func _on_area_2d_area_entered(area):
