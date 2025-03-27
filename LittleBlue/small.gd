@@ -53,8 +53,7 @@ func process_physics(delta: float) -> State:
 	else:
 		flip = 1.0
 	sprite.scale.x = flip
-	parent.velocity.x = movement
-
+	parent.velocity.x = movement * 0.5
 	parent.move_and_slide()
 
 	return null

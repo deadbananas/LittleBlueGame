@@ -81,7 +81,6 @@ func wants_shrink() -> float:
 	
 	
 func wants_small():
-	print(Input.is_action_pressed("small"))
 	return Input.is_action_pressed("small")
 	
 

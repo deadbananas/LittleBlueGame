@@ -17,6 +17,8 @@ var struck_big = false
 func enter() -> void:
 	super()
 	is_complete = false
+	hit = false
+	struck_big = false
 	await animations.animation_finished
 	is_complete = true
 
@@ -30,6 +32,7 @@ func process_physics(delta: float) -> State:
 		
 	if is_complete:
 		return small_state
+		
 	
 	if !parent.is_on_floor():
 		return fall_state

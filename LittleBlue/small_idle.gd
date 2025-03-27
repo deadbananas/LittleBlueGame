@@ -45,16 +45,9 @@ func process_physics(delta: float) -> State:
 	parent.velocity.y += gravity * delta
 		
 	var movement = get_movement_input() * move_speed
-	var flip = 1.0
 	if movement != 0:
 		return small_state
-	if movement < 0:
-		flip = -1.0
-	else:
-		flip = 1.0
-	sprite.scale.x = flip
-	#parent.velocity.x = movement
-
+	parent.velocity.x = 0
 	parent.move_and_slide()
 
 	return null

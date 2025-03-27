@@ -251,12 +251,12 @@ func countered():
 	
 	
 func parried():
-	timeScale = 0.5
+	timeScale = 0.2
 	var parryTimer : Timer = Timer.new()
 	add_child(parryTimer)
 	parryTimer.one_shot = true
 	parryTimer.autostart = true
-	parryTimer.wait_time = 0.2
+	parryTimer.wait_time = 0.5
 	parryTimer.timeout.connect(parry_timer_timeout)
 	parryTimer.start()
 	will -= 3
