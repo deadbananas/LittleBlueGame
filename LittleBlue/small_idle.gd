@@ -11,7 +11,7 @@ var hit_lock_state: State
 @export
 var small_leave_state: State
 @export
-var small_idle_state: State
+var small_state: State
 
 @onready var hitbox_attack_1 = $"../../LittleBlue_sheets/attack/hitbox-attack-1"
 @onready var hitbox_attack_2 = $"../../LittleBlue_sheets/attack/hitbox-attack-2"
@@ -46,14 +46,14 @@ func process_physics(delta: float) -> State:
 		
 	var movement = get_movement_input() * move_speed
 	var flip = 1.0
-	if movement == 0 :
-		return small_idle_state
+	if movement != 0:
+		return small_state
 	if movement < 0:
 		flip = -1.0
 	else:
 		flip = 1.0
 	sprite.scale.x = flip
-	parent.velocity.x = movement
+	#parent.velocity.x = movement
 
 	parent.move_and_slide()
 

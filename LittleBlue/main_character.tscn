@@ -1,4 +1,4 @@
-[gd_scene load_steps=125 format=3 uid="uid://cemmkhino63ca"]
+[gd_scene load_steps=126 format=3 uid="uid://cemmkhino63ca"]
 
 [ext_resource type="Script" path="res://Components/hitbox.gd" id="1_isybl"]
 [ext_resource type="Script" path="res://LittleBlue/main_character.gd" id="1_silm2"]
@@ -38,6 +38,7 @@
 [ext_resource type="Script" path="res://LittleBlue/small_enter.gd" id="32_jpqmn"]
 [ext_resource type="Script" path="res://LittleBlue/small.gd" id="32_ocmwp"]
 [ext_resource type="Script" path="res://LittleBlue/small_leave.gd" id="34_ea1ha"]
+[ext_resource type="Script" path="res://LittleBlue/small_idle.gd" id="34_j36ho"]
 [ext_resource type="Shader" path="res://shaders/shockwave.gdshader" id="35_s7jlx"]
 [ext_resource type="Script" path="res://LittleBlue/shockwave.gd" id="36_siggo"]
 
@@ -1579,15 +1580,27 @@ hit_lock_state = NodePath("../hit_lock")
 animation_name = "shrink_counter"
 sprite_associated = NodePath("../../LittleBlue_sheets/shrink")
 
-[node name="small" type="Node" parent="state_machine" node_paths=PackedStringArray("jump_state", "fall_state", "hit_state", "hit_lock_state", "small_leave_state", "sprite_associated")]
+[node name="small" type="Node" parent="state_machine" node_paths=PackedStringArray("jump_state", "fall_state", "hit_state", "hit_lock_state", "small_leave_state", "small_idle_state", "sprite_associated")]
 script = ExtResource("32_ocmwp")
 jump_state = NodePath("../jump")
 fall_state = NodePath("../fall")
 hit_state = NodePath("../hit")
 hit_lock_state = NodePath("../hit_lock")
 small_leave_state = NodePath("../small_leave")
+small_idle_state = NodePath("../small_idle")
 animation_name = "move"
 sprite_associated = NodePath("../../LittleBlue_sheets/move")
+
+[node name="small_idle" type="Node" parent="state_machine" node_paths=PackedStringArray("jump_state", "fall_state", "hit_state", "hit_lock_state", "small_leave_state", "small_state", "sprite_associated")]
+script = ExtResource("34_j36ho")
+jump_state = NodePath("../jump")
+fall_state = NodePath("../fall")
+hit_state = NodePath("../hit")
+hit_lock_state = NodePath("../hit_lock")
+small_leave_state = NodePath("../small_leave")
+small_state = NodePath("../small")
+animation_name = "idle"
+sprite_associated = NodePath("../../LittleBlue_sheets/idle")
 
 [node name="small_leave" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "move_state", "sprite_associated")]
 script = ExtResource("34_ea1ha")
@@ -1652,8 +1665,8 @@ script = ExtResource("36_siggo")
 [connection signal="pass_strike" from="." to="state_machine/idle" method="_on_little_blue_pass_strike"]
 [connection signal="pass_strike" from="." to="state_machine/move" method="_on_little_blue_pass_strike"]
 [connection signal="pass_strike" from="." to="state_machine/jump" method="_on_little_blue_pass_strike"]
-[connection signal="pass_strike" from="." to="state_machine/small" method="_on_little_blue_pass_strike"]
 [connection signal="pass_strike" from="." to="state_machine/small_enter" method="_on_little_blue_pass_strike"]
+[connection signal="pass_strike" from="." to="state_machine/small" method="_on_little_blue_pass_strike"]
 [connection signal="shrink_pass" from="." to="state_machine/shrink_run_r" method="_on_little_blue_shrink_pass"]
 [connection signal="area_entered" from="LittleBlue_sheets/parry/Parry" to="." method="_on_parry_area_entered"]
 [connection signal="area_entered" from="LittleBlue_sheets/parry/Parry" to="state_machine/parry" method="_on_parry_area_entered"]
@@ -1675,8 +1688,8 @@ script = ExtResource("36_siggo")
 [connection signal="received_hit" from="hurtbox" to="state_machine/parry" method="_on_hurtbox_received_hit"]
 [connection signal="received_hit" from="hurtbox" to="state_machine/hit" method="_on_hurtbox_received_hit"]
 [connection signal="received_hit" from="hurtbox" to="state_machine/hit_lock" method="_on_hurtbox_received_hit"]
-[connection signal="received_hit" from="hurtbox" to="state_machine/small" method="_on_hurtbox_received_hit"]
 [connection signal="received_hit" from="hurtbox" to="state_machine/small_enter" method="_on_hurtbox_received_hit"]
+[connection signal="received_hit" from="hurtbox" to="state_machine/small" method="_on_hurtbox_received_hit"]
 [connection signal="received_knockback" from="hurtbox" to="state_machine/parry" method="_on_hurtbox_received_knockback"]
 [connection signal="received_knockback" from="hurtbox" to="state_machine/hit" method="_on_hurtbox_received_knockback"]
 [connection signal="area_entered" from="Area2D" to="move_component" method="_on_area_2d_area_entered"]
