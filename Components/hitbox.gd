@@ -14,6 +14,7 @@ signal parried_signal(damage)
 func parried():
 	parried_signal.emit(damage)
 
+
 func set_damage(value: int):
 	damage = value
 	

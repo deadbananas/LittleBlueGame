@@ -138,7 +138,7 @@ method = &"basic_combo_anims_exit"
 [sub_resource type="BTSequence" id="BTSequence_201od"]
 custom_name = "full"
 children = [SubResource("BTCallMethod_53gmg"), SubResource("BTPlayAnimation_flciv"), SubResource("BTRepeatUntilSuccess_7r4y5"), SubResource("BTPauseAnimation_rtbo7"), SubResource("BTAction_mplgq"), SubResource("BTRepeatUntilSuccess_4s1h5"), SubResource("BTPlayAnimation_oivmm"), SubResource("BTCallMethod_g1p6c")]
-metadata/_weight_ = 1.0
+metadata/_weight_ = 0.0
 
 [sub_resource type="BTProbabilitySelector" id="BTProbabilitySelector_8nkfl"]
 custom_name = "inRangeProbSelect"
@@ -314,7 +314,7 @@ method = &"basic_combo_anims_exit"
 [sub_resource type="BTSequence" id="BTSequence_l4dm2"]
 custom_name = "full"
 children = [SubResource("BTCallMethod_nvcuv"), SubResource("BTPlayAnimation_xjfft"), SubResource("BTPauseAnimation_mb4gi"), SubResource("BTRepeatUntilSuccess_snj23"), SubResource("BTPlayAnimation_jd6as"), SubResource("BTRepeatUntilSuccess_hvb4v"), SubResource("BTPauseAnimation_jfa6y"), SubResource("BTAction_qeq5j"), SubResource("BTRepeatUntilSuccess_y0xky"), SubResource("BTPlayAnimation_gngql"), SubResource("BTCallMethod_0kl20")]
-metadata/_weight_ = 1.0
+metadata/_weight_ = 0.0
 
 [sub_resource type="BTProbabilitySelector" id="BTProbabilitySelector_4gvme"]
 children = [SubResource("BTSequence_fwljl"), SubResource("BTSequence_l4dm2")]

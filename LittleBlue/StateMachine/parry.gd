@@ -25,16 +25,21 @@ var monitor = true
 
 var knockback
 
+var area
+
 var is_complete := false
 #var wants_follow_up := false
+
+signal parrying()
+signal endParrying()
 
 func enter() -> void:
 	is_complete = false
 	hit = false
 	stopped = false
 	monitor = true
+	parrying.emit()
 	knockback = Vector2(0,0)
-	#wants_follow_up = false
 	super()
 	await animations.animation_finished
 	is_complete = true
@@ -52,7 +57,6 @@ func process_physics(delta: float) -> State:
 		
 	var shrink = get_shrink()
 	if shrink != 0:
-		print(shrink)
 		if shrink == 1.0:
 			return shrink_start_r_state
 				
@@ -82,47 +86,10 @@ func process_physics(delta: float) -> State:
 		return fall_state
 	return null
 	
-	
-	
-func _on_hurtbox_received_hit(damage, time_scale, duration):
-	if !stopped:
-		hit = true
-	
-	
-	
-
-
-func _on_parry_area_entered(area: Area2D) -> void:
-	stopped = true
-	#frameFreeze(0.1, 0.4)
-	if area.has_method("parried") and monitor:
-		area.parried()
-		var hitTimer : Timer = Timer.new()
-		var knock_dir = Vector2(area.get_knockbackDirHori(), area.get_knockbackDirVert())
-		var rel_pos =area.global_position.direction_to(hurtbox.global_position)
-		knockbackCalc(knock_dir, (area.get_knockback()) * 30, rel_pos)
-		add_child(hitTimer)
-		hitTimer.one_shot = true
-		hitTimer.autostart = true
-		hitTimer.wait_time = 0.5
-		hitTimer.timeout.connect(hitable_timer_timeout)
-		hitTimer.start()
-		hurtbox.hitable = false
-		hurtbox.parried = true
-		monitor = false
-		print("IM INVINCIBLEE")
-
-	
-func hitable_timer_timeout():
-	hurtbox.hitable = true
-	hurtbox.parried = false
+func exit():
+	super()
+	endParrying.emit()
 	knockback = Vector2(0,0)
-
-func _on_block_area_entered(area: Area2D) -> void:
-	stopped = true
-	if monitor:
-		print("blocked")
-
 
 func frameFreeze(time_scale, duration):
 	Engine.time_scale = time_scale
@@ -137,3 +104,10 @@ func knockbackCalc(knock_dir_mod: Vector2, knock_force: float, relative_pos: Vec
 		var knockback_applied = knock_dir_mod * knock_force
 		knockback_applied.x = knockback_applied.x * -1
 		parent.velocity = knockback_applied
+
+
+func _on_hurtbox_hitbox_holder(hitbox):
+	area = hitbox
+	var knock_dir = Vector2(area.get_knockbackDirHori(), area.get_knockbackDirVert())
+	var rel_pos =area.global_position.direction_to(hurtbox.global_position)
+	knockbackCalc(knock_dir, (area.get_knockback()) * 30, rel_pos)
