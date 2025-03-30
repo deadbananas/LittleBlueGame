@@ -37,7 +37,6 @@ func process_physics(delta: float) -> State:
 		return hit_lock_state
 	if hit:
 		hit = false
-		print("hit")
 		return hit_state
 		
 	if get_jump() and parent.is_on_floor():

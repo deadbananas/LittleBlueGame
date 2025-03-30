@@ -28,6 +28,8 @@ const Timeline = preload("res://addons/time_control/timeline.gd")
 
 @export var timeline: Timeline
 
+@export var shrinkValHolder: Node
+
 var hit = false
 var struck_big = false
 
@@ -59,9 +61,14 @@ func process_physics(delta: float) -> State:
 		
 	if get_jump() and parent.is_on_floor():
 		return jump_state
-	var shrink = get_shrink()
+		
+	var shrink : float = get_shrink()
 	if shrink != 0:
 		if shrink == 1.0:
+			shrinkValHolder.set_shrink_side(true)
+			return shrink_start_r_state
+		elif shrink == 0.5:
+			shrinkValHolder.set_shrink_side(false)
 			return shrink_start_r_state
 		
 

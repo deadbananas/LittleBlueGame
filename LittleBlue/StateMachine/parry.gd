@@ -30,6 +30,10 @@ var area
 var is_complete := false
 #var wants_follow_up := false
 
+
+@export var shrinkValHolder: Node
+
+
 signal parrying()
 signal endParrying()
 
@@ -58,6 +62,10 @@ func process_physics(delta: float) -> State:
 	var shrink = get_shrink()
 	if shrink != 0:
 		if shrink == 1.0:
+			shrinkValHolder.set_shrink_side(true)
+			return shrink_start_r_state
+		elif shrink == 0.5:
+			shrinkValHolder.set_shrink_side(false)
 			return shrink_start_r_state
 				
 	if get_jump() and parent.is_on_floor():

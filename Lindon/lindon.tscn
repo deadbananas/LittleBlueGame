@@ -1472,7 +1472,7 @@ size = Vector2(44, 57)
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_jqcdi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2hjhm"]
-size = Vector2(37, 101)
+size = Vector2(37, 240.5)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_bmoue"]
 b = Vector2(0, 55)
@@ -1757,7 +1757,7 @@ monitoring = false
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="fistCheck"]
-position = Vector2(-9, -51)
+position = Vector2(-9, -120.75)
 shape = SubResource("RectangleShape2D_2hjhm")
 
 [node name="UI" type="CanvasLayer" parent="."]

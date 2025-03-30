@@ -72,7 +72,7 @@ func get_movement_direction() -> float:
 func wants_jump() -> bool:
 	return Input.is_action_just_pressed('jump')
 
-# Return a float where -1 = pure right, -0.5 = pure left, 0.5 = bf left 1 = bf right
+# Return a float where -1 = pure right, -0.5 = pure left, 0.5 = bf left, 1 = bf right
 func wants_shrink() -> float:
 	var shrink_manager = 0.0
 	if shrink != 0 and parry_wait and inArea:

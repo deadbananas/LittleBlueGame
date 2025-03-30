@@ -18,7 +18,13 @@ var hit_lock_state: State
 @export
 var dash_state: State
 @export
+var shrink_start_r_state: State
+@export
 var small_enter_state: State
+
+
+@export var shrinkValHolder: Node
+
 
 var strike_big = false
 var hit = false
@@ -29,6 +35,7 @@ func enter() -> void:
 	hit = false
 	strike_big = false
 	
+@warning_ignore("unused_parameter")
 func process_input(event: InputEvent) -> State:
 	if get_jump() and parent.is_on_floor():
 		return jump_state
@@ -51,6 +58,16 @@ func process_physics(delta: float) -> State:
 	if hit:
 		hit = false
 		return hit_state
+	
+	var shrink = get_shrink()
+	if shrink != 0:
+		if shrink == 1.0:
+			return shrink_start_r_state
+		elif shrink == 0.5:
+			shrinkValHolder.set_shrink_side(false)
+			return shrink_start_r_state
+	
+	
 	parent.velocity.y += gravity * delta
 	parent.move_and_slide()
 	
@@ -59,6 +76,7 @@ func process_physics(delta: float) -> State:
 	return null
 
 
+@warning_ignore("unused_parameter")
 func _on_hurtbox_received_hit(damage, time_scale, duration):
 	hit = true
 

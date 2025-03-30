@@ -9,11 +9,20 @@ var move_state: State
 var is_complete = false
 @onready var camera_2d = $"../../Camera2D"
 
+var offsetSet = 0
+
+@export var shrinkValHolder: Node
+
 func enter() -> void:
 	super()
 	is_complete = false
 	animations.speed_scale = 1
 	parent.scale = Vector2(1, 1)
+	var shrink_r = shrinkValHolder.get_shrink_side()
+	if shrink_r:
+		offsetSet = 50
+	else:
+		offsetSet  = -50
 	await animations.animation_finished
 	is_complete = true
 
@@ -29,6 +38,6 @@ func process_physics(delta: float) -> State:
 
 func exit() -> void:
 	super()
-	parent.position = parent.position + Vector2(50, 0)
+	parent.position = parent.position + Vector2(offsetSet, 0)
 	camera_2d.zoom = Vector2(1,1)
 	camera_2d.offset = Vector2(0, -75)
