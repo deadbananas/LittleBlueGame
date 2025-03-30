@@ -475,7 +475,7 @@ metadata/_weight_ = 0.4
 [sub_resource type="BTSequence" id="BTSequence_ngckt"]
 custom_name = "Basic_attack_combo"
 children = [SubResource("BTAction_cqtrh"), SubResource("BTSelector_usayb"), SubResource("BTRandomSequence_wlnhp")]
-metadata/_weight_ = 2.26
+metadata/_weight_ = 0.0
 
 [sub_resource type="BTWait" id="BTWait_y6aqy"]
 duration = 0.5
@@ -695,7 +695,7 @@ children = [SubResource("BTSequence_42oui"), SubResource("BTAlwaysSucceed_ro7er"
 [sub_resource type="BTSequence" id="BTSequence_q41sb"]
 custom_name = "rock-kick"
 children = [SubResource("BTAction_snxjc"), SubResource("BTAction_1xqla"), SubResource("BTPlayAnimation_tej4b"), SubResource("BTProbabilitySelector_6e73w")]
-metadata/_weight_ = 0.0
+metadata/_weight_ = 1.0
 
 [sub_resource type="BTAction" id="BTAction_mla4u"]
 script = ExtResource("1_it5bj")
@@ -720,7 +720,7 @@ animation_name = &"dragonsBreath"
 [sub_resource type="BTSequence" id="BTSequence_u0pl0"]
 custom_name = "dragons-breath"
 children = [SubResource("BTAction_mla4u"), SubResource("BTAction_fwy13"), SubResource("BTPlayAnimation_6ajqo")]
-metadata/_weight_ = 0.0
+metadata/_weight_ = 1.0
 
 [sub_resource type="BTProbabilitySelector" id="BTProbabilitySelector_g1e78"]
 custom_name = "Action_when_close"
