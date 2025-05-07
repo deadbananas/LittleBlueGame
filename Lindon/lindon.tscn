@@ -2231,6 +2231,7 @@ disabled = true
 debug_color = Color(0.909523, 0.000110316, 0.733093, 0.42)
 
 [node name="dragonDescends" type="Sprite2D" parent="fiststrikebc"]
+visible = false
 texture_filter = 1
 position = Vector2(-3, -64)
 texture = ExtResource("16_q8asx")

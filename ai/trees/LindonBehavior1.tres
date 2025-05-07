@@ -1,4 +1,4 @@
-[gd_resource type="BehaviorTree" load_steps=216 format=3 uid="uid://ndc4u1m3kex3"]
+[gd_resource type="BehaviorTree" load_steps=224 format=3 uid="uid://ndc4u1m3kex3"]
 
 [ext_resource type="Script" path="res://ai/tasks/find_target.gd" id="1_it5bj"]
 [ext_resource type="Script" path="res://ai/tasks/moveToTarget.gd" id="2_52qia"]
@@ -872,9 +872,45 @@ custom_name = "FaffSelector"
 children = [SubResource("BTSequence_wxshv"), SubResource("BTSequence_70p2j")]
 metadata/_weight_ = 0.0
 
+[sub_resource type="BTAction" id="BTAction_msowl"]
+script = ExtResource("1_it5bj")
+group = &"Little_Blue"
+target_var = &"target"
+
+[sub_resource type="BTAction" id="BTAction_j3e7r"]
+script = ExtResource("6_seblu")
+target_var = &"target"
+speed_var = 800
+distance = 200
+
+[sub_resource type="BBNode" id="BBNode_vh1yj"]
+saved_value = NodePath("AnimationPlayer")
+resource_name = "AnimationPlayer"
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_fugwr"]
+await_completion = 1.58
+animation_player = SubResource("BBNode_vh1yj")
+animation_name = &"descends_try"
+
+[sub_resource type="BBNode" id="BBNode_ktkaq"]
+saved_value = NodePath("AnimationPlayer")
+resource_name = "AnimationPlayer"
+
+[sub_resource type="BTPauseAnimation" id="BTPauseAnimation_wu6ga"]
+animation_player = SubResource("BBNode_ktkaq")
+
+[sub_resource type="BTAction" id="BTAction_l082q"]
+script = ExtResource("1_it5bj")
+group = &"Little_Blue"
+target_var = &"target"
+
+[sub_resource type="BTSequence" id="BTSequence_srvcn"]
+custom_name = "LeapUpDescendBasic"
+children = [SubResource("BTAction_msowl"), SubResource("BTAction_j3e7r"), SubResource("BTPlayAnimation_fugwr"), SubResource("BTPauseAnimation_wu6ga"), SubResource("BTAction_l082q")]
+
 [sub_resource type="BTProbabilitySelector" id="BTProbabilitySelector_7rw51"]
 custom_name = "Action"
-children = [SubResource("BTSequence_11vmb"), SubResource("BTRandomSequence_akp01")]
+children = [SubResource("BTSequence_11vmb"), SubResource("BTRandomSequence_akp01"), SubResource("BTSequence_srvcn")]
 
 [resource]
 blackboard_plan = SubResource("BlackboardPlan_cqoki")

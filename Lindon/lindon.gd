@@ -19,6 +19,9 @@ extends CharacterBody2D
 @onready var anim_parried = $fiststrikebc/Parried_Sprite
 @onready var anim_dragons_breath = $fiststrikebc/dragonsBreath
 @onready var anim_breath_start_up = $fiststrikebc/breathStartUp
+@onready var anim_dragonDescends = $fiststrikebc/dragonDescends
+@onready var anim_dragonArm = $fiststrikebc/dragonArm
+@onready var anim_dragonBack = $fiststrikebc/descendsBck
 
 #Hitboxes
 @onready var fist_strike_hitbox = $fiststrikebc/LindonSprites/blackflame_fist_Strike_hitbox/fist_strike_hitbox
@@ -204,6 +207,14 @@ func dragons_breath_anims_exit():
 	anim_dragons_breath.visible = false
 	anim_LindonSprites.visible = true
 	
+func descends_anims_enter():
+	anim_walk_forward.visible = false
+	anim_LindonSprites.visible = false
+	anim_dragonDescends.visible = true
+	
+func descends_anims_exit():
+	anim_LindonSprites.visible = true
+	anim_dragonDescends.visible = false
 	
 func spawn_rock():
 	instance = rock.instantiate()
@@ -261,6 +272,7 @@ func parried():
 	parryTimer.start()
 	will -= 3
 	
+	
 func flash():
 	spriteMat.material.set_shader_parameter("flash_mod", 0.98)
 	bf_spriteMat.material.set_shader_parameter("flash_mod", 0.98)
@@ -276,6 +288,8 @@ func flash():
 func flash_timer_timeout():
 	spriteMat.material.set_shader_parameter("flash_mod", 0.0)
 	bf_spriteMat.material.set_shader_parameter("flash_mod", 0.0)
+	
+	
 func parry_timer_timeout():
 	timeScale = 1
 	
