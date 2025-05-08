@@ -1,4 +1,4 @@
-[gd_resource type="BehaviorTree" load_steps=243 format=3 uid="uid://ndc4u1m3kex3"]
+[gd_resource type="BehaviorTree" load_steps=250 format=3 uid="uid://ndc4u1m3kex3"]
 
 [ext_resource type="Script" path="res://ai/tasks/find_target.gd" id="1_it5bj"]
 [ext_resource type="Script" path="res://ai/tasks/moveToTarget.gd" id="2_52qia"]
@@ -885,7 +885,7 @@ target_var = &"target"
 script = ExtResource("6_seblu")
 target_var = &"target"
 speed_var = 800
-distance = 200
+distance = 225
 
 [sub_resource type="BBNode" id="BBNode_3ffdv"]
 saved_value = NodePath("AnimationPlayer")
@@ -918,9 +918,16 @@ saved_value = NodePath("AnimationPlayer")
 resource_name = "AnimationPlayer"
 
 [sub_resource type="BTPlayAnimation" id="BTPlayAnimation_6ygt8"]
-await_completion = 0.75
+await_completion = 0.8
 animation_player = SubResource("BBNode_egskw")
 animation_name = &"descends_try"
+
+[sub_resource type="BBNode" id="BBNode_x26c2"]
+saved_value = NodePath("AnimationPlayer")
+resource_name = "AnimationPlayer"
+
+[sub_resource type="BTPauseAnimation" id="BTPauseAnimation_ke2fm"]
+animation_player = SubResource("BBNode_x26c2")
 
 [sub_resource type="BTAction" id="BTAction_1l1ls"]
 script = ExtResource("1_it5bj")
@@ -934,25 +941,49 @@ speed_var = 600
 hori_tolerance = 60
 vert_tolerance = 10
 
+[sub_resource type="BTTimeLimit" id="BTTimeLimit_wdyvl"]
+time_limit = 0.15
+children = [SubResource("BTAction_u2do2")]
+
+[sub_resource type="BTInvert" id="BTInvert_hnkiq"]
+children = [SubResource("BTTimeLimit_wdyvl")]
+
 [sub_resource type="BBNode" id="BBNode_vs18c"]
 saved_value = NodePath("AnimationPlayer")
 resource_name = "AnimationPlayer"
 
 [sub_resource type="BTPlayAnimation" id="BTPlayAnimation_slryb"]
-await_completion = 0.5
+await_completion = 0.1
 animation_player = SubResource("BBNode_vs18c")
 animation_name = &"descends_try"
-speed = 0.5
 
-[sub_resource type="BTParallel" id="BTParallel_hwq6c"]
-children = [SubResource("BTPlayAnimation_slryb")]
-
-[sub_resource type="BBNode" id="BBNode_x26c2"]
+[sub_resource type="BBNode" id="BBNode_ae41d"]
 saved_value = NodePath("AnimationPlayer")
 resource_name = "AnimationPlayer"
 
-[sub_resource type="BTPauseAnimation" id="BTPauseAnimation_ke2fm"]
-animation_player = SubResource("BBNode_x26c2")
+[sub_resource type="BTPauseAnimation" id="BTPauseAnimation_qqj7l"]
+animation_player = SubResource("BBNode_ae41d")
+
+[sub_resource type="BTAction" id="BTAction_77x7f"]
+script = ExtResource("1_it5bj")
+group = &"Little_Blue"
+target_var = &"target"
+
+[sub_resource type="BTAction" id="BTAction_tgsxs"]
+script = ExtResource("10_othmt")
+target_var = &"target"
+speed_var = 600
+hori_tolerance = 60
+vert_tolerance = 10
+
+[sub_resource type="BBNode" id="BBNode_e7y3c"]
+saved_value = NodePath("AnimationPlayer")
+resource_name = "AnimationPlayer"
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_4eu24"]
+await_completion = 0.15
+animation_player = SubResource("BBNode_e7y3c")
+animation_name = &"descends_try"
 
 [sub_resource type="BBNode" id="BBNode_g6ab5"]
 saved_value = NodePath("AnimationPlayer")
@@ -983,7 +1014,7 @@ animation_name = &"descends_try"
 
 [sub_resource type="BTSequence" id="BTSequence_nw5y3"]
 custom_name = "LeapUpDescendBasic"
-children = [SubResource("BTAction_u7emf"), SubResource("BTAction_uh54l"), SubResource("BTPlayAnimation_26tis"), SubResource("BTParallel_dggxc"), SubResource("BTPlayAnimation_6ygt8"), SubResource("BTAction_1l1ls"), SubResource("BTAction_u2do2"), SubResource("BTParallel_hwq6c"), SubResource("BTPauseAnimation_ke2fm"), SubResource("BTParallel_uc6gq"), SubResource("BTPlayAnimation_cqndq")]
+children = [SubResource("BTAction_u7emf"), SubResource("BTAction_uh54l"), SubResource("BTPlayAnimation_26tis"), SubResource("BTParallel_dggxc"), SubResource("BTPlayAnimation_6ygt8"), SubResource("BTPauseAnimation_ke2fm"), SubResource("BTAction_1l1ls"), SubResource("BTInvert_hnkiq"), SubResource("BTPlayAnimation_slryb"), SubResource("BTPauseAnimation_qqj7l"), SubResource("BTAction_77x7f"), SubResource("BTAction_tgsxs"), SubResource("BTPlayAnimation_4eu24"), SubResource("BTParallel_uc6gq"), SubResource("BTPlayAnimation_cqndq")]
 metadata/_weight_ = 3.0
 
 [sub_resource type="BTProbabilitySelector" id="BTProbabilitySelector_7rw51"]
