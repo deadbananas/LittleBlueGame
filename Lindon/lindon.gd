@@ -218,10 +218,9 @@ func descends_anims_enter():
 	anim_LindonSprites.visible = false
 	anim_dragonDescends.visible = true
 	
-#func descends_anims_rise():
-	#var next_position = 
-	#tween.tween_property(self, "global_position", next_position, 1.0/24.0)
-	#
+func descends_anims_ground():
+	global_position.y = -13.5
+	
 func descends_anims_exit():
 	anim_LindonSprites.visible = true
 	anim_dragonDescends.visible = false
