@@ -134,6 +134,11 @@ func move(dir,speed):
 	handle_anims()
 	update_flip(dir)
 	
+func descend(dir, speed):
+	velocity.x = dir.x * speed * timeline.time_scale
+	velocity.y = dir.y * (speed * 1.25) * timeline.time_scale
+
+
 func moveAway(dir,speed):
 	velocity.x = dir * speed * timeline.time_scale
 	handle_anims()
@@ -203,6 +208,7 @@ func dragons_breath_anims_enter():
 	anim_LindonSprites.visible = false
 	anim_dragons_breath.visible = true
 	
+	
 func dragons_breath_anims_exit():
 	anim_dragons_breath.visible = false
 	anim_LindonSprites.visible = true
@@ -212,9 +218,14 @@ func descends_anims_enter():
 	anim_LindonSprites.visible = false
 	anim_dragonDescends.visible = true
 	
+#func descends_anims_rise():
+	#var next_position = 
+	#tween.tween_property(self, "global_position", next_position, 1.0/24.0)
+	#
 func descends_anims_exit():
 	anim_LindonSprites.visible = true
 	anim_dragonDescends.visible = false
+	
 	
 func spawn_rock():
 	instance = rock.instantiate()
