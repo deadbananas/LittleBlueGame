@@ -21,9 +21,9 @@ func _enter():
 func _tick(_delta: float) -> Status:
 	var dir = agent.global_position.direction_to(goal_pos)
 	if agent.global_position.y <= goal_pos.y:
-		agent.descend(dir, 0)
+		agent.descend(dir, 0, dir.x)
 		return SUCCESS
 	else:
-		agent.descend(dir, speed_var)
+		agent.descend(dir, speed_var, dir.x)
 		return RUNNING	
 	return FAILURE

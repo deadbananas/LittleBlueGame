@@ -55,6 +55,7 @@ var dir_to_player
 var spriteMat
 var bf_spriteMat
 const gravity = 50
+var prev_dir = 0
 
 var fist_check_area_entered = false
 var move_on = false
@@ -134,10 +135,10 @@ func move(dir,speed):
 	handle_anims()
 	update_flip(dir)
 	
-func descend(dir, speed):
+func descend(dir, speed, dirRaw):
 	velocity.x = dir.x * speed * timeline.time_scale
 	velocity.y = dir.y * (speed * 1.25) * timeline.time_scale
-
+	update_flip(dirRaw)
 
 func moveAway(dir,speed):
 	velocity.x = dir * speed * timeline.time_scale
@@ -150,6 +151,12 @@ func basic_combo_end_dash(dir, speed):
 
 func update_flip(dir):
 	dir_to_player = dir
+	if dir == 0:
+		return
+	if prev_dir != 0:
+		if sign(prev_dir) != sign(dir):
+			prev_dir = dir
+			return
 	if abs(dir) == dir:
 		anim_sprite.scale.x  = -1.0
 		fist_check.scale.x = -1.0
@@ -164,7 +171,7 @@ func update_flip(dir):
 		shrink_start_check.scale.x = 1.0
 		shrink_check.scale.x = 1.0
 		anim_breath_start_up.scale.x = 0.15
-		
+		prev_dir = dir
 func handle_anims():
 	if velocity.x != 0:
 		anim_walk_forward.visible = true
