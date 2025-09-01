@@ -21,6 +21,8 @@ var dash_state: State
 var shrink_start_r_state: State
 @export
 var small_enter_state: State
+@export
+var Wipeout_start_state: State
 
 
 @export var shrinkValHolder: Node
@@ -50,6 +52,8 @@ func process_input(event: InputEvent) -> State:
 		return dash_state
 	if get_small():
 		return small_enter_state
+	if get_wipeout():
+		return Wipeout_start_state
 	return null
 
 func process_physics(delta: float) -> State:

@@ -83,6 +83,9 @@ func wants_shrink() -> float:
 func wants_small():
 	return Input.is_action_pressed("small")
 	
+func wants_wipeout():
+	return Input.is_action_pressed("Wipeout")
+	
 
 
 func _on_area_2d_area_entered(area):

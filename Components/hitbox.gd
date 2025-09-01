@@ -13,6 +13,9 @@ signal parried_signal(damage)
 
 func parried():
 	parried_signal.emit(damage)
+	
+func countered():
+	pass
 
 
 func set_damage(value: int):

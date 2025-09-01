@@ -17,7 +17,7 @@ var upperWillBound = -50
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#Engine.max_fps = 60
-	#Engine.time_scale = 0.1
+	Engine.time_scale = 1
 
 	curWill = 0.0
 	

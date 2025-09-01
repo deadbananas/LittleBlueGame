@@ -43,3 +43,6 @@ func get_shrink() -> float:
 	
 func get_small() -> bool:
 	return move_component.wants_small()
+	
+func get_wipeout() -> bool:
+	return move_component.wants_wipeout()

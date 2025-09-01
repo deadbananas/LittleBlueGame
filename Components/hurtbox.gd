@@ -15,6 +15,7 @@ signal hitstun_end()
 
 @export var hitable = true
 @export var parried = false
+@export var countered = false
 
 var stopped = false
 
@@ -31,7 +32,8 @@ func _ready():
 func _on_area_entered(hitbox: HitBox) -> void:
 
 	if hitbox != null:
-		if hitable and !parried:
+		print(hitbox.name)
+		if hitable and !parried and !countered:
 			received_hit.emit(hitbox.damage, hitbox.time_scale, hitbox.duration)
 			hitbox_holder.emit(hitbox)
 			var hitTimer : Timer = Timer.new()
@@ -67,6 +69,7 @@ func _on_parry_area_entered(area: Area2D) -> void:
 func parryTimer_timer_timeout():
 	hitable = true
 	parried = false
+	countered = false
 
 
 func _on_block_area_entered(area: Area2D) -> void:
@@ -85,3 +88,22 @@ func _on_parry_parrying():
 
 func _on_parry_end_parrying():
 	monitor = false
+
+
+func _on_countered_enter_area_entered(area):
+	print("is this working")
+	stopped = true
+	#frameFreeze(0.1, 0.4)
+	if area.has_method("countered"):
+		area.countered()
+		hitbox_holder.emit(area)
+		var counterTimer : Timer = Timer.new()
+		add_child(counterTimer)
+		counterTimer.one_shot = true
+		counterTimer.autostart = true
+		counterTimer.wait_time = 0.7
+		counterTimer.timeout.connect(parryTimer_timer_timeout)
+		counterTimer.start()
+		hitable = false
+		countered = true
+		monitor = false

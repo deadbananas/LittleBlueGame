@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://02mndykd5b"]
+[gd_scene load_steps=22 format=4 uid="uid://02mndykd5b"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_shfnb"]
 [ext_resource type="Texture2D" uid="uid://blry74och0nvb" path="res://CradleAssets/landscape/parallax/backgroundtest/bgtest2/background.png" id="2_xa6g7"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" path="res://Level/midpure.gd" id="8_d0ypb"]
 [ext_resource type="Texture2D" uid="uid://cpydh4dp1hsr2" path="res://CradleAssets/landscape/parallax/backgroundtest/front.png" id="9_o5nqq"]
 [ext_resource type="TileSet" uid="uid://dfne77thuucko" path="res://CradleAssets/landscape/tileset.tres" id="12_2ttrc"]
+[ext_resource type="AudioStream" uid="uid://bam7tws887ss7" path="res://CradleAssets/1stPhaseTry2.wav" id="15_ndyru"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_62igd"]
 shader = ExtResource("4_1ft6p")
@@ -160,6 +161,9 @@ offset_bottom = -56.0
 libraries = {
 "": SubResource("AnimationLibrary_xrsxd")
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_ndyru")
 
 [connection signal="big_blast" from="main_character" to="." method="_on_main_character_big_blast"]
 [connection signal="time_slow" from="main_character" to="Lindon" method="_on_main_character_time_slow"]

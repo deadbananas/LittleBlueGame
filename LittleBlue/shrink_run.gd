@@ -7,6 +7,7 @@ var shrink_finale_state: State
 @onready var camera_2d = $"../../Camera2D"
 
 @export var shrinkValHolder: Node
+@onready var hurtbox = $"../../hurtbox"
 
 var is_complete = false
 var hit = false
@@ -22,6 +23,7 @@ func enter() -> void:
 		velocitySet = 200
 	else:
 		velocitySet = -200
+	hurtbox.hitable = false
 	await animations.animation_finished
 	is_complete = true
 	
