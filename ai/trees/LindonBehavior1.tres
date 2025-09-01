@@ -1,8 +1,9 @@
-[gd_resource type="BehaviorTree" load_steps=282 format=3 uid="uid://ndc4u1m3kex3"]
+[gd_resource type="BehaviorTree" load_steps=295 format=3 uid="uid://ndc4u1m3kex3"]
 
 [ext_resource type="Script" path="res://ai/tasks/find_target.gd" id="1_it5bj"]
 [ext_resource type="Script" path="res://ai/tasks/moveToTarget.gd" id="2_52qia"]
 [ext_resource type="Script" path="res://ai/tasks/FindInRange.gd" id="3_cobnf"]
+[ext_resource type="Script" path="res://ai/tasks/move_no_anim.gd" id="4_6kdmc"]
 [ext_resource type="Script" path="res://ai/tasks/check_move_on.gd" id="4_baodi"]
 [ext_resource type="Script" path="res://ai/tasks/ComboEndDash.gd" id="4_mow0a"]
 [ext_resource type="Script" path="res://ai/tasks/move_during_anim.gd" id="5_jluy2"]
@@ -62,6 +63,24 @@ await_completion = 100.0
 animation_player = SubResource("BBNode_35whi")
 animation_name = &"basic_attack_first_2"
 
+[sub_resource type="BTSequence" id="BTSequence_1q0xh"]
+children = [SubResource("BTPlayAnimation_107go")]
+
+[sub_resource type="BTWait" id="BTWait_pmmcu"]
+
+[sub_resource type="BTAction" id="BTAction_k8c1e"]
+script = ExtResource("4_6kdmc")
+target_var = &"target"
+speed_var = 400
+distance = 5
+
+[sub_resource type="BTSequence" id="BTSequence_wyf1r"]
+children = [SubResource("BTWait_pmmcu"), SubResource("BTAction_k8c1e")]
+
+[sub_resource type="BTParallel" id="BTParallel_5o1d2"]
+num_successes_required = 2
+children = [SubResource("BTSequence_1q0xh"), SubResource("BTSequence_wyf1r")]
+
 [sub_resource type="BBNode" id="BBNode_eymew"]
 saved_value = NodePath(".")
 resource_name = "."
@@ -72,7 +91,7 @@ method = &"basic_combo_anims_exit"
 
 [sub_resource type="BTSequence" id="BTSequence_uub4o"]
 custom_name = "first2"
-children = [SubResource("BTCallMethod_u6dgx"), SubResource("BTPlayAnimation_107go"), SubResource("BTCallMethod_fi8tp")]
+children = [SubResource("BTCallMethod_u6dgx"), SubResource("BTParallel_5o1d2"), SubResource("BTCallMethod_fi8tp")]
 metadata/_weight_ = 1.5
 
 [sub_resource type="BBNode" id="BBNode_82dkv"]
@@ -142,7 +161,7 @@ method = &"basic_combo_anims_exit"
 [sub_resource type="BTSequence" id="BTSequence_201od"]
 custom_name = "full"
 children = [SubResource("BTCallMethod_53gmg"), SubResource("BTPlayAnimation_flciv"), SubResource("BTRepeatUntilSuccess_7r4y5"), SubResource("BTPauseAnimation_rtbo7"), SubResource("BTAction_mplgq"), SubResource("BTRepeatUntilSuccess_4s1h5"), SubResource("BTPlayAnimation_oivmm"), SubResource("BTCallMethod_g1p6c")]
-metadata/_weight_ = 0.0
+metadata/_weight_ = 1.2
 
 [sub_resource type="BTProbabilitySelector" id="BTProbabilitySelector_8nkfl"]
 custom_name = "inRangeProbSelect"
@@ -479,7 +498,7 @@ metadata/_weight_ = 0.4
 [sub_resource type="BTSequence" id="BTSequence_ngckt"]
 custom_name = "Basic_attack_combo"
 children = [SubResource("BTAction_cqtrh"), SubResource("BTSelector_usayb"), SubResource("BTRandomSequence_wlnhp")]
-metadata/_weight_ = 1.5
+metadata/_weight_ = 1000.0
 
 [sub_resource type="BTWait" id="BTWait_y6aqy"]
 duration = 0.5
@@ -615,7 +634,7 @@ children = [SubResource("BTProbabilitySelector_mdnha")]
 [sub_resource type="BTSequence" id="BTSequence_nadib"]
 custom_name = "fist-strike-bc"
 children = [SubResource("BTWait_y6aqy"), SubResource("BTTimeLimit_fgpms"), SubResource("BTWait_bvk55")]
-metadata/_weight_ = 100.0
+metadata/_weight_ = 0.65
 
 [sub_resource type="BTAction" id="BTAction_snxjc"]
 script = ExtResource("1_it5bj")
@@ -724,7 +743,7 @@ animation_name = &"dragonsBreath"
 [sub_resource type="BTSequence" id="BTSequence_u0pl0"]
 custom_name = "dragons-breath"
 children = [SubResource("BTAction_mla4u"), SubResource("BTAction_fwy13"), SubResource("BTPlayAnimation_6ajqo")]
-metadata/_weight_ = 1.0
+metadata/_weight_ = 0.8
 
 [sub_resource type="BTAction" id="BTAction_kn1ee"]
 script = ExtResource("1_it5bj")
@@ -862,10 +881,40 @@ await_completion = 100.0
 animation_player = SubResource("BBNode_k72t2")
 animation_name = &"descends_try"
 
+[sub_resource type="BBNode" id="BBNode_fjct7"]
+saved_value = NodePath("AnimationPlayer")
+resource_name = "AnimationPlayer"
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_e1nm3"]
+animation_player = SubResource("BBNode_fjct7")
+animation_name = &"idle"
+speed = 0.1
+
+[sub_resource type="BTWait" id="BTWait_ak5ns"]
+duration = 0.6
+
+[sub_resource type="BBNode" id="BBNode_obs28"]
+saved_value = NodePath("AnimationPlayer")
+resource_name = "AnimationPlayer"
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_h7ntm"]
+animation_player = SubResource("BBNode_obs28")
+animation_name = &"idle"
+speed = 0.1
+
+[sub_resource type="BBNode" id="BBNode_coer2"]
+saved_value = NodePath("AnimationPlayer")
+resource_name = "AnimationPlayer"
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_cqsde"]
+animation_player = SubResource("BBNode_coer2")
+animation_name = &"idle"
+speed = 0.1
+
 [sub_resource type="BTSequence" id="BTSequence_dxk7i"]
 custom_name = "LeapUpDescendBasic"
-children = [SubResource("BTAction_kn1ee"), SubResource("BTAction_wigag"), SubResource("BTPlayAnimation_3c0w2"), SubResource("BTParallel_5fj5d"), SubResource("BTPlayAnimation_fxfcn"), SubResource("BTPauseAnimation_dirq5"), SubResource("BTAction_ayinp"), SubResource("BTInvert_wehp7"), SubResource("BTPlayAnimation_bidfp"), SubResource("BTPauseAnimation_caa04"), SubResource("BTAction_8x1m3"), SubResource("BTAction_kukqx"), SubResource("BTPlayAnimation_58wru"), SubResource("BTParallel_qb5tj"), SubResource("BTPlayAnimation_yfrs6")]
-metadata/_weight_ = 1.0
+children = [SubResource("BTAction_kn1ee"), SubResource("BTAction_wigag"), SubResource("BTPlayAnimation_3c0w2"), SubResource("BTParallel_5fj5d"), SubResource("BTPlayAnimation_fxfcn"), SubResource("BTPauseAnimation_dirq5"), SubResource("BTAction_ayinp"), SubResource("BTInvert_wehp7"), SubResource("BTPlayAnimation_bidfp"), SubResource("BTPauseAnimation_caa04"), SubResource("BTAction_8x1m3"), SubResource("BTAction_kukqx"), SubResource("BTPlayAnimation_58wru"), SubResource("BTParallel_qb5tj"), SubResource("BTPlayAnimation_yfrs6"), SubResource("BTPlayAnimation_e1nm3"), SubResource("BTWait_ak5ns"), SubResource("BTPlayAnimation_h7ntm"), SubResource("BTPlayAnimation_cqsde")]
+metadata/_weight_ = 0.9
 
 [sub_resource type="BTProbabilitySelector" id="BTProbabilitySelector_g1e78"]
 custom_name = "Action_when_close"

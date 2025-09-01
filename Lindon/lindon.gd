@@ -129,6 +129,10 @@ func _physics_process(delta):
 	if will != prevWill:
 		will_update()
 	move_and_slide()
+	
+func move_no_anims(dir, speed):
+	velocity.x = dir * speed * timeline.time_scale
+	update_flip(-dir)
 
 func move(dir,speed):
 	velocity.x = dir * speed * timeline.time_scale
@@ -279,7 +283,7 @@ func countered():
 	
 	
 func parried():
-	timeScale = 0.2
+	timeScale = 0.55
 	var parryTimer : Timer = Timer.new()
 	add_child(parryTimer)
 	parryTimer.one_shot = true

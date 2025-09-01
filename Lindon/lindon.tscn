@@ -972,6 +972,17 @@ tracks/6/keys = {
 "update": 0,
 "values": [0.0, -0.10821, -0.788889, -0.788889, 0.0]
 }
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath(".")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
+}
 
 [sub_resource type="Animation" id="Animation_kbi4c"]
 resource_name = "basic_combo_full"
@@ -2173,7 +2184,7 @@ size = Vector2(37, 240.5)
 b = Vector2(0, 55)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mcolw"]
-size = Vector2(124, 68)
+size = Vector2(58, 68)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1kqrm"]
 shader = ExtResource("24_r8ixk")
@@ -2564,7 +2575,7 @@ collision_mask = 0
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="shrinkStartCheck"]
-position = Vector2(-87, -34)
+position = Vector2(-63.51, -34)
 shape = SubResource("RectangleShape2D_mcolw")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

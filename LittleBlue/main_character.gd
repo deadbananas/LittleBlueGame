@@ -18,6 +18,8 @@ const Timeline = preload("res://addons/time_control/timeline.gd")
 @export var timeline: Timeline
 @onready var shockwave = preload("res://shockwave.tscn")
 
+@onready var damaged_sound = $damagedSound
+
 var health = 100
 var maxHealth = 10
 
@@ -43,6 +45,7 @@ func _ready() -> void:
 	healthbar.init_health(health)
 	state_machine.init(self, animations, move_component, sprite)
 
+
 func _unhandled_input(event: InputEvent) -> void:
 	state_machine.process_input(event)
 	
@@ -66,6 +69,7 @@ func _process(delta: float) -> void:
 func _on_hurtbox_received_hit(damage: int, time_scale: float, duration: float) -> void:
 	health -= damage
 	healthbar.health = health
+	damaged_sound.play(0.0)
 
 
 func _on_lindon_strike_fist():

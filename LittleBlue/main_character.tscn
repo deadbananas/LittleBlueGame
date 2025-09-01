@@ -1,4 +1,4 @@
-[gd_scene load_steps=135 format=3 uid="uid://cemmkhino63ca"]
+[gd_scene load_steps=136 format=3 uid="uid://cemmkhino63ca"]
 
 [ext_resource type="Script" path="res://Components/hitbox.gd" id="1_isybl"]
 [ext_resource type="Script" path="res://LittleBlue/main_character.gd" id="1_silm2"]
@@ -46,6 +46,7 @@
 [ext_resource type="Script" path="res://LittleBlue/wipeout_loop.gd" id="38_7df18"]
 [ext_resource type="Script" path="res://LittleBlue/wipeout_finish.gd" id="39_4u4i5"]
 [ext_resource type="Script" path="res://LittleBlue/shrink_side_holder.gd" id="42_ujcjw"]
+[ext_resource type="AudioStream" uid="uid://dv22e04w5mi6j" path="res://CradleAssets/metallic-thin-bell-long-release_85bpm_A_minor.wav" id="47_jb4o6"]
 
 [sub_resource type="Animation" id="Animation_uboeb"]
 length = 0.001
@@ -1682,14 +1683,13 @@ animation_name = "parry"
 move_speed = 25.0
 sprite_associated = NodePath("../../LittleBlue_sheets/parry")
 
-[node name="hit" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "move_state", "jump_state", "fall_state", "attack_state", "parry_state", "sprite_associated")]
+[node name="hit" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "move_state", "jump_state", "fall_state", "attack_state", "sprite_associated")]
 script = ExtResource("19_luwfl")
 idle_state = NodePath("../idle")
 move_state = NodePath("../move")
 jump_state = NodePath("../jump")
 fall_state = NodePath("../fall")
 attack_state = NodePath("../attack1")
-parry_state = NodePath("../parry")
 animation_name = "fall"
 sprite_associated = NodePath("../../LittleBlue_sheets/jump_up")
 
@@ -1860,6 +1860,10 @@ script = ExtResource("36_siggo")
 
 [node name="shrinkSideHolder" type="Node" parent="."]
 script = ExtResource("42_ujcjw")
+
+[node name="damagedSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("47_jb4o6")
+pitch_scale = 4.0
 
 [connection signal="pass_strike" from="." to="." method="_on_pass_strike"]
 [connection signal="pass_strike" from="." to="state_machine/idle" method="_on_little_blue_pass_strike"]
