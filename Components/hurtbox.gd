@@ -1,5 +1,6 @@
 class_name HurtBox
 extends Area2D
+@onready var parry_sound = $"../parrySound"
 
 
 
@@ -53,6 +54,7 @@ func _on_parry_area_entered(area: Area2D) -> void:
 	#frameFreeze(0.1, 0.4)
 	if area.has_method("parried") and monitor:
 		area.parried()
+		parry_sound.play()
 		hitbox_holder.emit(area)
 		var parryTimer : Timer = Timer.new()
 		add_child(parryTimer)

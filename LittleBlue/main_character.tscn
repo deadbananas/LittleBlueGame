@@ -1,4 +1,4 @@
-[gd_scene load_steps=136 format=3 uid="uid://cemmkhino63ca"]
+[gd_scene load_steps=137 format=3 uid="uid://cemmkhino63ca"]
 
 [ext_resource type="Script" path="res://Components/hitbox.gd" id="1_isybl"]
 [ext_resource type="Script" path="res://LittleBlue/main_character.gd" id="1_silm2"]
@@ -46,7 +46,8 @@
 [ext_resource type="Script" path="res://LittleBlue/wipeout_loop.gd" id="38_7df18"]
 [ext_resource type="Script" path="res://LittleBlue/wipeout_finish.gd" id="39_4u4i5"]
 [ext_resource type="Script" path="res://LittleBlue/shrink_side_holder.gd" id="42_ujcjw"]
-[ext_resource type="AudioStream" uid="uid://dv22e04w5mi6j" path="res://CradleAssets/metallic-thin-bell-long-release_85bpm_A_minor.wav" id="47_jb4o6"]
+[ext_resource type="AudioStream" uid="uid://dyhsw3uhtyf2a" path="res://CradleAssets/littleBlueDamaged.wav" id="47_6vyy3"]
+[ext_resource type="AudioStream" uid="uid://cjwq40gb84vj5" path="res://CradleAssets/LBparry.wav" id="48_vkw30"]
 
 [sub_resource type="Animation" id="Animation_uboeb"]
 length = 0.001
@@ -1538,6 +1539,7 @@ libraries = {
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(0, -75)
+process_callback = 0
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 drag_left_margin = 0.1
@@ -1862,9 +1864,14 @@ script = ExtResource("36_siggo")
 script = ExtResource("42_ujcjw")
 
 [node name="damagedSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("47_jb4o6")
+stream = ExtResource("47_6vyy3")
 pitch_scale = 4.0
 
+[node name="parrySound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("48_vkw30")
+
+[connection signal="landed" from="." to="move_component" method="_on_little_blue_landed"]
+[connection signal="landed" from="." to="state_machine" method="_on_little_blue_landed"]
 [connection signal="pass_strike" from="." to="." method="_on_pass_strike"]
 [connection signal="pass_strike" from="." to="state_machine/idle" method="_on_little_blue_pass_strike"]
 [connection signal="pass_strike" from="." to="state_machine/move" method="_on_little_blue_pass_strike"]
@@ -1886,6 +1893,7 @@ pitch_scale = 4.0
 [connection signal="endParrying" from="state_machine/parry" to="hurtbox" method="_on_parry_end_parrying"]
 [connection signal="parrying" from="state_machine/parry" to="hurtbox" method="_on_parry_parrying"]
 [connection signal="will_change" from="state_machine/hit" to="." method="_on_hit_will_change"]
+[connection signal="dashed" from="state_machine/dash" to="move_component" method="_on_dash_dashed"]
 [connection signal="time_slow" from="state_machine/shrink_start_r" to="." method="propogate_time_slow"]
 [connection signal="hitbox_holder" from="hurtbox" to="state_machine/parry" method="_on_hurtbox_hitbox_holder"]
 [connection signal="hitbox_holder" from="hurtbox" to="state_machine/hit" method="_on_hurtbox_hitbox_holder"]

@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=4 uid="uid://crg2nok0a0a37"]
+
+[ext_resource type="Script" path="res://lobby.gd" id="1_5t0lq"]
+[ext_resource type="Texture2D" uid="uid://ddf4hrqld3q80" path="res://CradleAssets/landscape/lobbyBackground.png" id="1_cjdc0"]
+[ext_resource type="PackedScene" uid="uid://cemmkhino63ca" path="res://LittleBlue/main_character.tscn" id="2_eylp2"]
+[ext_resource type="TileSet" uid="uid://dfne77thuucko" path="res://CradleAssets/landscape/tileset.tres" id="3_j5v6v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b4xgr"]
+size = Vector2(640, 20)
+
+[node name="Lobby" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_5t0lq")
+
+[node name="background" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(320, 180)
+texture = ExtResource("1_cjdc0")
+
+[node name="walls2" type="StaticBody2D" parent="."]
+position = Vector2(412, -16)
+rotation = 1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="walls2"]
+position = Vector2(308, 414)
+shape = SubResource("RectangleShape2D_b4xgr")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="walls2"]
+position = Vector2(325, -226)
+shape = SubResource("RectangleShape2D_b4xgr")
+
+[node name="LittleBlue" parent="." instance=ExtResource("2_eylp2")]
+position = Vector2(163, 117)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+position = Vector2(-113, 2)
+tile_map_data = PackedByteArray("AAAHABYAAAAAAAQAAAAHABcAAAAAAAUAAAAIABYAAAABAAQAAAAIABcAAAABAAUAAAAJABYAAAABAAQAAAAJABcAAAABAAUAAAAKABYAAAABAAQAAAAKABcAAAABAAUAAAALABYAAAABAAQAAAALABcAAAABAAUAAAAMABYAAAABAAQAAAAMABcAAAABAAUAAAANABYAAAABAAQAAAANABcAAAABAAUAAAAOABYAAAABAAQAAAAOABcAAAABAAUAAAAPABYAAAABAAQAAAAPABcAAAABAAUAAAAQABYAAAABAAQAAAAQABcAAAABAAUAAAARABYAAAABAAQAAAARABcAAAABAAUAAAASABYAAAABAAQAAAASABcAAAABAAUAAAATABYAAAABAAQAAAATABcAAAABAAUAAAAUABYAAAABAAQAAAAUABcAAAABAAUAAAAVABYAAAABAAQAAAAVABcAAAABAAUAAAAWABYAAAABAAQAAAAWABcAAAABAAUAAAAXABYAAAABAAQAAAAXABcAAAABAAUAAAAYABYAAAABAAQAAAAYABcAAAABAAUAAAAZABYAAAABAAQAAAAZABcAAAABAAUAAAAaABYAAAABAAQAAAAaABcAAAABAAUAAAAbABYAAAABAAQAAAAbABcAAAABAAUAAAAcABYAAAABAAQAAAAcABcAAAABAAUAAAAdABYAAAABAAQAAAAdABcAAAABAAUAAAAeABYAAAABAAQAAAAeABcAAAABAAUAAAAfABYAAAABAAQAAAAfABcAAAABAAUAAAAgABYAAAABAAQAAAAgABcAAAABAAUAAAAhABYAAAABAAQAAAAhABcAAAABAAUAAAAiABYAAAABAAQAAAAiABcAAAABAAUAAAAjABYAAAABAAQAAAAjABcAAAABAAUAAAAkABYAAAABAAQAAAAkABcAAAABAAUAAAAlABYAAAABAAQAAAAlABcAAAABAAUAAAAmABYAAAABAAQAAAAmABcAAAABAAUAAAAnABYAAAABAAQAAAAnABcAAAABAAUAAAAoABYAAAABAAQAAAAoABcAAAABAAUAAAApABYAAAABAAQAAAApABcAAAABAAUAAAAqABYAAAABAAQAAAAqABcAAAABAAUAAAArABYAAAABAAQAAAArABcAAAABAAUAAAAsABYAAAABAAQAAAAsABcAAAABAAUAAAAtABYAAAABAAQAAAAtABcAAAABAAUAAAAuABYAAAACAAQAAAAuABcAAAACAAUAAAA=")
+tile_set = ExtResource("3_j5v6v")
+
+[node name="lobbyCam" type="Camera2D" parent="."]
+position = Vector2(321, 207)
+process_callback = 0

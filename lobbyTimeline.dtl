@@ -1,0 +1,4 @@
+join Dross right [animation="Bounce In" length="1.0"]
+Dross: Whats up
+[wait_input hide_text="false"]
+Dross: Soooooo wanna kill Lindon?

@@ -35,13 +35,12 @@ signal big_blast()
 
 signal time_slow()
 
+signal landed()
 
+var dialogicActive = false
 var double_jumped = false
 
 func _ready() -> void:
-	# Initialize the state machine, passing a reference of the player to the states,
-	
-	# that way they can move and react accordingly
 	healthbar.init_health(health)
 	state_machine.init(self, animations, move_component, sprite)
 
@@ -54,11 +53,13 @@ func _physics_process(delta: float) -> void:
 		queue_free()
 	if is_on_floor():
 		double_jumped = false
+		landed.emit()
 	if color_rect == null:
 		var instance = shockwave.instantiate() 
 		add_child(instance)
 		color_rect = $CanvasLayer/ColorRect
-	state_machine.process_physics(delta)
+	if !dialogicActive:
+		state_machine.process_physics(delta)
 
 func _process(delta: float) -> void:
 	ClockController.get_clock_by_key("PLAYER").local_time_scale = 1.0
@@ -94,3 +95,11 @@ func hide_shader_rect():
 
 func propogate_time_slow():
 	time_slow.emit()
+
+
+func _on_lobby_dialogic_active():
+	dialogicActive = true
+
+
+func _on_lobby_dialogic_inactive():
+	dialogicActive = false

@@ -9,6 +9,7 @@ var lindon
 var area11 : Area2D
 var inArea = false
 
+var dashable = true
 
 #get direction to Lindon
 func get_lindon():
@@ -38,7 +39,11 @@ func shrink_pressed():
 	if pure_bf == 0:
 		return 0
 	get_lindon()
-	var dir = little_blue.global_position.direction_to(lindon.global_position)
+	var dir = 0
+	if lindon == null:
+		dir = little_blue.global_position.direction_to(little_blue.global_position)
+	else:
+		dir = little_blue.global_position.direction_to(lindon.global_position)
 	if dir.x > 0:
 		if pure_bf > 0:
 			shrink = 1.0
@@ -96,3 +101,15 @@ func _on_area_2d_area_entered(area):
 func _on_area_2d_area_exited(area):
 	if area == area11:
 		inArea = false
+
+
+
+func dash_check():
+	return dashable
+
+func _on_little_blue_landed():
+	dashable = true
+
+
+func _on_dash_dashed():
+	dashable = false

@@ -146,10 +146,10 @@ tile_set = ExtResource("12_2ttrc")
 [node name="main_character" parent="." groups=["Little_Blue"] instance=ExtResource("3_uufjs")]
 unique_name_in_owner = true
 z_index = 1
-position = Vector2(184.68, -40)
+position = Vector2(-35.9999, -39)
 
 [node name="Lindon" parent="." instance=ExtResource("4_ob26r")]
-position = Vector2(619, -15)
+position = Vector2(619, -20.64)
 
 [node name="CurrentFPS" type="Label" parent="."]
 offset_left = 245.0
@@ -164,6 +164,7 @@ libraries = {
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("15_ndyru")
+autoplay = true
 
 [connection signal="big_blast" from="main_character" to="." method="_on_main_character_big_blast"]
 [connection signal="time_slow" from="main_character" to="Lindon" method="_on_main_character_time_slow"]

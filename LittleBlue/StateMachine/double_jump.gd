@@ -30,7 +30,7 @@ func enter() -> void:
 	strike_big = false
 	
 func process_input(event: InputEvent) -> State:
-	if (Input.is_action_just_pressed("dash")):
+	if (Input.is_action_just_pressed("dash")) and canDash():
 		return dash_state
 	return null
 

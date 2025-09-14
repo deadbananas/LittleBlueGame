@@ -1,0 +1,202 @@
+[gd_scene load_steps=19 format=4 uid="uid://crg2nok0a0a37"]
+
+[ext_resource type="Script" path="res://lobby.gd" id="1_5t0lq"]
+[ext_resource type="Texture2D" uid="uid://ddf4hrqld3q80" path="res://CradleAssets/landscape/lobbyBackground.png" id="1_cjdc0"]
+[ext_resource type="PackedScene" uid="uid://cemmkhino63ca" path="res://LittleBlue/main_character.tscn" id="2_eylp2"]
+[ext_resource type="TileSet" uid="uid://dfne77thuucko" path="res://CradleAssets/landscape/tileset.tres" id="3_j5v6v"]
+[ext_resource type="Texture2D" uid="uid://bt7qlk1qafshj" path="res://CradleAssets/Dross/dross.png" id="3_mycxa"]
+[ext_resource type="Script" path="res://dross_talk_check.gd" id="4_35weo"]
+[ext_resource type="Script" path="res://fight.gd" id="6_0h6b3"]
+[ext_resource type="AudioStream" uid="uid://gv1ealkk7ddn" path="res://CradleAssets/lobby.wav" id="8_tc0er"]
+
+[sub_resource type="Animation" id="Animation_lf3hj"]
+resource_name = "Blink"
+length = 0.6
+step = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Dross:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_kjjal"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Dross:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_fjapl"]
+resource_name = "idle"
+length = 0.6
+step = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Dross:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_h4soy"]
+resource_name = "mouth"
+length = 1.8
+step = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Dross:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45, 0.6, 0.75, 0.9, 1.05, 1.2, 1.35, 1.5, 1.65),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
+}
+
+[sub_resource type="Animation" id="Animation_4cu5x"]
+resource_name = "wave"
+length = 2.0
+step = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Dross:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45, 0.6, 0.75, 0.9, 1.05, 1.2, 1.35, 1.5, 1.65, 1.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vku1w"]
+_data = {
+"Blink": SubResource("Animation_lf3hj"),
+"RESET": SubResource("Animation_kjjal"),
+"idle": SubResource("Animation_fjapl"),
+"mouth": SubResource("Animation_h4soy"),
+"wave": SubResource("Animation_4cu5x")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b4xgr"]
+size = Vector2(315, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p6o6q"]
+size = Vector2(318, 12.0001)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_maafi"]
+size = Vector2(105, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0eyua"]
+size = Vector2(14.625, 45)
+
+[node name="Lobby" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_5t0lq")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_vku1w")
+}
+
+[node name="walls2" type="StaticBody2D" parent="."]
+position = Vector2(412, -16)
+rotation = 1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="walls2"]
+position = Vector2(308, 414)
+shape = SubResource("RectangleShape2D_b4xgr")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="walls2"]
+position = Vector2(162.5, -226)
+shape = SubResource("RectangleShape2D_b4xgr")
+
+[node name="Stable" type="CollisionShape2D" parent="walls2"]
+z_index = 1
+position = Vector2(319, 124)
+rotation = -1.5708
+shape = SubResource("RectangleShape2D_p6o6q")
+one_way_collision = true
+one_way_collision_margin = 128.0
+
+[node name="background" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(320, 180)
+texture = ExtResource("1_cjdc0")
+
+[node name="Dross" type="Sprite2D" parent="."]
+position = Vector2(356, 269)
+texture = ExtResource("3_mycxa")
+hframes = 34
+
+[node name="DrossTalkCheck" type="Area2D" parent="Dross"]
+collision_layer = 0
+collision_mask = 2147483648
+script = ExtResource("4_35weo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dross/DrossTalkCheck"]
+position = Vector2(1, -6)
+shape = SubResource("RectangleShape2D_maafi")
+
+[node name="LittleBlue" parent="." instance=ExtResource("2_eylp2")]
+position = Vector2(48, 335)
+collision_layer = 2147483651
+
+[node name="lobbyCam" type="Camera2D" parent="."]
+position = Vector2(321, 207)
+process_callback = 0
+limit_left = 0
+limit_right = 640
+limit_bottom = 385
+limit_smoothed = true
+editor_draw_limits = true
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+top_level = true
+z_index = 6
+texture_filter = 1
+position = Vector2(-1, 1)
+tile_map_data = PackedByteArray("AAAAABYABAAAAAAAAAAAABcABAAAAAEAAAABABYABAABAAAAAAABABcABAABAAEAAAACABYABAACAAAAAAACABcABAACAAEAAAADABYABAADAAAAAAADABcABAADAAEAAAAEABYABAAEAAAAAAAEABcABAAEAAEAAAAFABYABAAFAAAAAAAFABcABAAFAAEAAAAGABYABAAGAAAAAAAGABcABAAGAAEAAAAHABYABAAHAAAAAAAHABcABAAHAAEAAAAIABYABAAAAAAAAAAIABcABAAAAAEAAAAJABYABAABAAAAAAAJABcABAABAAEAAAAKABYABAACAAAAAAAKABcABAACAAEAAAALABYABAADAAAAAAALABcABAADAAEAAAAMABYABAAEAAAAAAAMABcABAAEAAEAAAANABYABAAFAAAAAAANABcABAAFAAEAAAAOABYABAAGAAAAAAAOABcABAAGAAEAAAAPABYABAAHAAAAAAAPABcABAAHAAEAAAAQABYABAAAAAAAAAAQABcABAAAAAEAAAARABYABAABAAAAAAARABcABAABAAEAAAASABYABAACAAAAAAASABcABAACAAEAAAATABYABAADAAAAAAATABcABAADAAEAAAAUABYABAAEAAAAAAAUABcABAAEAAEAAAAVABYABAAFAAAAAAAVABcABAAFAAEAAAAWABYABAAGAAAAAAAWABcABAAGAAEAAAAXABYABAAHAAAAAAAXABcABAAHAAEAAAAYABYABAAAAAAAAAAYABcABAAAAAEAAAAZABYABAABAAAAAAAZABcABAABAAEAAAAaABYABAACAAAAAAAaABcABAACAAEAAAAbABYABAADAAAAAAAbABcABAADAAEAAAAcABYABAAEAAAAAAAcABcABAAEAAEAAAAdABYABAAFAAAAAAAdABcABAAFAAEAAAAeABYABAAGAAAAAAAeABcABAAGAAEAAAAfABYABAAHAAAAAAAfABcABAAHAAEAAAAgABYABAAAAAAAAAAgABcABAAAAAEAAAAhABYABAABAAAAAAAhABcABAABAAEAAAAiABYABAACAAAAAAAiABcABAACAAEAAAAjABYABAADAAAAAAAjABcABAADAAEAAAAkABYABAAEAAAAAAAkABcABAAEAAEAAAAlABYABAAFAAAAAAAlABcABAAFAAEAAAAmABYABAAGAAAAAAAmABcABAAGAAEAAAAnABYABAAHAAAAAAAnABcABAAHAAEAAAAoABYABAAAAAAAAAAoABcABAAAAAEAAAApABYABAABAAAAAAApABcABAABAAEAAAAqABYABAACAAAAAAAqABcABAACAAEAAAArABYABAADAAAAAAArABcABAADAAEAAAAsABYABAAEAAAAAAAsABcABAAEAAEAAAAtABYABAAFAAAAAAAtABcABAAFAAEAAAAuABYABAAGAAAAAAAuABcABAAGAAEAAAAvABYABAAHAAAAAAAvABcABAAHAAEAAAD4/xYABAAAAAAAAAD4/xcABAAAAAEAAAD5/xYABAABAAAAAAD5/xcABAABAAEAAAD6/xYABAACAAAAAAD6/xcABAACAAEAAAD7/xYABAADAAAAAAD7/xcABAADAAEAAAD8/xYABAAEAAAAAAD8/xcABAAEAAEAAAD9/xYABAAFAAAAAAD9/xcABAAFAAEAAAD+/xYABAAGAAAAAAD+/xcABAAGAAEAAAD//xYABAAHAAAAAAD//xcABAAHAAEAAAA=")
+tile_set = ExtResource("3_j5v6v")
+
+[node name="fight" type="Area2D" parent="."]
+script = ExtResource("6_0h6b3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="fight"]
+position = Vector2(640.688, 328.5)
+shape = SubResource("RectangleShape2D_0eyua")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_tc0er")
+volume_db = -25.0
+autoplay = true
+
+[connection signal="dialogicActive" from="." to="LittleBlue" method="_on_lobby_dialogic_active"]
+[connection signal="dialogicInactive" from="." to="LittleBlue" method="_on_lobby_dialogic_inactive"]
+[connection signal="body_entered" from="Dross/DrossTalkCheck" to="." method="_on_dross_talk_check_body_entered"]
+[connection signal="body_exited" from="Dross/DrossTalkCheck" to="." method="_on_dross_talk_check_body_exited"]
+[connection signal="area_entered" from="fight" to="." method="_on_fight_area_entered"]
+[connection signal="body_entered" from="fight" to="." method="_on_fight_body_entered"]

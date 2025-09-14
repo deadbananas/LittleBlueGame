@@ -33,7 +33,7 @@ func enter() -> void:
 	is_complete = true
 
 func process_input(event: InputEvent) -> State:
-	if (Input.is_action_just_pressed("dash")):
+	if (Input.is_action_just_pressed("dash")) and canDash():
 		return dash_state
 	if (Input.is_action_just_pressed("parry_right")):
 		return parry_state

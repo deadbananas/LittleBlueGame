@@ -23,7 +23,7 @@ var jump_force: float = 450.0
 @export var ghost_node : PackedScene
 @onready var particles = $"../../GPUParticles2D"
 
-
+signal dashed()
 
 var hit = false
 var strike_big = false
@@ -32,6 +32,7 @@ func enter() -> void:
 	super()
 	hit = false
 	strike_big = false
+	dashed.emit()
 	parent.velocity.y = -jump_force
 	particles.emitting = true
 

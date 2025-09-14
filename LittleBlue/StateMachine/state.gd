@@ -46,3 +46,9 @@ func get_small() -> bool:
 	
 func get_wipeout() -> bool:
 	return move_component.wants_wipeout()
+	
+func canDash() -> bool:
+	return move_component.dash_check()
+	
+
+	
