@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://crg2nok0a0a37"]
+[gd_scene load_steps=21 format=4 uid="uid://crg2nok0a0a37"]
 
 [ext_resource type="Script" path="res://lobby.gd" id="1_5t0lq"]
 [ext_resource type="Texture2D" uid="uid://ddf4hrqld3q80" path="res://CradleAssets/landscape/lobbyBackground.png" id="1_cjdc0"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://dross_talk_check.gd" id="4_35weo"]
 [ext_resource type="Script" path="res://fight.gd" id="6_0h6b3"]
 [ext_resource type="AudioStream" uid="uid://gv1ealkk7ddn" path="res://CradleAssets/lobby.wav" id="8_tc0er"]
+[ext_resource type="Script" path="res://Components/hurtbox.gd" id="9_3voi3"]
 
 [sub_resource type="Animation" id="Animation_lf3hj"]
 resource_name = "Blink"
@@ -113,6 +114,9 @@ size = Vector2(105, 60)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0eyua"]
 size = Vector2(14.625, 45)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m36kp"]
+size = Vector2(44, 57)
+
 [node name="Lobby" type="Node2D"]
 texture_filter = 1
 script = ExtResource("1_5t0lq")
@@ -193,6 +197,21 @@ shape = SubResource("RectangleShape2D_0eyua")
 stream = ExtResource("8_tc0er")
 volume_db = -25.0
 autoplay = true
+
+[node name="hurtbox_main" type="Area2D" parent="."]
+position = Vector2(541, 352)
+rotation = 1.56207
+collision_layer = 0
+collision_mask = 128
+script = ExtResource("9_3voi3")
+hit_immunity = 0.3
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="hurtbox_main"]
+polygon = PackedVector2Array(-5, -1, -12, 0, -12, -4, -8, -5, -8, -7, -14, -13, -14, -17, -3, -30, -3, -37, -10, -38, -6, -46, -3, -46, 1, -51, -1, -53, -1, -58, 2, -63, 4, -64, 11, -64, 14, -62, 15, -53, 5, -56, 9, -25, 19, -19, 23, -6, 21, -1, 13, -1)
+
+[node name="CollisionPolygon2D" type="CollisionShape2D" parent="hurtbox_main"]
+position = Vector2(6, -29.5)
+shape = SubResource("RectangleShape2D_m36kp")
 
 [connection signal="dialogicActive" from="." to="LittleBlue" method="_on_lobby_dialogic_active"]
 [connection signal="dialogicInactive" from="." to="LittleBlue" method="_on_lobby_dialogic_inactive"]

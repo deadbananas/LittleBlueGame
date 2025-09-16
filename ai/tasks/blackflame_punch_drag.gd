@@ -93,4 +93,5 @@ func _tick(_delta: float) -> Status:
 		else:
 			agent.basic_combo_end_dash(dir.x, speed_var)
 			return RUNNING		
+	print("failed")
 	return FAILURE

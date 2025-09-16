@@ -55,7 +55,6 @@ func _input(event: InputEvent):
 	if Dialogic.current_timeline != null:
 			return
 	if Input.is_action_just_pressed("talk") and talkable:
-		print("yap")
 		Dialogic.timeline_ended.connect(_on_timeline_ended)
 		Dialogic.start('lobbyTimeline')
 		dialogicActive.emit()

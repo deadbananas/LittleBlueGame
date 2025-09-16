@@ -41,14 +41,11 @@ func process_physics(delta: float) -> State:
 			fiststrikebc.scale.x  = -1.0
 		else:
 			fiststrikebc.scale.x  = 1.0
-	print(fist_strike_move)
 	if fist_strike_move:
 		attack_accel = attack_accel + (100 * delta)
 		if fist_strike_move_direction:
 			var goal = Vector2(parent.position.x + 1500 ,0)
 			parent.velocity = parent.velocity.lerp(-1 * goal, attack_accel * delta)
-			print(parent.velocity.x)
-			
 
 		else:
 			var goal = Vector2(parent.position.x + 1500 ,0)
@@ -71,7 +68,6 @@ func fistStrikeBc():
 	var curPos = parent.position
 	var curX = curPos.x + 70
 	var playerCurPos = player.position
-	print(player.position)
 	#if !(abs(curX - playerCurPos.x) < 50):
 	fist_strike_move = true
 	if curX - playerCurPos.x > 0:

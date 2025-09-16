@@ -47,7 +47,6 @@ func process_physics(delta: float) -> State:
 	if health <= 0:
 		queue_free()
 	
-	#print(parent.velocity)
 	if is_complete:
 		if !parent.is_on_floor():
 			return fall_state

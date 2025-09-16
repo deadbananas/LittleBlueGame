@@ -59,7 +59,7 @@ func shrink_pressed():
 		add_child(shrinkTimer)
 		shrinkTimer.one_shot = true
 		shrinkTimer.autostart = true
-		shrinkTimer.wait_time = 0.25
+		shrinkTimer.wait_time = 0.1
 		shrinkTimer.timeout.connect(shrink_pressed_timer_timeout)
 		shrinkTimer.start()
 	
@@ -96,7 +96,6 @@ func wants_wipeout():
 func _on_area_2d_area_entered(area):
 	area11 = area
 	inArea = true
-	
 
 func _on_area_2d_area_exited(area):
 	if area == area11:

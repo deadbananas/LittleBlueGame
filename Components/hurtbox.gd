@@ -33,18 +33,18 @@ func _ready():
 func _on_area_entered(hitbox: HitBox) -> void:
 
 	if hitbox != null:
-		print(hitbox.name)
 		if hitable and !parried and !countered:
 			received_hit.emit(hitbox.damage, hitbox.time_scale, hitbox.duration)
 			hitbox_holder.emit(hitbox)
-			var hitTimer : Timer = Timer.new()
-			add_child(hitTimer)
-			hitTimer.one_shot = true
-			hitTimer.autostart = true
-			hitTimer.wait_time = hit_immunity
-			hitTimer.timeout.connect(timer_timeout)
-			hitTimer.start()
-			hitable = false
+			if hit_immunity != 0:
+				var hitTimer : Timer = Timer.new()
+				add_child(hitTimer)
+				hitTimer.one_shot = true
+				hitTimer.autostart = true
+				hitTimer.wait_time = hit_immunity
+				hitTimer.timeout.connect(timer_timeout)
+				hitTimer.start()
+				hitable = false
 			
 			
 
@@ -77,7 +77,7 @@ func parryTimer_timer_timeout():
 func _on_block_area_entered(area: Area2D) -> void:
 	stopped = true
 	if monitor:
-		print("blocked")
+		pass
 
 func timer_timeout():
 	hitable = true
@@ -93,7 +93,6 @@ func _on_parry_end_parrying():
 
 
 func _on_countered_enter_area_entered(area):
-	print("is this working")
 	stopped = true
 	#frameFreeze(0.1, 0.4)
 	if area.has_method("countered"):

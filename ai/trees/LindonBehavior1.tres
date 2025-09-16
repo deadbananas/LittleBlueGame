@@ -498,7 +498,7 @@ metadata/_weight_ = 0.4
 [sub_resource type="BTSequence" id="BTSequence_ngckt"]
 custom_name = "Basic_attack_combo"
 children = [SubResource("BTAction_cqtrh"), SubResource("BTSelector_usayb"), SubResource("BTRandomSequence_wlnhp")]
-metadata/_weight_ = 1000.0
+metadata/_weight_ = 10.0
 
 [sub_resource type="BTWait" id="BTWait_y6aqy"]
 duration = 0.5
@@ -634,7 +634,7 @@ children = [SubResource("BTProbabilitySelector_mdnha")]
 [sub_resource type="BTSequence" id="BTSequence_nadib"]
 custom_name = "fist-strike-bc"
 children = [SubResource("BTWait_y6aqy"), SubResource("BTTimeLimit_fgpms"), SubResource("BTWait_bvk55")]
-metadata/_weight_ = 0.65
+metadata/_weight_ = 0.53
 
 [sub_resource type="BTAction" id="BTAction_snxjc"]
 script = ExtResource("1_it5bj")
@@ -718,7 +718,7 @@ children = [SubResource("BTSequence_42oui"), SubResource("BTAlwaysSucceed_ro7er"
 [sub_resource type="BTSequence" id="BTSequence_q41sb"]
 custom_name = "rock-kick"
 children = [SubResource("BTAction_snxjc"), SubResource("BTAction_1xqla"), SubResource("BTPlayAnimation_tej4b"), SubResource("BTProbabilitySelector_6e73w")]
-metadata/_weight_ = 1.0
+metadata/_weight_ = 1.5
 
 [sub_resource type="BTAction" id="BTAction_mla4u"]
 script = ExtResource("1_it5bj")
@@ -743,7 +743,7 @@ animation_name = &"dragonsBreath"
 [sub_resource type="BTSequence" id="BTSequence_u0pl0"]
 custom_name = "dragons-breath"
 children = [SubResource("BTAction_mla4u"), SubResource("BTAction_fwy13"), SubResource("BTPlayAnimation_6ajqo")]
-metadata/_weight_ = 0.8
+metadata/_weight_ = 0.53
 
 [sub_resource type="BTAction" id="BTAction_kn1ee"]
 script = ExtResource("1_it5bj")
@@ -914,7 +914,7 @@ speed = 0.1
 [sub_resource type="BTSequence" id="BTSequence_dxk7i"]
 custom_name = "LeapUpDescendBasic"
 children = [SubResource("BTAction_kn1ee"), SubResource("BTAction_wigag"), SubResource("BTPlayAnimation_3c0w2"), SubResource("BTParallel_5fj5d"), SubResource("BTPlayAnimation_fxfcn"), SubResource("BTPauseAnimation_dirq5"), SubResource("BTAction_ayinp"), SubResource("BTInvert_wehp7"), SubResource("BTPlayAnimation_bidfp"), SubResource("BTPauseAnimation_caa04"), SubResource("BTAction_8x1m3"), SubResource("BTAction_kukqx"), SubResource("BTPlayAnimation_58wru"), SubResource("BTParallel_qb5tj"), SubResource("BTPlayAnimation_yfrs6"), SubResource("BTPlayAnimation_e1nm3"), SubResource("BTWait_ak5ns"), SubResource("BTPlayAnimation_h7ntm"), SubResource("BTPlayAnimation_cqsde")]
-metadata/_weight_ = 0.9
+metadata/_weight_ = 0.57
 
 [sub_resource type="BTProbabilitySelector" id="BTProbabilitySelector_g1e78"]
 custom_name = "Action_when_close"

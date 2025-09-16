@@ -86,7 +86,6 @@ func _on_parry_area_entered(area: Area2D) -> void:
 		hitTimer.timeout.connect(hitable_timer_timeout)
 		hitTimer.start()
 		hurtbox.hitable = false
-		print("IM INVINCIBLEE")
 
 	
 func hitable_timer_timeout():
@@ -95,7 +94,6 @@ func hitable_timer_timeout():
 
 func _on_block_area_entered(area: Area2D) -> void:
 	stopped = true
-	print("blocked")
 
 
 func frameFreeze(time_scale, duration):

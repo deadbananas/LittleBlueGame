@@ -51,5 +51,4 @@ func _on_little_blue_pass_strike():
 
 
 func _on_area_2d_area_entered(area):
-	print("weve entered")
 	countered = true

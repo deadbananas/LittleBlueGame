@@ -279,6 +279,7 @@ func countered():
 	anim_kick_rock.visible = false
 	anim_basic_combo.visible = false
 	anim_parried.visible = true
+	will -= 3
 	flash()
 	
 	
@@ -351,7 +352,6 @@ func _on_fist_check_area_entered(area):
 
 
 func _on_hurtbox_main_received_hit(damage, time_scale, duration):
-	print(duration)
 	health -= damage
 	healthbar.health = health
 	will -= 0.5

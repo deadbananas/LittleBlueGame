@@ -48,7 +48,6 @@ func process_input(event: InputEvent) -> State:
 	if (Input.is_action_just_pressed("parry_right")):
 		return parry_state
 	if (Input.is_action_just_pressed("dash")) and canDash():
-		print("dash")
 		return dash_state
 	if get_small():
 		return small_enter_state

@@ -20,7 +20,7 @@ const Timeline = preload("res://addons/time_control/timeline.gd")
 
 @onready var damaged_sound = $damagedSound
 
-var health = 100
+var health = 20
 var maxHealth = 10
 
 signal pass_strike()

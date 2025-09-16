@@ -21,7 +21,6 @@ extends LimboState
 
 
 func _enter() -> void:
-	print("countered")
 	animation_player.play(animation_name)
 	
 func _update(_delta: float) -> void:

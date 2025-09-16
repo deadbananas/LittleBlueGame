@@ -6,7 +6,7 @@ extends LimboState
 
 var count = 1 
 func _enter() -> void:
-	print("move")
+	pass
 
 func _update(_delta: float) -> void:
 	count += 1
