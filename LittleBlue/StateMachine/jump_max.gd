@@ -41,8 +41,9 @@ func process_physics(delta: float) -> State:
 		return hit_state
 		
 	if get_jump() and !parent.double_jumped:
-		parent.double_jumped = true
-		return double_jump_state
+		#parent.double_jumped = true
+		#return double_jump_state
+		pass
 		
 	parent.velocity.y += gravity * delta
 	var movement = get_movement_input() * move_speed
